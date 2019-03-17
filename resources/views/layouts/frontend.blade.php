@@ -287,7 +287,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copy-right">
-                                    <p> All Rights Reserved. Copyright {{date('Y')}} Powered by James Omosora.</p>
+                                    <p> All Rights Reserved. Copyright {{date('Y')}} Powered by <a target="_blank" href="https://www.linkedin.com/in/elven-man-on-b6788b141/">James Omosora</a></p>
                                 </div>
                             </div>
                         </div>

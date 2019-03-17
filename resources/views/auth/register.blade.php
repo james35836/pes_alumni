@@ -143,7 +143,7 @@
                 </div>
             </div>
             <div class="text-center login-footer">
-                <p>Copyright © {{date('Y')}}. All rights reserved. Powered by <a href="#">James Omosora</a></p>
+                <p>Copyright © {{date('Y')}}. All rights reserved. Powered by <a target="_blank" href="https://www.linkedin.com/in/elven-man-on-b6788b141/">James Omosora</a></p>
             </div>
         </div>
         

@@ -371,10 +371,13 @@
             
             <div class="container text-center">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="index.html"><span class="educate-icon educate-student icon-wrap"></span></a></li>
-                    <li class="list-inline-item"><a href="index.html"><span class="educate-icon educate-student icon-wrap"></span></a></li>
-                    <li class="list-inline-item"><a href="index.html"><span class="educate-icon educate-student icon-wrap"></span></a></li>
+                    <li class="list-inline-item"><a href="/alumni-dashboard"><span class="educate-icon educate-event icon-wrap"></span></a></li>
+                    <li class="list-inline-item"><a href="/alumni-feeds"><span class="educate-icon educate-event icon-wrap"></span></a></li>
+                    <li class="list-inline-item"><a href="/alumni-list"><span class="educate-icon educate-student icon-wrap"></span></a></li>
+                    <li class="list-inline-item"><a href="/alumni-faculties"><span class="educate-icon educate-professor icon-wrap"></span></a></li>
                 </ul>
+
+                
                 <!-- <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="mobile-menu">
@@ -435,7 +438,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="footer-copy-right">
-            <p>Copyright © 2018. All rights reserved. Powered by <a href="#">James Omosora</a></p>
+            <p>Copyright © 2018. All rights reserved. Powered by <a target="_blank" href="https://www.linkedin.com/in/elven-man-on-b6788b141/">James Omosora</a></p>
         </div>
     </div>
 </div>
