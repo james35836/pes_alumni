@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Feed;
 
 
 class AlumniController extends Controller
@@ -43,7 +44,9 @@ class AlumniController extends Controller
     }
     public function alumni_feeds()
     {
-        return view('back_page.alumni_feeds');
+        $data['_feed'] = Feed::all();
+        // dd($data);
+        return view('back_page.alumni_feeds',$data);
     }
 
     public function alumni_info()

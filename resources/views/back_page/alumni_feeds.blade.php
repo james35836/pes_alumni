@@ -10,7 +10,6 @@
                             <div class="card">
                                 <form class="feed-create" method="POST" action= "/alumni/feeds">
                                     @csrf
-                                    <input type="hidden" name="is_public" value="yes">
                                     <div class="card-header">
                                         Create Post
                                     </div>
@@ -21,15 +20,23 @@
                                     </div>
                                     <div class="btn-toolbar justify-content-between">
                                         <div class="btn-group">
-                                            <button type="submit" class="btn btn-primary">share</button>
+                                            <button type="submit" class="btn btn-sm btn-primary button-custom">share</button>
                                         </div>
                                         <div class="btn-group">
                                             <button id="btnGroupDrop1" type="submit" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-globe"></i>
                                             </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                                <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
-                                                <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1" style="padding: 10px;color: #3e3e46;"> 
+                                                <ul class="list-inline dropdown-item">
+                                                    <li class="list-inline-item">
+                                                        <input type='radio' class="selected_viewer d-none" value='1' name='group_id'  checked />
+                                                        <label for="selected_viewes" class="label selected_views"><i class="fa fa-globe"></i> To Public</label>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <input type='radio' class="selected_viewer d-none" value='{{Auth::user()->group_id}}' name='group_id'   />
+                                                        <label for="selected_viewes" class="label selected_views"><i class="fa fa-users"></i> To Group</label>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -41,21 +48,22 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="review-content-section">
                                 <div class="chat-discussion" style="height: auto">
+                                    @foreach($_feed as $feed)
                                     <div class="chat-message">
                                         <div class="profile-hdtc">
-                                            <img class="message-avatar" src="/backend/img/contact/1.jpg" alt="">
+                                            <img class="message-avatar" src="{{$feed->user->userinfo->user_profile}}" alt="">
                                         </div>
                                         <div class="message">
-                                            <a class="message-author" href="#"> Michael Smith </a>
-                                            <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                            </span>
+                                            <a class="message-author" href="#"> {{$feed->user->userinfo->name}} </a>
+                                            <span class="message-date"> {{$feed->date_format}} </span>
+                                            <span class="message-content">{{$feed->content}}</span>
                                             <div class="m-t-md mg-t-10">
                                                 <a class="btn btn-xs btn-default"><i class="fa fa-thumbs-up"></i> Like </a>
                                                 <a class="btn btn-xs btn-success"><i class="fa fa-heart"></i> Love</a>
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                     <div class="chat-message">
                                         <div class="profile-hdtc">
                                             <img class="message-avatar" src="/backend/img/contact/2.jpg" alt="">

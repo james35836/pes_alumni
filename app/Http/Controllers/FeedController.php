@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Feed;
+use Auth;
 use Illuminate\Http\Request;
 use Redirect;
+use Validator;
+use Carbon\Carbon;
 class FeedController extends Controller
 {
     /**
@@ -19,7 +22,9 @@ class FeedController extends Controller
     
     public function index()
     {
-        //
+        $data['_feed'] = Feed::all();
+        
+        return view('back_pages.alumni_feeds',$data);
     }
 
     /**
@@ -41,50 +46,19 @@ class FeedController extends Controller
     public function store(Request $request)
     {
         $data  = $request->all();
-        title   varchar(255) NULL    
-content text NULL    
-thumbnail   varchar(255) NULL    
-group_id    int(10) unsigned     
-user_id int(10) unsigned     
-archived    tinyint(4) [1]   
-created_at  timestamp NULL   
-updated_at  
-
         $rules = array(
-            // 'thumbnail'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title'          => ['required', 'string', 'max:255'],
             'content'   => ['required', 'string'],
-            'group_id'      => ['required'],
         );
         $validator = Validator::make($data, $rules);
 
-        // process the login
         if($validator->fails()) {
-           
-            return Redirect::to('nerds/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+            return Redirect::back()->withErrors($validator);
         } 
         else 
         {
-            
-
-            $imageName = "event-".time().'.'.$data['thumbnail']->getClientOriginalExtension();
-            $data['thumbnail']->move(public_path('event_img'), $imageName);
-
-            return Event::create([
-                'name'          => $data['name'],
-                'description'   => $data['description'],
-                'thumbnail'     => "/event_img/".$imageName,
-                'time'          => $data['time'],
-                'date'          => $data['date'],
-                'place'         => $data['place'],
-                'group_id'      => $data['group_id'],
-                'created_at'      =>Carbon::now(),
-                'user_id'       => Auth::user()->id,
-            ]);
-
-            
+            $data['user_id'] =  Auth::user()->id;
+            $data['created_at'] =  Carbon::now();
+            return Feed::create($data);
         }
     }
 

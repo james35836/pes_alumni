@@ -87,10 +87,10 @@
                     <nav class="sidebar-nav left-sidebar-menu-pro">
                         <ul class="metismenu" id="menu1">
                             <li>
-                                <a title="Dashboard Page" href="/alumni-dashboard" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
+                                <a title="Dashboard Page" href="/alumni-dashboard" aria-expanded="false"><span class="educate-icon educate-charts icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
                             </li>
                             <li>
-                                <a title="Feed Page" href="/alumni-feeds" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">News Feed</span></a>
+                                <a title="Feed Page" href="/alumni-feeds" aria-expanded="false"><span class="educate-icon educate-library icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">News Feed</span></a>
                             </li>
                             <li>
                                 <a title="List Page" href="/alumni-list" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Alumni List</span></a>
@@ -371,33 +371,15 @@
             
             <div class="container text-center">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="/alumni-dashboard"><span class="educate-icon educate-event icon-wrap"></span></a></li>
-                    <li class="list-inline-item"><a href="/alumni-feeds"><span class="educate-icon educate-event icon-wrap"></span></a></li>
+                    <li class="list-inline-item"><a href="/alumni-dashboard"><span class="educate-icon educate-charts icon-wrap"></span></a></li>
+                    <li class="list-inline-item"><a href="/alumni-feeds"><span class="educate-icon educate-library icon-wrap"></span></a></li>
                     <li class="list-inline-item"><a href="/alumni-list"><span class="educate-icon educate-student icon-wrap"></span></a></li>
                     <li class="list-inline-item"><a href="/alumni-faculties"><span class="educate-icon educate-professor icon-wrap"></span></a></li>
+                    <li class="list-inline-item"><a href="/alumni-faculties"><span class="educate-icon educate-pages icon-wrap"></span></a></li>
                 </ul>
 
                 
-                <!-- <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="mobile-menu">
-                            <nav id="dropdown">
-                                <ul class="mobile-menu-nav">
-                                    <li><a href="events.html">Event</a></li>
-                                    <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                    <ul class="collapse dropdown-header-top">
-                                        <li><a href="index.html">Dashboard v.1</a></li>
-                                        <li><a href="index-1.html">Dashboard v.2</a></li>
-                                        <li><a href="index-3.html">Dashboard v.3</a></li>
-                                        <li><a href="analytics.html">Analytics</a></li>
-                                        <li><a href="widgets.html">Widgets</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div> -->
+              
         </div>
     </div>
     <div class="breadcome-area">

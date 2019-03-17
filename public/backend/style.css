@@ -38,6 +38,30 @@
 	23. footer
 
 -----------------------------------------------------------------------------------*/
+/*GLOBALS*/
+.d-none
+{
+	/*visibility: hidden;*/
+}
+.button-custom
+{
+	background-color: #006DF0;
+    border-color: #006DF0;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 0px;
+}
+
+
+/*FOR FEEDS*/
+.selected_views
+{
+	color:#000 !important;
+}
+.selected_viewer:checked + label {   /* target next sibling (+) label */
+  background-color: blue;
+  color:#fff !important;
+}
 
 /*----------------------------------------*/
 /*  1. Common
