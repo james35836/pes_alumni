@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="/frontend/css/DioProgress.css" type="text/css">
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="/frontend/js/DioProgress.js"></script>
+        <script src="/js/sharelink.js"></script>
+        <meta property="og:image" content="/frontend/images/logo_ko.png" />
     </head>
     <body id="index">
         <div class="wrapar">

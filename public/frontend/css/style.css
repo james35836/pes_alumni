@@ -1505,6 +1505,9 @@ select {
 .post-title a:hover {
 	color: #888;
 }
+.description  {
+	padding:20px;
+}
 .description > p {
 	line-height: 24px;
 }

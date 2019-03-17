@@ -44,7 +44,6 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $data  = $request->all();
-        dd($data['james']);
         $rules = array(
             'thumbnail'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name'          => ['required', 'string', 'max:255'],

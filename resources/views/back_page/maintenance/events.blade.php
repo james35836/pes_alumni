@@ -13,14 +13,7 @@
                 <div class="container-fluid">
                     <form method="POST" action="/manage/events" class="needsclick addcourse" id="demo1-upload" enctype="multipart/form-data">
                         @csrf
-                        <section id="textarea" contenteditable="true" name="james">
-                            <ul>
-                                <li>List item here</li>
-                                <li>List item here</li>
-                                <li>List item here</li>
-                                <li>List item here</li>
-                            </ul>
-                        </section>
+                        
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">

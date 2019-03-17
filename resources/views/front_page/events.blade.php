@@ -27,6 +27,16 @@
                                             <div class="date"><span class="date-month">Jan</span><span class="date-day"> 16</span><span class="date-year">2015</span> </div>
                                             <div class="comments"><a href="#"><i class="fa fa-share"></i><span class="comments-number"> 324</span></a></div>
                                         </div>
+                                        <br>
+                                        <div class="social-link">
+                                            <ul>
+                                                
+                                                <li><a class="facebook customer share" href="https://www.facebook.com/sharer.php?u={{$_SERVER['HTTP_HOST']}}/events" title="Facebook share" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a class="twitter customer share" href="https://twitter.com/share?url=https://codepen.io/patrickkahl&amp;text=Share popup on &amp;hashtags=codepen" title="Twitter share" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url=https://codepen.io/patrickkahl" title="linkedin Share" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                            </ul>
+                                        </div>
+                         
                                         <div class="read-more"> <a href="single-post.html" class="read-more">read more <i class="fa fa-long-arrow-right"></i></a> </div>
                                     </div>
                                 </div>
