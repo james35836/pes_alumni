@@ -1,0 +1,40 @@
+body{background:#f3f3f3;}
+#wrapper{    padding: 60px 10px;}
+nav{background: #2d1494 !important;}
+.navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
+.card{margin-bottom: 15px; border-radius:0; box-shadow: 0 3px 5px rgba(0,0,0,.1); }
+.header-top{box-shadow: 0 3px 5px rgba(0,0,0,.1)}
+.leftmenutrigger, .navbar-nav li a .shortmenu{display: none}
+.card-title{ font-size: 28px}
+@media(min-width:992px) {
+.leftmenutrigger{display: block;display: block;margin: 7px 20px 4px 0;cursor: pointer;}
+#wrapper{padding: 90px 15px 15px 75px; }
+#wrapper.open{padding: 90px 15px 15px 225px; }
+.navbar-nav.side-nav.open {left:0;}
+.side-nav li a {padding: 20px}
+.navbar-nav li a .shortmenu {float: right;display: block;opacity: 1;font-size: 25px;
+    padding: 0px 10px 13px 10px;}
+.navbar-nav.side-nav.open.navbar-nav li a .shortmenu {opacity: 0}
+.navbar-nav.side-nav{background: #030f1b;box-shadow: 2px 1px 2px rgba(0,0,0,.1);position:fixed;top:56px;flex-direction: column!important;left:-140px;width:200px;bottom:0;padding-bottom:40px}
+}
+.nav-link{color: #fff !important;}
+.nav-link i{font-size:21px;}
+.animate{-webkit-transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;-ms-transition:all .2s ease-in-out;transition:all .2s ease-in-out}
+.navbar-nav li a svg{font-size: 25px;float: left;margin: 0 10px 0 5px;}
+.side-nav li { border-bottom: 1px solid #50575d;}
+.side-nav .dropdown {position:initial;}
+.side-nav .dropdown-menu {position:relative;opacity:0;left:120%;top:0;height:100%;border:0;padding:0;margin:0;border-radius:0;box-shadow:5px 0 5px rgba(0,0,0,.1);background:#eee;visibility: hidden;display:block;transition: .4s ease all;}
+.side-nav .dropdown-menu.show {left:100%;opacity:1;visibility: visible;display:block;transition: .4s ease all;}
+
+main
+{
+      min-height: 515px;
+}
+
+footer { width:100%; background-color:#190b54;padding:10px 0px 25px 0px ;}
+footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
+
+.social_footer_ul { display:table; margin:15px auto 0 auto; list-style-type:none;  }
+.social_footer_ul li { padding-left:20px; padding-top:10px; float:left; }
+.social_footer_ul li a { color:#CCC; border:1px solid #CCC; padding:8px;border-radius:50%;}
+.social_footer_ul li i {  width:20px; height:20px; text-align:center;}

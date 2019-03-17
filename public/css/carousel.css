@@ -1,0 +1,28 @@
+.carousel-item {
+  height: 85vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.carousel-caption 
+{
+    top: 30%;
+    bottom: auto;
+    
+    background:rgba(8, 37, 90, 0.65);
+
+}
+.carousel-caption  .content
+{
+    z-index:200;
+    opacity:none !important;
+}
+.about-landing
+{
+  max-height: 100px !important;
+    overflow-y: hidden;
+}
