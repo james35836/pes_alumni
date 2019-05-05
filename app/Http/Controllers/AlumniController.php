@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
-use App\Feed;
+use App\Post;
 
 
 class AlumniController extends Controller
@@ -33,19 +33,16 @@ class AlumniController extends Controller
     public function alumni_list()
     {
         $data['_list'] = User::all();
-        // dd($data);
         return view('back_page.alumni_list',$data);
     }
     public function alumni_faculties()
     {
         $data['_list'] = User::all();
-        // dd($data);
         return view('back_page.alumni_faculties',$data);
     }
     public function alumni_feeds()
     {
-        $data['_feed'] = Feed::all();
-        // dd($data);
+        $data['_feed'] = Post::all()->sortByDesc("created_at");
         return view('back_page.alumni_feeds',$data);
     }
 
@@ -61,6 +58,10 @@ class AlumniController extends Controller
 
     public function alumni_profile()
     {
-        return view('back_page.alumni_profile');
+        $id                     = Request('user');
+        $view                   = Request('view');
+        $data['data']           = User::findorFail($id);
+        $data['data']['view']   = $view;
+        return view('back_page.alumni_profile',$data);
     }
 }

@@ -93,76 +93,12 @@ class UserController extends Controller
         return response($return, $return["code"]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email'         => 'Required|unique:users,email,'.$id,
-            'first_name'    => 'Required',
-            'last_name'     => 'Required',
-            'country_id'    => 'Required',
-            'birthday'      => 'Required',
-            'address'       => 'Required',
-            'mobile_number' => 'Required',
-//            'gallery_id'    => 'Required',
-        ]
-//            ,
-//        [
-//            'gallery_id.required' => 'Uploading profile picture is required',
-//
-//        ]
-        );
-
-        if($validator->fails())
-        {
-            $return = $validator->errors()->first();
-            $code = 300;
-            return response($return, $code);
-        }
-
-        if ($request->password != '' && $request->password != null && $request->change_password)
-        {
-
-            if (Hash::check($request->password, $this->model->find($id)->password))
-            {
-                $this->model = $this->model->find($id)->fill([
-                    'crypt' =>  Crypt::encrypt($request->new_password),
-                    'password' => Hash::make($request->new_password)
-                ]);
-
-                $this->model->save();
-            }
-            else{
-                return response('Incorrect current password.',301);
-            }
-
-        }
-
-       $this->model = $this->model->find($id)->fill([
-            'email' => $request->email,
-        ]);
-
-        $this->model->save();
-
-        if (!$request->dealer)
-        {
-            $request->request->add(['dealer' => 0]);
-        }
-
-        $this->model->userInformation()->first()->fill([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'country_id' => $request->country_id,
-            'birthday' => $request->birthday,
-            'address' => $request->address,
-            'mobile_number'=> $request->mobile_number,
-            'role_id' => $request->role_id,
-            'gallery_id' => $request->gallery_id,
-            'cover_id' => $request->cover_id,
-            'dealer' => $request->dealer,
-        ])->save();
-        $this->model->applications()->sync($request->applications);
-
-        return $this->response($request->all(),200);
+        $id = Request('id');
+        $this->model = $this->model->findOrFail($id)->fill($request->all());
+        $this->model->userInfo()->first()->fill($request->all())->save();
+        return User::findorFail($id);
     }
 
     public function destroy(Request $request, $id)

@@ -21,16 +21,11 @@ class Userinfo extends Model
     }
 
     public function getUserProfileAttribute(){
-        if($this->gender == "Male")
-        {
-            return $this->profile ? $this->profile : "/backend/img/student/4.jpg";
-        }
-        else
-        {
-            return $this->profile ? $this->profile : "/backend/img/student/2.jpg";
-        }
-        // return $this->profile;
+        $image = $this->gender == "Female" ? "/backend/img/student/2.jpg" : "/backend/img/student/4.jpg";
+        return $this->profile ?: $image;
     }
+
+
 
     
 }

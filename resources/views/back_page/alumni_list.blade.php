@@ -9,27 +9,25 @@
                 <div class="hpanel hblue contact-panel contact-panel-cs responsive-mg-b-30 dk-res-t-pro-30 ">
                     <div class="panel-body custom-panel-jw">
                         <div class="social-media-in">
-                            <a href="{{$list->userinfo->fb_link}}"><i class="fa fa-facebook"></i></a>
-                            <a href="{{$list->userinfo->twitter_link}}"><i class="fa fa-twitter"></i></a>
-                            <a href="{{$list->userinfo->linkedin_link}}"><i class="fa fa-pinterest"></i></a>
+                            <a target="_blank" href="{{$list->userinfo->fb_link}}"><i class="fa fa-facebook"></i></a>
+                            <a target="_blank" href="{{$list->userinfo->twitter_link}}"><i class="fa fa-twitter"></i></a>
+                            <a target="_blank" href="{{$list->userinfo->linkedin_link}}"><i class="fa fa-pinterest"></i></a>
+                            <a target="_blank" href="/alumni-profile?view=alumni-account&user={{$list->id}}"><i class="fa fa-eye"></i></a>
                         </div>
-                        <img alt="logo" class="img-circle m-b" src="{{$list->userinfo->profile ? $list->userinfo->profile : '/backend/img/contact/1.jpg'}}">
-                        <h3><a href="">{{$list->userinfo->name}}</a></h3>
-                        <p class="all-pro-ad">{{$list->userinfo->name}}</p>
+                        <img alt="logo" class="img-circle m-b" style="max-height: 80px;" src="{{$list->userinfo->user_profile}}">
+                        <h3><a href="/alumni-profile?view=alumni-account&user={{$list->id}}">{{$list->userinfo->name}}</a></h3>
+                        <p class="all-pro-ad">{{$list->userinfo->work_position ?: "Graduate"}}</p>
                         <p>
-                            Lorem ipsum dolor sit amet of, consectetur adipiscing elitable. Vestibulum tincidunt est vitae ultrices accumsan.
+                            {{$list->userinfo->biography ?: "Nothing to show"}}
                         </p>
                     </div>
                     <div class="panel-footer contact-footer">
                         <div class="professor-stds-int">
-                            <div class="professor-stds">
-                                <div class="contact-stat"><span>Likes: </span> <strong>956</strong></div>
+                            <div class="professor-stds" style="width:50%">
+                                <div class="contact-stat" style="width:100%"><span>Batch</span> <br><strong>{{$list->group->name}}</strong></div>
                             </div>
-                            <div class="professor-stds">
-                                <div class="contact-stat"><span>Comments: </span> <strong>350</strong></div>
-                            </div>
-                            <div class="professor-stds">
-                                <div class="contact-stat"><span>Views: </span> <strong>450</strong></div>
+                            <div class="professor-stds" style="width:50%">
+                                <div class="contact-stat" style="width:100%"><span>Join</span> <br><strong>{{$list->user_registered}}</strong></div>
                             </div>
                         </div>
                     </div>

@@ -304,76 +304,24 @@
             </div>
             <div class= "customNavigation"> <a class="btn Latest_prev prev"><i class="fa fa-angle-left"></i></a> <a class="btn Latest_next next"><i class="fa fa-angle-right"></i></a> </div>
             <div id="Latest-News" class="owl-carousel ">
+                @foreach($_event as $event)
                 <div class="item">
                     <div class="post">
                         <div class="image"> <a href="blog.html"><img src="/frontend/images/blog4.jpg" alt="post" title="post" class="img-responsive"></a> </div>
                         <div class="content-details">
                             <div class="post-title">
-                                <h3><a href="blog.html">Image post contant wrider with exampler the ttis ant</a></h3>
+                                <h3><a href="blog.html">{{$event->name}}</a></h3>
                             </div>
                             <div class="description">
-                                <p>This ante posuere ac Mauris non turpis eu metus congue metus sagittis metus Fusce at .</p>
+                                <p>{{$event->description}}</p>
                                 <div class="read-more"> <a class="read-more" href="single-post.html">Read More..</a> </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="post">
-                        <div class="image"> <a href="blog.html"><img src="/frontend/images/blog1.jpg" alt="post" title="post" class="img-responsive"></a> </div>
-                        <div class="content-details">
-                            <div class="post-title">
-                                <h3><a href="blog.html">Image post contant wrider with exampler the ttis ant</a></h3>
-                            </div>
-                            <div class="description">
-                                <p>This ante posuere ac Mauris non turpis eu metus congue metus sagittis metus Fusce at .</p>
-                                <div class="read-more"> <a class="read-more" href="single-post.html">Read More..</a> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="post">
-                        <div class="image"> <a href="blog.html"><img src="/frontend/images/blog3.jpg" alt="post" title="post" class="img-responsive"></a> </div>
-                        <div class="content-details">
-                            <div class="post-title">
-                                <h3><a href="blog.html">Image post contant wrider with exampler the ttis ant</a></h3>
-                            </div>
-                            <div class="description">
-                                <p>This ante posuere ac Mauris non turpis eu metus congue metus sagittis metus Fusce at .</p>
-                                <div class="read-more"> <a class="read-more" href="single-post.html">Read More..</a> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="post">
-                        <div class="image"> <a href="blog.html"><img src="/frontend/images/blog4.jpg" alt="post" title="post" class="img-responsive"></a> </div>
-                        <div class="content-details">
-                            <div class="post-title">
-                                <h3><a href="blog.html">Image post contant wrider with exampler the ttis ant</a></h3>
-                            </div>
-                            <div class="description">
-                                <p>This ante posuere ac Mauris non turpis eu metus congue metus sagittis metus Fusce at .</p>
-                                <div class="read-more"> <a class="read-more" href="single-post.html">Read More..</a> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="post">
-                        <div class="image"> <a href="blog.html"><img src="/frontend/images/blog5.jpg" alt="post" title="post" class="img-responsive"></a> </div>
-                        <div class="content-details">
-                            <div class="post-title">
-                                <h3><a href="blog.html">Image post contant wrider with exampler the ttis ant</a></h3>
-                            </div>
-                            <div class="description">
-                                <p>This ante posuere ac Mauris non turpis eu metus congue metus sagittis metus Fusce at .</p>
-                                <div class="read-more"> <a class="read-more" href="single-post.html">Read More..</a> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                
+                
             </div>
         </div>
         <!-- <div class="col-md-3 special">

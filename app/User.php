@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password','auth', 'access', 'status', 'group_id', 'password',
+        'email', 'password','auth', 'access', 'status', 'group_id', 'password','created_at'
     ];
 
     /**
@@ -35,7 +35,7 @@ class User extends Authenticatable
         return $this->status == 0 ? 'Need Approval' : "Active";
     }
     public function getUserRegisteredAttribute(){
-        return date("M jS, Y", strtotime($this->created_at));
+        return date("F j, Y", strtotime($this->created_at));
     }
     
 
@@ -51,5 +51,10 @@ class User extends Authenticatable
     public function userinfo()
     {
         return $this->hasOne(Userinfo::class);
+    }
+
+    public function feed()
+    {
+        return $this->hasMany(Feed::class);
     }
 }

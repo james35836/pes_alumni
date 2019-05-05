@@ -121,7 +121,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="logo-pro">
-                            <a href="index.html"><img class="main-logo" src="/backend/img/logo/logo.png" alt="" /></a>
+                            <a href="/"><img class="main-logo" src="/backend/img/logo/logo.png" alt="" /></a>
                         </div>
                     </div>
                 </div>
@@ -214,7 +214,7 @@
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                     </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="/alumni-profile"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a></li>
+                                                        <li><a href="/alumni-profile?view=my-account&user={{Auth::user()->id}}"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a></li>
                                                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a></li>
                                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                             @csrf
@@ -382,6 +382,10 @@
               
         </div>
     </div>
+    @if(Request::segment(1) == "alumni-profile" || Request::segment(1) == "alumni-feeds")
+    <div class="top-space" style="height:20px;"></div>
+    @else
+    
     <div class="breadcome-area">
         <div class="container-fluid">
             <div class="row">
@@ -398,18 +402,17 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <ul class="breadcome-menu">
-                                    <li><a href="#">Dashboard</a> <span class="bread-slash">/</span>
-                                </li>
-                                <li><span class="bread-blod">{{Request::segment(1)}}</span>
-                            </li>
-                        </ul>
+                                    <li><a href="#">Dashboard</a> <span class="bread-slash">/</span></li>
+                                    <li><span class="bread-blod">{{Request::segment(1)}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
+    @endif
 </div>
 <main>
 <div class="loading" style="display:none;">Loading&#8230;</div>
@@ -487,7 +490,7 @@
 <script src="/backend/js/main.js"></script>
 <!-- tawk chat JS
 ============================================ -->
-<script src="/backend/js/tawk-chat.js"></script>
+<!-- <script src="/backend/js/tawk-chat.js"></script> -->
 <!-- maskedinput JS
 ============================================ -->
 <script src="/backend/js/jquery.maskedinput.min.js"></script>

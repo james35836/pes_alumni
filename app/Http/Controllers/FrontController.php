@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Officer;
-use App\Event;
+use App\User;
+use App\Post;
 use App\Stories;
 use App\Shop;
 class FrontController extends Controller
 {
     public function index()
     {
-        return view('front_page.landing');
+        $data['_event'] = Post::all()->where('type','event_post');
+        return view('front_page.landing',$data);
     }
     public function stories()
     {
@@ -25,12 +26,18 @@ class FrontController extends Controller
     }
     public function events()
     {
-        $data['_event'] = Event::all();
+        $data['_event'] = Post::all();
         return view('front_page.events',$data);
+    }
+
+    public function events_details()
+    {
+        $data['event'] = Post::find(Request('id'));
+        return view('front_page.event_details',$data);
     }
     public function about()
     {
-        $data['_officer'] = Officer::all();
+        $data['_officer'] = User::all();
 
         return view('front_page.about',$data);
     }

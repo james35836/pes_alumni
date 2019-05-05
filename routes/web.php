@@ -32,10 +32,11 @@ Route::group(['middleware' => 'App\Http\Middleware\SuperAdminMiddleware'], funct
 Route::match(['get', 'post'], '/superAdminOnlyPage/', 'HomeController@super_admin');
 });
 
-Route::get('/', 'FrontController@index');
+Route::get('/', 		'FrontController@index');
 Route::get('/stories', 	'FrontController@stories');
-Route::get('/shopping', 	'FrontController@shopping');
+Route::get('/shopping', 'FrontController@shopping');
 Route::get('/events', 	'FrontController@events');
+Route::get('/events/details', 	'FrontController@events_details');
 Route::get('/about', 	'FrontController@about');
 Route::get('/contact', 	'FrontController@contact');
 
@@ -62,18 +63,19 @@ Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallb
 
 // Route::get('/manage/shop', 'ShopController@index');
 // Route::get('/manage/officer', 'OfficerController@index');
-// Route::get('/manage/events', 'EventController@index');
+// Route::get('/manage/events', 'PostController@index');
 // Route::get('/manage/stories', 'StoriesController@index');
 // Route::get('/manage/user', 'UserController@index');
 
 Route::resource('/manage/officer', 'OfficerController');
-Route::resource('/manage/events', 'EventController');
+Route::resource('/manage/events', 'PostController');
 Route::resource('/manage/stories', 'StoriesController');
 Route::resource('/manage/shop', 'ShopController');
 Route::resource('/manage/user', 'UserController');
 
+Route::post('/alumni/update_user_info', 'UserController@update');
 
-Route::resource('/alumni/feeds', 'FeedController');
+Route::resource('/alumni/feeds', 'PostController');
 
 
 

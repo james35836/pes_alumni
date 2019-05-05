@@ -82,17 +82,17 @@
     @foreach($_officer as $key=> $officer)
     <div class="col-md-3 col-sm-3 team1 ">
         <div class="photo">
-            <div class="imageblock"> <img class="img-responsive" src="{{$officer->thumbnail}}" alt="#">
+            <div class="imageblock"> <img class="img-responsive" src="{{$officer->userinfo->user_profile}}" alt="#">
                 <div class="hoverblock"> </div>
                 <div class="team-social"> 
-                    <a href="{{$officer->fb_link}}"><i class="fa fa-facebook"></i></a> 
-                    <a href="{{$officer->twitter_link}}"><i class="fa fa-twitter"></i></a> 
-                    <a href="{{$officer->linkedin_link}}"><i class="fa fa-linkedin"></i></a> 
+                    <a target="_blank" href="{{$officer->userinfo->fb_link}}"><i class="fa fa-facebook"></i></a> 
+                    <a target="_blank" href="{{$officer->userinfo->twitter_link}}"><i class="fa fa-twitter"></i></a> 
+                    <a target="_blank" href="{{$officer->userinfo->linkedin_link}}"><i class="fa fa-linkedin"></i></a> 
                 </div>
-                <div class="name"> <a href="#">{{$officer->name}} </a> </div>
+                <div class="name"> <a href="#">{{$officer->userinfo->name}} </a> </div>
             </div>
             <h5>{{$officer->position}}</h5>
-            <p>{{$officer->description}}</p>
+            <p style="height: 90px;overflow: hidden;">{{$officer->userinfo->biography}}</p>
         </div>
     </div>
     @endforeach

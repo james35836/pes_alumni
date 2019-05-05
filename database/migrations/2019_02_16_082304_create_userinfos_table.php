@@ -29,7 +29,7 @@ class CreateUserinfosTable extends Migration
             $table->string('college_graduated')->nullable();
             $table->string('high_school')->nullable();
             $table->string('high_graduated')->nullable();
-            $table->string('biography')->nullable();
+            $table->text('biography')->nullable();
             $table->string('civil_status')->nullable();
             $table->string('fb_link')->default('https://www.facebook.com/');
             $table->string('twitter_link')->default('https://www.twitter.com/');

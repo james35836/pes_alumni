@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
-use App\Event;
-use Illuminate\Http\Request;
-use Validator;
-use Carbon\Carbon;
 
-class EventController extends Controller
+use App\Post;
+use Validator;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Auth;
+
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +22,7 @@ class EventController extends Controller
     
     public function index()
     {
-        $data['_events'] = Event::all();
+        $data['_events'] = Post::all();
         return view('back_page.maintenance.events',$data);
     }
 
@@ -45,11 +46,11 @@ class EventController extends Controller
     {
         $data  = $request->all();
         $rules = array(
-            'thumbnail'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name'          => ['required', 'string', 'max:255'],
-            'date'          => ['required', 'string', 'max:255'],
-            'time'          => ['required', 'string', 'max:255'],
-            'place'         => ['required', 'string', 'max:255'],
+            // 'thumbnail'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'name'          => ['required', 'string', 'max:255'],
+            // 'date'          => ['required', 'string', 'max:255'],
+            // 'time'          => ['required', 'string', 'max:255'],
+            // 'place'         => ['required', 'string', 'max:255'],
             'description'   => ['required', 'string'],
             'group_id'      => ['required'],
         );
@@ -64,22 +65,37 @@ class EventController extends Controller
         } 
         else 
         {
+            $image_name = "/posts_img/default_image.png";
+            $data['group_id']   = isset($data['group_id']) ? $data['group_id']: 1;
+            $data['name']       = isset($data['name']) ? $data['name']: 'POST';
+            $data['time']       = isset($data['time']) ? $data['time']: '';
+            $data['date']       = isset($data['date']) ? $data['date']: '';
+            $data['place']       = isset($data['place']) ? $data['place']: '';
+            if(isset($data['thumbnail'])){
+                $imageName = "event-".time().'.'.$data['thumbnail']->getClientOriginalExtension();
+                $data['thumbnail']->move(public_path('posts_img'), $imageName);
+                $image_name = "/posts_img/".$imageName;
+            }
+            $data['thumbnail'] = $image_name;
             
+            $data['user_id'] =  Auth::user()->id;
+            $data['created_at'] =  Carbon::now();
+            $new = Post::create($data);
+            $id = $new->id;
+            return Post::findOrFail($id)->load('user');
 
-            $imageName = "event-".time().'.'.$data['thumbnail']->getClientOriginalExtension();
-            $data['thumbnail']->move(public_path('event_img'), $imageName);
 
-            return Event::create([
-                'name'          => $data['name'],
-                'description'   => $data['description'],
-                'thumbnail'     => "/event_img/".$imageName,
-                'time'          => $data['time'],
-                'date'          => $data['date'],
-                'place'         => $data['place'],
-                'group_id'      => $data['group_id'],
-                'created_at'      =>Carbon::now(),
-                'user_id'       => Auth::user()->id,
-            ]);
+            // return Post::create([
+            //     'name'          => $name,
+            //     'description'   => $data['description'],
+            //     'thumbnail'     => $image_name,
+            //     'time'          => $time,
+            //     'date'          => $date,
+            //     'place'         => $place,
+            //     'group_id'      => $group_id,
+            //     'created_at'      =>Carbon::now(),
+            //     'user_id'       => Auth::user()->id,
+            // ]);
 
             
         }
@@ -130,3 +146,4 @@ class EventController extends Controller
         //
     }
 }
+

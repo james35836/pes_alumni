@@ -1,3 +1,21 @@
+/*GLOBAL*/
+
+.text-upper {
+  text-transform: uppercase;
+}
+
+.text-lower {
+  text-transform: lowercase;
+}
+
+.text-capital {
+  text-transform: capitalize;
+}
+
+
+
+
+
 body, html {
 	height: 100%;
 	margin: 0;

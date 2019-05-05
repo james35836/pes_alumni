@@ -117,15 +117,36 @@ function transaction()
 		        contentType: false,
 		        processData: false,
 		        success: function(data) {
+		        	if(current_target.hasClass('feed-create')){
+		        		showFeedData(data,current_target);
+		        	}
 		        	$('.loading').css('display','none');
-		            console.log(data,"dsajdjsad");
 		            $('.clear').click();
+		            current_target.find('.form-control').val('');
 		        },
 		        error: function(data) {
 		        	$('.loading').css('display','none');
-		            console.log(data);
 		        }
 	        });
 	    });
+	}
+
+	function showFeedData(data,current_target){
+		
+  		var html_post = '<div class="chat-message">'
+            +'<div class="profile-hdtc">'
+                +'<img class="message-avatar" src="'+data.user.user_info.user_profile+'" alt="">'
+            +'</div>'
+            +'<div class="message">'
+                +'<a class="message-author" href="#"> '+data.user.user_info.name+' </a>'
+                +'<span class="message-date"> '+data.date_format+' </span>'
+                +'<span class="message-content">'+data.description+'</span>'
+                +'<div class="m-t-md mg-t-10">'
+                    +'<a class="btn btn-xs btn-default"><i class="fa fa-thumbs-up"></i> Like </a>'
+                    +'<a class="btn btn-xs btn-success"><i class="fa fa-heart"></i> Love</a>'
+                +'</div>'
+            +'</div>'
+        +'</div>';
+		$('.chat-discussion').prepend(html_post);
 	}
 }

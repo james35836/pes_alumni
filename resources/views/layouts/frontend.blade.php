@@ -177,16 +177,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-3">
-                            <div class="page-title">
-                                <h4>{{ Request::segment(2) }}</h4>
+                            <div class="page-title text-capital">
+                                <h4>{{ Request::segment(1) }}</h4>
                             </div>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9">
                             <div class="bread-crumb">
                                 <ul>
-                                    <li><a href="/">alumni</a></li>
-                                    <li>\</li>
-                                    <li><a href="/{{ Request::segment(2) }}">{{ Request::segment(2) }}</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li>/</li>
+                                    <li><a href="/{{ Request::segment(2) }}">{{ Request::segment(1) }}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
                         <div class= "newslatter">
                             <form>
                                 <h2 class="tf">Be The First To Hear Our Exciting News</h2>
-                                <p>This ante posuere ac Mauris non turpis eu metus congue sagittis Fusce at.</p>
+                                <p>Enter your email below to receive all the news and events.</p>
                                 <div class="input-group">
                                     <input class=" form-control" type="text" placeholder="Email Here......">
                                     <button type="submit" value="Sign up" class="btn btn-large btn-primary">Sign up</button>
@@ -217,7 +217,7 @@
                     <div class="col-md-3">
                         <div class="about">
                             <div class="footer-logo"></div>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature in Virginia</p>
+                            <p>We'll start with the obvious reason. One of the main purposes of alumni associations is to support a network of former graduates who will, in turn, help to raise the profile of the university. </p>
                         </div>
                     </div>
                     <div class="col-md-3">

@@ -8,33 +8,39 @@
                 
                 <div id="left">
                     <div class="single-post-item">
-                        <div class="post-image"> <a href="#"><img src="images/blog1.jpg" alt=""></a> </div>
+                        <div class="post-image"> <a href="#"><img src="{{$event->thumbnail}}" alt=""></a> </div>
                         <div class="single-post-details">
                             <div class="post-title">
-                                <h4><a href="#">Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure
-                                Virginia, looked up one of the more</a></h4>
+                                <h4><a href="#">{{$event->name}}</a></h4>
                             </div>
                             <div class="description">
-                                <p>make a type specimen book. It has survived not only five centuries, but also the leap into electronic type setting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset ators on the Internet tend to repeat predefined chunks as necessary, making </p>
+                                <p>{{$event->description}}</p>
                                 <br>
-                                <p>make a type specimen book. It has survived not only five centuries, but also the leap into electronic typese tting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset ators on the Internet tend to repeat predefined chunks as necessary, making make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset ators on the Internet tend to repeat predefined chunks as necessary, making make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesettingrepeat predefined chunks as necessary, making </p>
+                                
                                 <div class="post-meta">
+                                    <div class="chat"> <a href="#"> <span class="chat-number">Posted By</span> <span class="chat-number">{{$event->user->userinfo->name}}</span> </a> </div>
                                     <div class="chat"> <a href="#"> <i class="fa fa-comment"></i> <span class="chat-number">324</span> </a> </div>
-                                    <div class="date"> <span class="date-month">Jan</span> <span class="date-day">16</span> <span class="date-year">2015</span> </div>
+                                    <div class="date"> {{$event->date_format}}</div>
                                     <div class="comments"> <a href="#"> <i class="fa fa-share"></i> <span class="comments-number">324</span> </a> </div>
                                 </div>
+                                <br>
+                                <br>
+                                <div class="social-link">
+                                            <ul>
+                                                <li><a class="facebook customer share" href="https://www.facebook.com/sharer.php?u={{$_SERVER['HTTP_HOST']}}/events" title="Facebook share" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a class="twitter customer share" href="https://twitter.com/share?url=https://codepen.io/patrickkahl&amp;text=Share popup on &amp;hashtags=codepen" title="Twitter share" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url=https://codepen.io/patrickkahl" title="linkedin Share" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                            </ul>
+                                        </div>
                             </div>
                         </div>
                     </div>
-                    <div class="navigation">
-                        <div class="pull-left"> <a href="#" title="previous">Previous Post</a> </div>
-                        <div class="pull-right"> <a href="#" title="next">Next Post</a> </div>
-                    </div>
+                    
                     <div class="comments-area">
                         <h4>Comments<span>(2)</span></h4>
                         <ul class="comment-list ">
                             <li>
-                                <div class="comment-user"> <img src="images/comment-user.jpg" alt="further"> </div>
+                                <div class="comment-user"> <img src="/frontend/images/comment-user.jpg" alt="further"> </div>
                                 <div class="comment-detail">
                                     <h6>John Doe</h6>
                                     <div class="post-info">
@@ -47,7 +53,7 @@
                                 </div>
                                 <ul class="comment-list child-comment">
                                     <li>
-                                        <div class="comment-user"> <img src="images/comment-user.jpg" alt="further"> </div>
+                                        <div class="comment-user"> <img src="/frontend/images/comment-user.jpg" alt="further"> </div>
                                         <div class="comment-detail">
                                             <h6>John Doe</h6>
                                             <div class="post-info">
@@ -60,7 +66,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="comment-user"> <img src="images/comment-user.jpg" alt="further"> </div>
+                                        <div class="comment-user"> <img src="/frontend/images/comment-user.jpg" alt="further"> </div>
                                         <div class="comment-detail">
                                             <h6>John Doe</h6>
                                             <div class="post-info">
@@ -75,7 +81,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <div class="comment-user"> <img src="images/comment-user.jpg" alt="further"> </div>
+                                <div class="comment-user"> <img src="/frontend/images/comment-user.jpg" alt="further"> </div>
                                 <div class="comment-detail">
                                     <h6>John Doe</h6>
                                     <div class="post-info">
@@ -89,142 +95,17 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="reply">
-                        <div class="Reply -title">
-                            <h4 class="tf">Leave a Reply </h4>
-                        </div>
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="input-group">
-                                        <textarea placeholder="Comment *" id="textarea_message" name="contact-message" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-7 col-sm-12">
-                                    <div class="input-group">
-                                        <input type="text" required placeholder="Name * " class="form-control" >
-                                    </div>
-                                    <!-- /input-group -->
-                                    <div class="input-group">
-                                        <input type="email" required placeholder="e-mail *" class="form-control">
-                                    </div>
-                                    <!-- /input-group -->
-                                    <div class="input-group">
-                                        <input type="text" placeholder="Your website" class="form-control">
-                                    </div>
-                                    <!-- /input-group -->
-                                    <div class="btn btn-large btn-primary">
-                                        <input type="submit" value="Post" name="submit">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    
                 </div>
-                <!-- left block end  -->
             </div>
-            <div class="col-md-3 col-sm-4">
-                <!-- right block Start  -->
+            <div class="col-md-3">
                 <div id="right">
                     <div class="sidebar-widget">
-                        <div class="sidebar-title">
-                            <h4> Categories </h4>
-                        </div>
-                        <ul class="title-toggle">
-                            <li><a href="blog.html">Photoshop (10)</a></li>
-                            <li><a href="blog.html">WordPress (4)</a></li>
-                            <li><a href="blog.html">Core PHP (5)</a></li>
-                            <li><a href="blog.html">Graphic Design (15)</a></li>
-                            <li><a href="blog.html">e-Commerce Developars (3)</a></li>
-                            <li><a href="blog.html">Android Dev (7)</a></li>
-                            <li><a href="blog.html">Web Designing (9)</a></li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-widget">
-                        <div class="sidebar-title">
-                            <h4>Tags</h4>
-                        </div>
-                        <ul class="tagcloud title-toggle">
-                            <li><a href="#">gallery</a></li>
-                            <li><a href="#">grid</a></li>
-                            <li><a href="#">large</a></li>
-                            <li><a href="#">quote</a></li>
-                            <li><a href="#">personal</a></li>
-                            <li><a href="#">simple</a></li>
-                            <li><a href="#">Wedding</a></li>
-                            <li><a href="#">slider</a></li>
-                            <li><a href="#">trending</a></li>
-                            <li><a href="#">youtube</a></li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-widget latest-blog">
-                        <div class="sidebar-title">
-                            <h4>Latest blog</h4>
-                        </div>
-                        <ul class="title-toggle">
-                            <li>
-                                <div class="blog-post ">
-                                    <div class="item col-md-4">
-                                        <div class="image"><a href="blog.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/blog2.jpg"></a> </div>
-                                    </div>
-                                    <div class="item col-md-8">
-                                        <div class="blog-details">
-                                            <div class="blog-name">
-                                                <h5><a href="blog.html">Black African Print Pencil Skirt </a></h5>
-                                                <span class="blog-date">06/07/2015</span> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="blog-post ">
-                                        <div class="item col-md-4">
-                                            <div class="image"><a href="blog.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/blog3.jpg"></a> </div>
-                                        </div>
-                                        <div class="item col-md-8">
-                                            <div class="blog-details">
-                                                <div class="blog-name">
-                                                    <h5><a href="blog.html">Black African Print Pencil Skirt </a></h5>
-                                                    <span class="blog-date">06/07/2015</span> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="blog-post ">
-                                            <div class="item col-md-4">
-                                                <div class="image"><a href="blog.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/blog5.jpg"></a> </div>
-                                            </div>
-                                            <div class="item col-md-8">
-                                                <div class="blog-details">
-                                                    <div class="blog-name">
-                                                        <h5><a href="blog.html">Black African Print Pencil Skirt </a></h5>
-                                                        <span class="blog-date">06/07/2015</span> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="blog-post ">
-                                                <div class="item col-md-4">
-                                                    <div class="image"><a href="blog.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/blog4.jpg"></a> </div>
-                                                </div>
-                                                <div class="item col-md-8">
-                                                    <div class="blog-details">
-                                                        <div class="blog-name">
-                                                            <h5><a href="blog.html">Black African Print Pencil Skirt </a></h5>
-                                                            <span class="blog-date">06/07/2015</span> </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                
-                            </div>
-                        </div>
+                        <a class="twitter-timeline" href="https://twitter.com/JTheGreats?ref_src=twsrc%5Etfw">Tweets by JTheGreats</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>
-                @endsection
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

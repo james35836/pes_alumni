@@ -6,13 +6,13 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="profile-info-inner">
                     <div class="profile-img">
-                        <img src="{{Auth::user()->userinfo->user_profile}}" alt="" />
+                        <img src="{{$data->userinfo->user_profile}}" alt="" />
                     </div>
                     <div class="profile-details-hr">
                         <div class="row">
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                                <div class="address-hr">
-                                    <p><b>Name</b><br /> {{Auth::user()->userinfo->name}}</p>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center center">
+                                <div class="address-hr ">
+                                    <p><b>{{$data->userinfo->name}}</b> <br>{{$data->userinfo->work_position}}</p>
                                 </div>
                             </div>
                             
@@ -22,20 +22,20 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <div class="address-hr">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <h3>500</h3>
+                                    <a href="{{$data->userinfo->fb_link}}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <!-- <h3>500</h3> -->
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <div class="address-hr">
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <h3>900</h3>
+                                    <a href="{{$data->userinfo->twitter_link}}" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <!-- <h3>900</h3> -->
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <div class="address-hr">
-                                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                                    <h3>600</h3>
+                                    <a href="{{$data->userinfo->instagram_link}}" target="_blank"><i class="fa fa-instagram"></i></a>
+                                    <!-- <h3>600</h3> -->
                                 </div>
                             </div>
                         </div>
@@ -45,8 +45,10 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div class="product-payment-inner-st res-mg-t-30 analysis-progrebar-ctn">
                     <ul id="myTabedu1" class="tab-review-design">
-                        <li class="active"><a href="#description">Activity</a></li>
-                        <li><a href="#INFORMATION">Update Details</a></li>
+                        <li class="active"><a href="#description">Account</a></li>
+                        @if($data->view == "my-account")
+                        <li><a href="#INFORMATION">Update</a></li>
+                        @endif
                     </ul>
                     <div id="myTabContent" class="tab-content custom-product-edit st-prf-pro">
                         <div class="product-tab-list tab-pane fade active in" id="description">
@@ -66,10 +68,10 @@
                                                 </div>
                                                 <div class="ex-pro">
                                                     <ul>
-                                                        <li> <b>Full Name</b> <i class="fa fa-angle-right"></i> Fly Zend</li>
-                                                        <li><i class="fa fa-angle-right"></i> <b>Civil Status</b> Fly Zend</li>
-                                                        <li><i class="fa fa-angle-right"></i> <b>Gender</b> Fly Zend</li>
-                                                        <li><i class="fa fa-angle-right"></i> <b>Bithdate</b> Fly Zend</li>
+                                                        <li><i class="fa fa-angle-right"></i><b><span style="display: inline-block;width: 84px;">Name</span></b>  {{$data->userinfo->name}}</li>
+                                                        <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 84px;">Civil Status</span></b>{{$data->userinfo->civil_status ?: "N/A"}}</li>
+                                                        <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 84px;">Gender</span></b> {{$data->userinfo->gender ?: "N/A"}}</li>
+                                                        <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 84px;">Birthdate</span></b> {{$data->userinfo->birthdate ?: "N/A"}}</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -86,8 +88,8 @@
                                                 </div>
                                                 <div class="ex-pro">
                                                     <ul>
-                                                        <li><i class="fa fa-angle-right"></i> <b>Email Address</b> Fly Zend</li>
-                                                        <li><i class="fa fa-angle-right"></i> <b>Phone Number</b> Fly Zend</li>
+                                                        <li><i class="fa fa-angle-right"></i><b><span style="display: inline-block;width: 100px;">Email Address</span></b>  {{$data->email}}</li>
+                                                        <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 100px;">Phone Number</span></b> {{$data->userinfo->contact ?: "N/A"}}</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -104,9 +106,8 @@
                                                 </div>
                                                 <div class="ex-pro">
                                                     <ul>
-                                                        <li><i class="fa fa-angle-right"></i> Paloc Elementary School (SY: 2004)</li>
-                                                        <li><i class="fa fa-angle-right"></i> Paloc National High School (SY: 2004)</li>
-                                                        <li><i class="fa fa-angle-right"></i> Paloc College School (SY: 2004)</li>
+                                                        <li><i class="fa fa-angle-right"></i><b><span style="display: inline-block;width: 200px;">Permanent Address</span></b>  {{$data->userinfo->permanent_address ?: "N/A"}} </li>
+                                                        <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 200px;">Current Address</span></b> {{$data->userinfo->current_address ?: "N/A"}}</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -123,9 +124,9 @@
                                                 </div>
                                                 <div class="ex-pro">
                                                     <ul>
-                                                        <li><i class="fa fa-angle-right"></i> Paloc Elementary School (SY: 2004)</li>
-                                                        <li><i class="fa fa-angle-right"></i> Paloc National High School (SY: 2004)</li>
-                                                        <li><i class="fa fa-angle-right"></i> Paloc College School (SY: 2004)</li>
+                                                        <li><i class="fa fa-angle-right"></i><b><span style="display: inline-block;width: 220px;">Elementary</span></b>  Paloc Elementary School </li>
+                                                        <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 220px;">High School</span></b> {{$data->userinfo->high_school ?: "N/A"}}</li>
+                                                        <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 220px;">College School</span></b> {{$data->userinfo->college_school ?: "N/A"}}</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -142,7 +143,7 @@
                                                 </div>
                                                 <div class="ex-pro">
                                                     <ul>
-                                                        <li><i class="fa fa-angle-right"></i> Software Engr.</li>
+                                                        <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 220px;">{{$data->userinfo->work ?: ""}}</span></b> ({{$data->userinfo->work_position ?: "N/A"}})</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -158,10 +159,7 @@
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="content-profile">
-                                                            <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras
-                                                            dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-                                                            <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras
-                                                            dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                                                            {{$data->userinfo->biography ?:"N/A"}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -172,104 +170,89 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        @if($data->view == "my-account")
                         <div class="product-tab-list tab-pane fade" id="INFORMATION">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="review-content-section">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <input name="number" type="text" class="form-control" placeholder="First Name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Last Name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Address">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Date of Birth">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Department">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="number" class="form-control" placeholder="Pincode">
-                                                </div>
-                                                <div class="file-upload-inner ts-forms">
-                                                    <div class="input prepend-big-btn">
-                                                        <label class="icon-right" for="prepend-big-btn">
-                                                            <i class="fa fa-download"></i>
-                                                        </label>
-                                                        <div class="file-button">
-                                                            Browse
-                                                            <input type="file" onchange="document.getElementById('prepend-big-btn').value = this.value;">
-                                                        </div>
-                                                        <input type="text" id="prepend-big-btn" placeholder="no file selected">
+                            <form class="profile-update" method="PUT" action= "/alumni/update_user_info?id={{$data->id}}">
+                            @csrf
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="review-content-section">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <input type="text" name = "first_name" class="form-control" value="{{$data->userinfo->first_name}}" placeholder="First Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name = "middle_name" class="form-control" value="{{$data->userinfo->middle_name}}" placeholder="Middle Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name = "last_name" class="form-control" value="{{$data->userinfo->last_name}}" placeholder="Last Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name = "birthdate" class="form-control" value="{{$data->userinfo->birthdate  ?: "" }}" placeholder="Date of Birth">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name = "contact" class="form-control" value="{{$data->userinfo->contact   ?: ""}}" placeholder="Phone">
+                                                    </div>
+                                                    <div class="form-group">{{$data->userinfo->gender}}
+                                                        <select name = "gender" class="form-control">
+                                                            <option value="">Select Gender</option>
+                                                            <option value="Male" {{ $data->userinfo->gender  == "Male" ? "selected" : ""}}>Male</option>
+                                                            <option value="Female" {{ $data->userinfo->gender  == "Female" ? "selected" : ""}}>Female</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select name = "civil_status" class="form-control" value="{{$data->userinfo->civil_status}}">
+                                                            <option value="">Select Status</option>
+                                                            <option value="Single" {{ $data->userinfo->civil_status  == "Single" ? "selected" : ""}}>Single</option>
+                                                            <option value="Married" {{ $data->userinfo->civil_status  == "Married" ? "selected" : ""}}>Married</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name = "work" class="form-control" value="{{$data->userinfo->work ?: ""}}" placeholder="Work">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name = "work_position" class="form-control" value="{{$data->userinfo->work_position  ?: ""}}" placeholder="Work Position">
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <input type="text" name = "college_school" class="form-control" value="{{$data->userinfo->college_school  ?: ""}}" placeholder="College School">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name = "college_graduated" class="form-control" value="{{$data->userinfo->college_graduated  ?: ""}}" placeholder="Year Graduated">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name = "high_school" class="form-control" value="{{$data->userinfo->high_school  ?: ""}}" placeholder="High School">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name = "high_graduated" class="form-control" value="{{$data->userinfo->high_graduated  ?: ""}}" placeholder="Year Graduated">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="permanent_address" rows="2" placeholder="Permanent Address?">{{$data->userinfo->permanent_address  ?: ""}}</textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="current_address" rows="2" placeholder="Current Address?">{{$data->userinfo->current_address  ?: ""}}</textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="biography" rows="2" placeholder="Biography">{{$data->userinfo->biography  ?: ""}}</textarea>
+                                                    </div>
+                                                    
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group sm-res-mg-15 tbpf-res-mg-15">
-                                                    <input type="text" class="form-control" placeholder="Description">
-                                                </div>
-                                                <div class="form-group">
-                                                    <select class="form-control">
-                                                        <option>Select Gender</option>
-                                                        <option>Male</option>
-                                                        <option>Female</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <select class="form-control">
-                                                        <option>Select country</option>
-                                                        <option>India</option>
-                                                        <option>Pakistan</option>
-                                                        <option>Amerika</option>
-                                                        <option>China</option>
-                                                        <option>Dubai</option>
-                                                        <option>Nepal</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <select class="form-control">
-                                                        <option>Select state</option>
-                                                        <option>Gujarat</option>
-                                                        <option>Maharastra</option>
-                                                        <option>Rajastan</option>
-                                                        <option>Maharastra</option>
-                                                        <option>Rajastan</option>
-                                                        <option>Gujarat</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <select class="form-control">
-                                                        <option>Select city</option>
-                                                        <option>Surat</option>
-                                                        <option>Baroda</option>
-                                                        <option>Navsari</option>
-                                                        <option>Baroda</option>
-                                                        <option>Surat</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Website URL">
-                                                </div>
-                                                <input type="number" class="form-control" placeholder="Mobile no.">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="payment-adress mg-t-15">
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mg-b-15">Submit</button>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="payment-adress mg-t-15">
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light mg-b-15">Submit</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
