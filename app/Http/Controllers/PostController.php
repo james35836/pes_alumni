@@ -7,7 +7,7 @@ use Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
-
+use App\Category;
 class PostController extends Controller
 {
     /**
@@ -18,6 +18,24 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function manage_post_add(){
+
+        $data['_category'] = Category::all();
+        return view('back_page.maintenance.manage_post.post_add',$data);
+    }
+
+    public function event_list()
+    {
+        $data['_events'] = Post::where('type','event_post')->paginate(10);
+        return view('back_page.maintenance.events',$data);
+    }
+
+    public function story_list()
+    {
+        $data['_data'] = Post::where('type','event_post')->paginate(10);
+        return view('back_page.maintenance.stories',$data);
     }
     
     public function index()
@@ -52,16 +70,13 @@ class PostController extends Controller
             // 'time'          => ['required', 'string', 'max:255'],
             // 'place'         => ['required', 'string', 'max:255'],
             'description'   => ['required', 'string'],
-            'group_id'      => ['required'],
+            //'group_id'      => ['required'],
         );
         $validator = Validator::make($data, $rules);
 
         // process the login
         if($validator->fails()) {
-            dd($validator);
-            return Redirect::to('nerds/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+            return "error";
         } 
         else 
         {
@@ -85,19 +100,6 @@ class PostController extends Controller
             return Post::findOrFail($id)->load('user');
 
 
-            // return Post::create([
-            //     'name'          => $name,
-            //     'description'   => $data['description'],
-            //     'thumbnail'     => $image_name,
-            //     'time'          => $time,
-            //     'date'          => $date,
-            //     'place'         => $place,
-            //     'group_id'      => $group_id,
-            //     'created_at'      =>Carbon::now(),
-            //     'user_id'       => Auth::user()->id,
-            // ]);
-
-            
         }
     }
 

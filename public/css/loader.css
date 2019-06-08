@@ -119,3 +119,40 @@
     transform: rotate(360deg);
   }
 }
+
+
+/*overlay success*/
+#return_alert {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+#return_alert_icon{
+  color: #4BB543 !important;
+  font-size: 143px !important;
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+}
+#return_alert_text{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    font-weight: 500;
+    font-size: 50px;
+    color: white;
+    color: #4BB543 !important;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}

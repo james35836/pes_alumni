@@ -4756,3 +4756,10 @@ div#sparklinehome canvas {
 {
 	text-align: center;
 }
+
+
+/*cutom css*/
+.bio-container-list{
+	height:70px;
+	overflow: hidden;
+}

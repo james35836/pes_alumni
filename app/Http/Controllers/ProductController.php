@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Shop;
+use App\Product;
 use Illuminate\Http\Request;
-use Validator;
 
-class ShopController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -63,7 +62,7 @@ class ShopController extends Controller
             $imageName = "shop-".time().'.'.$data['thumbnail_1']->getClientOriginalExtension();
             $data['thumbnail_1']->move(public_path('shop_img'), $imageName);
 
-            return Shop::create([
+            return Product::create([
                 'name'          => $data['name'],
                 'price'          => $data['price'],
                 'colors'        => $data['colors'],
@@ -82,10 +81,10 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Shop  $shop
+     * @param  \App\Product  $shop
      * @return \Illuminate\Http\Response
      */
-    public function show(Shop $shop)
+    public function show(Product $shop)
     {
         //
     }
@@ -93,10 +92,10 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Shop  $shop
+     * @param  \App\Product  $shop
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shop $shop)
+    public function edit(Product $shop)
     {
         //
     }
@@ -105,10 +104,10 @@ class ShopController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Shop  $shop
+     * @param  \App\Product  $shop
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shop $shop)
+    public function update(Request $request, Product $shop)
     {
         //
     }
@@ -116,10 +115,10 @@ class ShopController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Shop  $shop
+     * @param  \App\Product  $shop
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shop $shop)
+    public function destroy(Product $shop)
     {
         //
     }

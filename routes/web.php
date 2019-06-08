@@ -34,9 +34,9 @@ Route::match(['get', 'post'], '/superAdminOnlyPage/', 'HomeController@super_admi
 
 Route::get('/', 		'FrontController@index');
 Route::get('/stories', 	'FrontController@stories');
-Route::get('/shopping', 'FrontController@shopping');
+Route::get('/shopping', 'FrontController@product');
 Route::get('/events', 	'FrontController@events');
-Route::get('/events/details', 	'FrontController@events_details');
+Route::get('/posts/details', 	'FrontController@details');
 Route::get('/about', 	'FrontController@about');
 Route::get('/contact', 	'FrontController@contact');
 
@@ -67,11 +67,9 @@ Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallb
 // Route::get('/manage/stories', 'StoriesController@index');
 // Route::get('/manage/user', 'UserController@index');
 
-Route::resource('/manage/officer', 'OfficerController');
 Route::resource('/manage/events', 'PostController');
-Route::resource('/manage/stories', 'StoriesController');
 Route::resource('/manage/shop', 'ShopController');
-Route::resource('/manage/user', 'UserController');
+// Route::resource('/manage/user', 'UserController');
 
 Route::post('/alumni/update_user_info', 'UserController@update');
 
@@ -79,6 +77,23 @@ Route::resource('/alumni/feeds', 'PostController');
 
 
 
+Route::get('/manage/user/add', 			'UserController@manage_user_add');
+Route::post('/manage/user/add_submit',   'UserController@store');
+
+
+
+Route::get('/manage/post/add', 			'PostController@manage_post_add');
+Route::post('/manage/post/add_submit', 	'PostController@store');
+
+Route::get('/manage/events', 	'PostController@event_list');
+Route::get('/manage/stories', 	'PostController@story_list');
+
+
+
+Route::get('/manage/officer', 	'UserController@officer_list');
+
+
+Route::post('/send_email', 'FrontController@send_email')->name('send_email');
 
 // Route::get('/checkout', 'PaymentController@index');
 

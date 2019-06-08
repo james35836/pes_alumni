@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
         $this->posts();
+        $this->products();
     }
 
     public function groups()
@@ -63,11 +64,13 @@ class DatabaseSeeder extends Seeder
     {
         if (DB::table('categories')->count()<= 0) 
         {
-            DB::table('categories')->insert([
-                    'id' => 1,
-                    'name' => "T-SHIRT",
-                    'description' => "T-SHIRT",
+            $categories = ['T-shirt','Pants','Jersey'];
+            foreach ($categories as $index) {
+                DB::table('categories')->insert([
+                    'name' => $index,
+                    'description' => $index,
                 ]);
+            }
         }
     }
 
@@ -103,6 +106,50 @@ class DatabaseSeeder extends Seeder
                 'description'   => "Lets get together",
                 'group_id'      => 1,
                 'user_id'       => 1,
+                'created_at'    => Carbon::now(),
+            ]);
+
+            DB::table('posts')->insert([
+                'id'          => 2,
+                'thumbnail'     => "/posts_img/default_image.png",
+                'name'          => "Alumni Events",
+                'date'          => Carbon::now(),
+                'time'          => "6:00 am - 9:00 pm",
+                'place'         => "Eaglesview Hotel",
+                'description'   => "Lets get together",
+                'group_id'      => 1,
+                'user_id'       => 1,
+                'created_at'    => Carbon::now(),
+            ]);
+        }
+    }
+
+    public function products(){
+        if (DB::table('products')->count()<= 0) 
+        {
+            DB::table('products')->insert([
+                'id'          => 1,
+                'thumbnail'     => "/products_img/tshirt.jpg",
+                'name'          => "Fila Shirt",
+                'colors'        => "Blue/Red",
+                'price'         => 248,
+                'sizes'         => "L/M/S",
+                'discount'      => "0",
+                'description'   => "Sample Product",
+                'category_id'   => 1,
+                'created_at'    => Carbon::now(),
+            ]);
+
+            DB::table('products')->insert([
+                'id'          => 2,
+                'thumbnail'     => "/products_img/tshirt.jpg",
+                'name'          => "Nike Shirt",
+                'colors'        => "Blue/Red",
+                'price'         => 248,
+                'sizes'         => "L/M/S",
+                'discount'      => "0",
+                'description'   => "Sample Product",
+                'category_id'   => 2,
                 'created_at'    => Carbon::now(),
             ]);
         }

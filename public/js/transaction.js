@@ -102,13 +102,18 @@ function transaction()
 
     function submit_transaction()
     {
-    	$('form').submit(function(evt) 
+    	$('form.form-submit').submit(function(evt) 
     	{
+    		alert(123)
     		$('.loading').css('display','block');
 	        evt.preventDefault();
 	        current_target = $(this);
 	        var formData = new FormData(this);
-
+	        var description = $('.note-editable').html();
+	        if(!description){
+	        	description = $('.note-editable').val();
+	        }
+	        formData.append('description', description);
 	        $.ajax({
 		        type: 'POST',
 		        url: $(this).attr('action'),
@@ -117,12 +122,14 @@ function transaction()
 		        contentType: false,
 		        processData: false,
 		        success: function(data) {
+		        	console.log(data);
 		        	if(current_target.hasClass('feed-create')){
 		        		showFeedData(data,current_target);
 		        	}
 		        	$('.loading').css('display','none');
-		            $('.clear').click();
-		            current_target.find('.form-control').val('');
+		            $('#return_alert').css('display','block');
+		        	current_target.find('.form-control').val('');
+		        	current_target.find('.note-editable').html('');
 		        },
 		        error: function(data) {
 		        	$('.loading').css('display','none');

@@ -6,7 +6,7 @@
             @foreach($_list as $list)
             
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-1">
-                <div class="hpanel hblue contact-panel contact-panel-cs responsive-mg-b-30 dk-res-t-pro-30 ">
+                <div class="hpanel hblue contact-panel contact-panel-cs mg-b-10 responsive-mg-b-30 dk-res-t-pro-30 ">
                     <div class="panel-body custom-panel-jw">
                         <div class="social-media-in">
                             <a target="_blank" href="{{$list->userinfo->fb_link}}"><i class="fa fa-facebook"></i></a>
@@ -17,7 +17,7 @@
                         <img alt="logo" class="img-circle m-b" style="max-height: 80px;" src="{{$list->userinfo->user_profile}}">
                         <h3><a href="/alumni-profile?view=alumni-account&user={{$list->id}}">{{$list->userinfo->name}}</a></h3>
                         <p class="all-pro-ad">{{$list->userinfo->work_position ?: "Graduate"}}</p>
-                        <p>
+                        <p class="bio-container-list" style="height:70px;">
                             {{$list->userinfo->biography ?: "Nothing to show"}}
                         </p>
                     </div>

@@ -898,9 +898,9 @@ footer {
 	background-color: #1349b2;
 }
 .footer-logo {
-	background: url('../images/footer-logo.png') no-repeat;
-	height: 39px;
-	margin-bottom: 20px;
+	    height: 52px;
+    width: 120px;
+    margin-bottom: 20px;
 }
 .about > p {
 	margin: 0 50px 0 0;
@@ -1567,6 +1567,9 @@ select {
 .fa.fa-comment, .fa.fa-share {
 	color: #ababab;
 }
+
+
+
 .pagination-bar {
 	text-align: center;
 	margin-bottom: 50px;
@@ -2436,3 +2439,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffffff', e
 
 
 /*Responcive media end*/
+.discription-height{
+	height:100px;
+	overflow: hidden;
+}

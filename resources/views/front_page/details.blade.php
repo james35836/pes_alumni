@@ -8,35 +8,33 @@
                 
                 <div id="left">
                     <div class="single-post-item">
-                        <div class="post-image"> <a href="#"><img src="{{$event->thumbnail}}" alt=""></a> </div>
+                        <div class="post-image"> <a href="#"><img src="{{$data->post_image}}" alt=""></a> </div>
                         <div class="single-post-details">
                             <div class="post-title">
-                                <h4><a href="#">{{$event->name}}</a></h4>
+                                <h4><a href="#">{{$data->name}}</a></h4>
                             </div>
                             <div class="description">
-                                <p>{{$event->description}}</p>
+                                <p>{!!$data->description!!}</p>
                                 <br>
                                 
                                 <div class="post-meta">
-                                    <div class="chat"> <a href="#"> <span class="chat-number">Posted By</span> <span class="chat-number">{{$event->user->userinfo->name}}</span> </a> </div>
-                                    <div class="chat"> <a href="#"> <i class="fa fa-comment"></i> <span class="chat-number">324</span> </a> </div>
-                                    <div class="date"> {{$event->date_format}}</div>
-                                    <div class="comments"> <a href="#"> <i class="fa fa-share"></i> <span class="comments-number">324</span> </a> </div>
+                                    <div class="chat"> <a href="#"> <span class="chat-number">Posted By</span> <span class="chat-number">{{$data->user->userinfo->name}}</span> </a> </div>
+                                    <div class="chat"> <a href="#"> <span class="chat-number">Posted on</span> <span class="chat-number">{{$data->date_format}}</span> </a> </div>
                                 </div>
                                 <br>
                                 <br>
                                 <div class="social-link">
-                                            <ul>
-                                                <li><a class="facebook customer share" href="https://www.facebook.com/sharer.php?u={{$_SERVER['HTTP_HOST']}}/events" title="Facebook share" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a class="twitter customer share" href="https://twitter.com/share?url=https://codepen.io/patrickkahl&amp;text=Share popup on &amp;hashtags=codepen" title="Twitter share" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url=https://codepen.io/patrickkahl" title="linkedin Share" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                                            </ul>
-                                        </div>
+                                    <ul>
+                                        <li><a class="facebook customer share" href="https://www.facebook.com/sharer.php?u={{$_SERVER['HTTP_HOST']}}/events" title="Facebook share" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a class="twitter customer share" href="https://twitter.com/share?url=https://codepen.io/patrickkahl&amp;text=Share popup on &amp;hashtags=codepen" title="Twitter share" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url=https://codepen.io/patrickkahl" title="linkedin Share" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="comments-area">
+                    <!-- <div class="comments-area">
                         <h4>Comments<span>(2)</span></h4>
                         <ul class="comment-list ">
                             <li>
@@ -94,7 +92,7 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                     
                 </div>
             </div>

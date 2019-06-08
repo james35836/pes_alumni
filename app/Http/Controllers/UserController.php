@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
-
+use Response;
 class UserController extends Controller
 {
     private $model;
@@ -27,18 +27,32 @@ class UserController extends Controller
         });
     }
 
+
+
     // public function loadWithRelatedModel(){
     //     $this->model = $this->model->with(['userInformation', 'userInformation.country', 'userInformation.role',
     //         'userInformation.gallery', 'userInformation.cover','userAccesses', 'applications', 'shop', 'author']); //lazy loader
     // }
+    public function manage_user_add(){
+        return view('back_page.maintenance.manage_user.user_add');
+    }
 
     public function index(Request $request)
     {
         // $this->loadWithRelatedModel();
         // $this->_search();
         // return $this->getResultList($this->model->latest());
-        $data['_users'] = User::all();
+        $data['_users'] = User::paginate(10);
         return view('back_page.maintenance.users',$data);
+    }
+
+    public function officer_list()
+    {
+        // $this->loadWithRelatedModel();
+        // $this->_search();
+        // return $this->getResultList($this->model->latest());
+        $data['_users'] = User::paginate(10);
+        return view('back_page.maintenance.officer',$data);
     }
 
     public function show(Request $request, $id)
@@ -50,47 +64,37 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $rules["first_name"]                = array("required", "alpha_spaces", "min:2");
-        $rules["last_name"]                 = array("required", "alpha_spaces", "min:2");
-        $rules["email"]                     = array("required", "email", "unique:users");
-        // $rules["mobile_number"]             = array("required", "mobile_number", "unique:user_informations");
-        $rules["address"]                   = array("required");
-        $rules["country_id"]                = array("required");
-        $rules["password"]                  = array("required", "min:6");
+        $data = $request->all();
+        $data['group_id'] = 1;
+        $data['password'] = "secret";
+        $data['password_confirmation'] = "secret";
+        $rules['first_name']                = "required";
+        $rules['middle_name']               = "required";
+        $rules['last_name']                 = "required";
+        $rules['contact']                   = "required";
+        // $rules['birthdate']                 = "required";
+        $rules['gender']                    = "required";
+        $rules['email']                     = "required|unique:users,email";
+        $rules['password']                  = "required";
+        $rules['password_confirmation']     = "required|same:password";
+        $rules['group_id']                  = "required|integer";
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($data,$rules);
 
-        if($validator->fails())
+        if($validator->fails()) {
+            return Redirect::to('/alumni/register')->withErrors($validator)->withInput(Input::except('password'));
+        } 
+        else 
         {
-            $return["message"]  = $validator->errors()->first();
-            $return["code"]     = 300;
+            $data['name']       = $data['first_name']." ".$data['last_name'];
+            $data['auth']       = Crypt::encrypt($data['password']);
+            $data['password']   = Hash::make($data['password']);
+            $user               = User::create($data);
+            $userInfo           = $user->Userinfo()->create($data);
+
+            
+            return $userInfo;
         }
-        else
-        {
-            $this->model = $this->model->create([
-                'crypt' =>  Crypt::encrypt($request->password),
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-
-            $this->model->userInformation()->create([
-                'country_id' => $request->country_id,
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'address' => $request->address,
-                'birthday' => $request->birthday,
-                'mobile_number'=> $request->mobile_number,
-                'role_id' => $request->role_id,
-                'dealer' => $request->dealer,
-            ]);
-
-            $this->model->applications()->sync($request->applications);
-
-            $return["message"]  = "Successfully created an account.";
-            $return["code"]     = 200;
-        }
-
-        return response($return, $return["code"]);
     }
 
     public function update(Request $request)

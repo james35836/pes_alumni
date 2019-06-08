@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- favicon
         ============================================ -->
-        <link rel="shortcut icon" type="image/x-icon" href="/backend/img/favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="/img/logo.png">
         <!-- Google Fonts
         ============================================ -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -46,7 +46,6 @@
         <link rel="stylesheet" href="/backend/css/educate-custon-icon.css">
         <!-- morrisjs CSS
         ============================================ -->
-        <link rel="stylesheet" href="/backend/css/morrisjs/morris.css">
         <!-- mCustomScrollbar CSS
         ============================================ -->
         <link rel="stylesheet" href="/backend/css/scrollbar/jquery.mCustomScrollbar.min.css">
@@ -58,6 +57,8 @@
         ============================================ -->
         <link rel="stylesheet" href="/backend/css/calendar/fullcalendar.min.css">
         <link rel="stylesheet" href="/backend/css/calendar/fullcalendar.print.min.css">
+
+        <link rel="stylesheet" href="/backend/css/summernote/summernote.css">
         <!-- style CSS
         ============================================ -->
         <link rel="stylesheet" href="/backend/style.css">
@@ -382,7 +383,7 @@
               
         </div>
     </div>
-    @if(Request::segment(1) == "alumni-profile" || Request::segment(1) == "alumni-feeds")
+    @if(Request::segment(1) != "alumni-list")
     <div class="top-space" style="height:20px;"></div>
     @else
     
@@ -393,17 +394,8 @@
                     <div class="breadcome-list">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="breadcome-heading">
-                                    <form role="search" class="sr-input-func">
-                                        <input type="text" placeholder="Search..." class="search-int form-control">
-                                        <a href="#"><i class="fa fa-search"></i></a>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <ul class="breadcome-menu">
-                                    <li><a href="#">Dashboard</a> <span class="bread-slash">/</span></li>
-                                    <li><span class="bread-blod">{{Request::segment(1)}}</span></li>
+                                    <li><b>Alumni List</b></li>
                                 </ul>
                             </div>
                         </div>
@@ -414,7 +406,7 @@
     </div>
     @endif
 </div>
-<main>
+<main style="min-height: 510px;">
 <div class="loading" style="display:none;">Loading&#8230;</div>
 @yield('content')
 </main>
@@ -469,9 +461,6 @@
 <script src="/backend/js/metisMenu/metisMenu-active.js"></script>
 <!-- morrisjs JS
 ============================================ -->
-<script src="/backend/js/morrisjs/raphael-min.js"></script>
-<script src="/backend/js/morrisjs/morris.js"></script>
-<script src="/backend/js/morrisjs/home3-active.js"></script>
 <!-- morrisjs JS
 ============================================ -->
 <script src="/backend/js/sparkline/jquery.sparkline.min.js"></script>
@@ -507,9 +496,16 @@
 <!-- dropzone JS
 ============================================ -->
 <script src="/backend/js/dropzone/dropzone.js"></script>
+
+<script src="/backend/js/summernote/summernote.min.js"></script>
+<script src="/backend/js/summernote/summernote-active.js"></script>
 <!-- tab JS
 ============================================ -->
 <script src="/backend/js/tab.js"></script>
 <script type="text/javascript" src="/js/transaction.js"></script>
+
+
+
+
 </body>
 </html>

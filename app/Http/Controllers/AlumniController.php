@@ -42,7 +42,7 @@ class AlumniController extends Controller
     }
     public function alumni_feeds()
     {
-        $data['_feed'] = Post::all()->sortByDesc("created_at");
+        $data['_feed'] = Post::all()->sortByDesc("created_at")->where('type','feed_post');
         return view('back_page.alumni_feeds',$data);
     }
 

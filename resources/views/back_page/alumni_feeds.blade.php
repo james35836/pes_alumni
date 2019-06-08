@@ -8,14 +8,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <form class="feed-create" method="POST" action= "/alumni/feeds">
+                                <form class="form-submit feed-create" method="POST" action= "/manage/post/add_submit">
                                     @csrf
-                                    <div class="card-header">
-                                        Create Post
-                                    </div>
+                                    
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <textarea class="form-control" name="description" id="description" rows="3" placeholder="What are you thinking?"></textarea>
+                                            <textarea class="form-control note-editable" rows="3" placeholder="What are you thinking?"></textarea>
+                                            <input type="hidden" name="type" value="feed_post"/>
                                         </div>
                                     </div>
                                     <div class="btn-toolbar justify-content-between">
