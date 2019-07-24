@@ -81,8 +81,8 @@
         <div class="left-sidebar-pro">
             <nav id="sidebar" class="">
                 <div class="sidebar-header">
-                    <a href="index.html"><img class="main-logo" src="/backend/img/logo/logo.png" alt="" /></a>
-                    <strong><a href="index.html"><img src="/backend/img/logo/logosn.png" alt="" /></a></strong>
+                    <a href="index.html"><img class="main-logo" src="/img/logo.jpg" alt="" /></a>
+                    <strong><a href="index.html"><img class="small-logo" src="/img/logo-small.jpg" alt="" /></a></strong>
                 </div>
                 <div class="left-custom-menu-adp-wrap comment-scrollbar">
                     <nav class="sidebar-nav left-sidebar-menu-pro">
@@ -104,7 +104,7 @@
                                 <ul class="submenu-angle" aria-expanded="false">
                                     <li><a title="All Students" href="/manage/user"><span class="mini-sub-pro"> Alumni Users</span></a></li>
                                     <li><a title="All Students" href="/manage/officer"><span class="mini-sub-pro"> Alumni Officers</span></a></li>
-                                    <li><a title="Add Students" href="/manage/shop"><span class="mini-sub-pro">Alumni Shoppings</span></a></li>
+                                    <li><a title="Add Students" href="/manage/product"><span class="mini-sub-pro">Alumni Products</span></a></li>
                                     <li><a title="Edit Students" href="/manage/events"><span class="mini-sub-pro"> Alumni Events</span></a></li>
                                     <li><a title="Students Profile" href="/manage/stories"><span class="mini-sub-pro">Alumni Stories</span></a></li>
                                     <li><a title="Students Profile" href="/manage/events"><span class="mini-sub-pro">Alumni Galleries</span></a></li>
@@ -408,6 +408,10 @@
 </div>
 <main style="min-height: 510px;">
 <div class="loading" style="display:none;">Loading&#8230;</div>
+<div id="return_alert">
+    <div id="return_alert_icon"><i class="fa fa-check-circle-o" aria-hidden="true"></i></div>
+    <div id="return_alert_text">SUCCESS</div>
+</div>
 @yield('content')
 </main>
 <div class="footer-copyright-area">

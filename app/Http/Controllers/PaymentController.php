@@ -27,6 +27,13 @@ class PaymentController extends Controller
         );
         $this->api_context->setConfig(config('paypal.settings'));
     }
+
+    public function proceed_checkout(Request $request){
+
+        
+        $this->createPayment($request);
+
+    }
 /**
     ** This method sets up the paypal payment.
     **/

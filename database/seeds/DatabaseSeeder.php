@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 use Faker\Factory as Faker;
 use Carbon\Carbon;
+use App\Pin;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,13 +17,28 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->groups();
+        $this->pins();
         $this->categories();
+        $this->users();
         
+        
+        $this->posts();
+        $this->products();
+    }
+
+    public function users(){
         $faker = Faker::create();
-        foreach (range(1,10) as $index) {
+        foreach (range(1,3) as $index) {
+            $pin = Pin::where('status',0);
+
+
+            $pin_id = $pin->first()->id;
+            $pin->update(['status'=>1]);
+
             $id = DB::table('users')->insertGetId([
                 'email' => $faker->email,
                 'group_id' => 1,
+                'pin_id' => $pin_id,
                 'password' => bcrypt('secret'),
                 'created_at' => Carbon::now(),
             ]);
@@ -32,8 +48,6 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $id,
             ]);
         }
-        $this->posts();
-        $this->products();
     }
 
     public function groups()
@@ -57,6 +71,21 @@ class DatabaseSeeder extends Seeder
                 
             }
         }
+    }
+
+    public function pins(){
+        $base_string = range(1000, 9999);
+        shuffle($base_string);
+        $numbers = array_slice($base_string, 0, 100);
+        $numbers = array_map(function ($number) {
+
+            DB::table('pins')->insert([
+            'code' => "AL-{$number}14".time()
+        ]);
+        }, $numbers);
+        
+
+        
     }
     
 

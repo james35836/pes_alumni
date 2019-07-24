@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->belongsTo(Group::class);
     }
 
+    public function pin()
+    {
+        return $this->belongsTo(Pin::class);
+    }
+
     public function userinfo()
     {
         return $this->hasOne(Userinfo::class);

@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('auth')->nullable();
+            $table->integer('pin_id')->unsigned();
+            $table->foreign('pin_id')->references('id')->on('pins')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
        });

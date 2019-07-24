@@ -110,6 +110,9 @@ body {}
 /*----------------------------------------*/
 /*  2. Helper Class
 /*----------------------------------------*/
+.black-color{
+	color: #555 !important;
+}
 .mg-tb-30{
 	margin:30px 0px;
 }
@@ -227,6 +230,12 @@ body {}
 }
 #sidebar.active .sidebar-header .main-logo{
 	display:none;
+}
+#sidebar .sidebar-header .main-logo{
+	height: 64px;
+}
+#sidebar .sidebar-header .small-logo{
+	height: 64px;
 }
 #sidebar.active .sidebar-header h3{
 	display:none;

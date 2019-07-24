@@ -17,7 +17,7 @@ class Product extends Model
     }
 
     public function getProductPriceAttribute(){
-        return number_format($this->price,2);
+        return "&#8369; ". number_format($this->price,2);
     }
 
     public function getDateFormatAttribute()
@@ -27,6 +27,10 @@ class Product extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function cart(){
+        return $this->hasMany(Cart::class);
     }
 
 }

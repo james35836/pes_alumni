@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
-use App\Stories;
+use App\Cart;
 use App\Product;
 use App\Category;
 use Mail;
+use Session;
 class FrontController extends Controller
 {
     public function index()
@@ -18,7 +19,7 @@ class FrontController extends Controller
     }
     public function stories()
     {
-        $data['_stories'] = Stories::all();
+        $data['_data'] = Post::where('type','story_post')->paginate(5);
         return view('front_page.stories',$data);
     }
     public function product(Product $product)
@@ -26,20 +27,57 @@ class FrontController extends Controller
         $data['_data']      = Product::with(['category'])->paginate(6);
         $data['_product']   = Product::orderBy('created_at','DESC')->limit(4)->with(['category'])->get();
         $data['_category']  = Category::all();
-        // dd($data['_product']);
         return view('front_page.product',$data);
     }
+
+    public function checkout(Product $product)
+    {
+        $cart_key = Session::get('cart_key');
+        $data['_data']      = Cart::with(['product'])->where('key',$cart_key)->where('status',0)->paginate(6);
+        foreach($data['_data'] as $key=>$carts)
+        {
+            $data['_data'][$key]['product']['product_total']       = "&#8369; ". $carts['product']['price'] * $carts['quantity'];
+        }
+        $data['sub_total']  = $data['_data']->sum('product.price');
+        $data['sub_discount']  = $data['_data']->sum('product.discount');
+        $data['total']  = $data['sub_total'] - $data['sub_discount'];
+        $data['amount']  = $data['total'];
+
+        $data['sub_total']  = "&#8369; ". $data['sub_total'];
+        $data['sub_discount']  = "&#8369; ". $data['sub_discount'];
+        $data['total']  = "&#8369; ".$data['total'];
+
+        $data['_product']   = Product::orderBy('created_at','DESC')->limit(4)->with(['category'])->get();
+        $data['_category']  = Category::all();
+
+        
+        // dd($data['_data']['products']);
+
+
+        return view('front_page.checkout_cart',$data);
+    }
+
+    public function product_details()
+    {
+        $data['data'] = Product::find(Request('id'));
+        $data['_data']      = Product::with(['category'])->paginate(6);
+        $data['_product']   = Product::orderBy('created_at','DESC')->limit(4)->with(['category'])->get();
+        $data['_category']  = Category::all();
+        return view('front_page.product_details',$data);
+    }
+
     public function events()
     {
         $data['_data'] = Post::where('type','event_post')->paginate(5);
         return view('front_page.events',$data);
     }
 
-    public function details()
+    public function post_details()
     {
         $data['data'] = Post::find(Request('id'));
-        return view('front_page.details',$data);
+        return view('front_page.post_details',$data);
     }
+
     public function about()
     {
         $data['_officer'] = User::all();

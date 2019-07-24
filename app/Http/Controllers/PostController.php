@@ -21,9 +21,14 @@ class PostController extends Controller
     }
 
     public function manage_post_add(){
-
         $data['_category'] = Category::all();
         return view('back_page.maintenance.manage_post.post_add',$data);
+    }
+
+    public function manage_post_edit(){
+        $id = Request('id');
+        $data['data'] = Post::findOrFail($id);
+        return view('back_page.maintenance.manage_post.post_edit',$data);
     }
 
     public function event_list()
@@ -82,7 +87,7 @@ class PostController extends Controller
         {
             $image_name = "/posts_img/default_image.png";
             $data['group_id']   = isset($data['group_id']) ? $data['group_id']: 1;
-            $data['name']       = isset($data['name']) ? $data['name']: 'POST';
+            $data['name']       = isset($data['name']) ? $data['name']: '';
             $data['time']       = isset($data['time']) ? $data['time']: '';
             $data['date']       = isset($data['date']) ? $data['date']: '';
             $data['place']       = isset($data['place']) ? $data['place']: '';
@@ -132,9 +137,52 @@ class PostController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request)
     {
-        //
+        $data  = $request->all();
+        $id  = $data['id'];
+        // dd($data);
+        $rules = array(
+            // 'thumbnail'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'name'          => ['required', 'string', 'max:255'],
+            // 'date'          => ['required', 'string', 'max:255'],
+            // 'time'          => ['required', 'string', 'max:255'],
+            // 'place'         => ['required', 'string', 'max:255'],
+            'description'   => ['required', 'string'],
+            //'group_id'      => ['required'],
+        );
+        $validator = Validator::make($data, $rules);
+
+        // process the login
+        if($validator->fails()) {
+            return "error";
+        } 
+        else 
+        {
+            $image_name = "/posts_img/default_image.png";
+            $update['group_id']   = isset($data['group_id']) ? $data['group_id']: 1;
+            $update['name']       = isset($data['name']) ? $data['name']: '';
+            $update['type']       = isset($data['type']) ? $data['type']: '';
+            $update['time']       = isset($data['time']) ? $data['time']: '';
+            $update['date']       = isset($data['date']) ? $data['date']: '';
+            $update['place']       = isset($data['place']) ? $data['place']: '';
+            $update['description']       = isset($data['description']) ? $data['description']: '';
+            if(isset($data['thumbnail'])){
+                $imageName = "event-".time().'.'.$data['thumbnail']->getClientOriginalExtension();
+                $data['thumbnail']->move(public_path('posts_img'), $imageName);
+                $image_name = "/posts_img/".$imageName;
+            }
+            $update['thumbnail'] = $image_name;
+            
+            $update['user_id'] =  Auth::user()->id;
+            $update['updated_at'] =  Carbon::now();
+            $new = Post::where('id', $id)->update($update);
+            
+
+            return Post::findOrFail($id)->load('user');
+
+
+        }
     }
 
     /**

@@ -33,33 +33,27 @@ class UserController extends Controller
     //     $this->model = $this->model->with(['userInformation', 'userInformation.country', 'userInformation.role',
     //         'userInformation.gallery', 'userInformation.cover','userAccesses', 'applications', 'shop', 'author']); //lazy loader
     // }
-    public function manage_user_add(){
+    public function create(){
         return view('back_page.maintenance.manage_user.user_add');
     }
 
     public function index(Request $request)
     {
-        // $this->loadWithRelatedModel();
-        // $this->_search();
-        // return $this->getResultList($this->model->latest());
         $data['_users'] = User::paginate(10);
         return view('back_page.maintenance.users',$data);
     }
 
     public function officer_list()
     {
-        // $this->loadWithRelatedModel();
-        // $this->_search();
-        // return $this->getResultList($this->model->latest());
         $data['_users'] = User::paginate(10);
         return view('back_page.maintenance.officer',$data);
     }
 
-    public function show(Request $request, $id)
+    public function show(Request $request)
     {
-        $this->loadWithRelatedModel();
-        $this->model = $this->model->find($id);
-        return $this->response($this->model);
+        $id = Request('id');
+        $data['data'] = User::findorFail($id);
+        return view('back_page.maintenance.manage_user.user_edit',$data);
     }
 
     public function store(Request $request)
@@ -99,10 +93,36 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $id = Request('id');
-        $this->model = $this->model->findOrFail($id)->fill($request->all());
-        $this->model->userInfo()->first()->fill($request->all())->save();
-        return User::findorFail($id);
+        $data = $request->all();
+        // dd($data);
+        $data['group_id'] = 1;
+        $rules['first_name']                = "required";
+        $rules['middle_name']               = "required";
+        $rules['last_name']                 = "required";
+        $rules['contact']                   = "required";
+        // $rules['birthdate']                 = "required";
+        $rules['gender']                    = "required";
+        $rules['group_id']                  = "required|integer";
+
+        $validator = Validator::make($data,$rules);
+
+        if($validator->fails()) {
+            return "error";
+        } 
+        else 
+        {
+            $id                     = $data['id'];
+            $update['name']           = $data['first_name']." ".$data['last_name'];
+            $update['first_name']     = $data['first_name'];
+            $update['middle_name']    = $data['middle_name'];
+            $update['last_name']      = $data['last_name'];
+
+            $update['contact']        = $data['contact'];
+            $update['gender']         = $data['gender'];
+            $update['email']          = $data['email'];
+            $user                   = User::where('id',$id)->with(['userinfo'])->update($update);
+            return $user;
+        }
     }
 
     public function destroy(Request $request, $id)

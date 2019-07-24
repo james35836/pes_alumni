@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>PES | Alumni</title>
         <meta content="" name="description">
         <meta content="" name="author">
@@ -67,10 +68,11 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-3 header-right d-none">
+                        <div class="col-md-3 header-right">
                             <div class="cart">
                                 <div class="cart-icon dropdown"></div>
-                                <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="cart.html">My Cart( 2 )<span> $261.20</span></a>
+                                <a class="dropdown-toggle" href="/cart">My Cart( <b id="cart-count-number">{{ $cart_count }}</b> )</a>
+                                {{-- <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="cart.html">My Cart( 2 )<span> $261.20</span></a>
                                 <ul class="dropdown-menu pull-right cart-dropdown-menu">
                                     <li>
                                         <table class="table table-striped">
@@ -117,7 +119,7 @@
                                             <div class="controls"> <a class="btn btn-primary pull-left" href="cart.html" id="view-cart"><i class="fa fa-shopping-cart"></i> View Cart </a> <a class="btn btn-primary pull-right" href="checkout.html" id="checkout"><i class="fa fa-share"></i> Checkout</a> </div>
                                         </div>
                                     </li>
-                                </ul>
+                                </ul> --}}
                             </div>
                         </div>
                     </div>
@@ -153,6 +155,7 @@
                                 <li><a href="/">HOME</a></li>
                                 <li><a href="/shopping">SHOPPING</a><span class="new">new</span></li>
                                 <li><a href="/events">EVENTS</a></li>
+                                <li><a href="/stories">STORIES</a></li>
                                 <li><a href="/contact">CONTACT US</a></li>
                                 <li><a href="/about">ABOUT US</a></li>
                             </ul>
@@ -305,6 +308,8 @@
             <script src="/frontend/js/owl.carousel.min.js"></script>
             <script src="/frontend/js/globle.js"></script>
             <script src="/js/transaction.js"></script>
+            <script src="/frontend/js/accordion.js"></script>
+
             
         </body>
     </html>

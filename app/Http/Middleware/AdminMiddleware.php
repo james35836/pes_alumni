@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Auth;
+use Response;
 class AdminMiddleware
 {
     /**
@@ -15,10 +16,12 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user() && ($request->user()->access != 'admin'||$request->user()->access != 'superadmin') )
-        {
-            return new Response(view('unauthorized')->with('role', 'ADMIN'));
+        if (Auth::check() && Auth::user()->access == 'admin') {
+            return $next($request);
         }
-        return $next($request);
+        else {
+            return redirect('/alumni-feeds')->with('role', 'ADMIN');
+        }
+        
     }
 }

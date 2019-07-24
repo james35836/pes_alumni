@@ -1,26 +1,58 @@
-@extends('layouts.front')
+@extends('layouts.frontend')
 @section('content')
-<link href="{{ asset('css/stories.css') }}" rel="stylesheet">
-<section id="contact">
+<div id="blog-page-contain">
     <div class="container">
-        <h3 class="h3">Latest Stories </h3>
         <div class="row">
-            @foreach($_stories as $stories)
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top img-responsive"  src="{{$stories->thumbnail}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title border-bottom pb-3">{{$stories->title}} <a href="#" class="float-right d-inline-flex share"><i class="fa fa-share-alt text-primary"></i></a></h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="float-right btn btn-outline-info btn-sm">Read More <i class="fa fa-angle-double-right"></i></a>
+            <div class="col-md-9">
+                <div id="left">
+                    @foreach($_data as $data)
+                    <div class="post-item">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="post-image"> <a href="#"><img src="{{$data->thumbnail}}" alt=""></a> </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="content-details">
+                                    <div class="post-title text-capital">
+                                        <h3><a href="/posts/details?date={{$data->date_format}}&id={{$data->id}}&name={{$data->name}}">{{$data->name}}</a></h3>
+                                    </div>
+                                    <div class="description">
+                                        <p>{!!$data->description!!}</p>
+                                        <div class="post-meta">
+                                            <div class="chat"> <a href="#"> <span class="chat-number">Posted By</span> <span class="chat-number">{{$data->user->userinfo->name}}</span> </a> </div>
+                                            <div class="chat"> <a href="#"> <span class="chat-number">Posted on</span> <span class="chat-number">{{$data->date_format}}</span> </a> </div>
+                                        </div>
+                                        <br>
+                                        <div class="social-link">
+                                            <ul>
+                                                <li><a class="facebook customer share" href="https://www.facebook.com/sharer.php?u={{$_SERVER['HTTP_HOST']}}//posts/details?id={{$data->id}}&name={{$data->name}}" title="Facebook share" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a class="twitter customer share" href="https://twitter.com/share?url={{$_SERVER['HTTP_HOST']}}//posts/details?id={{$data->id}}&name={{$data->name}}" title="Twitter share" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url={{$_SERVER['HTTP_HOST']}}//posts/details?id={{$data->id}}&name={{$data->name}}" title="linkedin Share" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="read-more"> <a href="/posts/details?id={{$data->id}}&name={{$data->name}}" class="read-more">read more <i class="fa fa-long-arrow-right"></i></a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="row">
+                    <div class="pagination-bar">
+                        {{$_data->links('pagination.pagination')}}
                     </div>
                 </div>
             </div>
-            @endforeach
-            
+            <div class="col-md-3">
+                <div id="right">
+                    <div class="sidebar-widget">
+                        <a class="twitter-timeline" href="https://twitter.com/james35836?ref_src=twsrc%5Etfw">Tweets by james35836</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </div>
+            </div>
         </div>
-        
     </div>
-    
-</section>
+</div>
 @endsection

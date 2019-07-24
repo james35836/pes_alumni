@@ -15,61 +15,185 @@ function transaction()
 	{
 		$(document).ready(function()
 		{
-			add_transaction();
-        	update_transaction();
-        	delete_transaction();
+			remove_result();
+			add_cart();
+			checkout_cart();
+        	pin_request();
+        	checkout_tabs();
         	search_submit();
         	submit_transaction();
         });
 	}
-	function add_transaction()
-	{
-		$("body").on('click','.add-transaction',function()
-		{
-			$('.alert').css('display','none');
-			$('.name').val($(this).data('')); 
-            $('.email').val($(this).data('')); 
-			$('.modal-dialog').addClass('modal-md');
-            $('.modal-title').html('ADD transaction');
-            $('.modal-link').val('/transaction/add');
-            
-            $('.modal').modal('show');
-            $('.modal-body').css('display','block');
-            
-        });
+	function remove_result(){
+		$('body').on('click','#return_alert',function(e){
+			$(this).css('display','none');
+		})
 	}
 
-	function update_transaction()
+	function add_cart()
 	{
-		$("body").on('click','.update-transaction',function()
+		$("body").on('click','.addItemToCart',function(e)
 		{
-			$('.alert').css('display','none');
-            $('.id').val($(this).data('id')); 
-            $('.name').val($(this).data('name')); 
-            $('.email').val($(this).data('email')); 
-            $('.modal-dialog').addClass('modal-md');
-            $('.modal-title').html('UPDATE INFORMATION');
-            $('.modal-link').val('/transaction/update');
-            $('.modal').modal('show');
-            $('.modal-body').css('display','block');
-            
+			e.preventDefault();
+
+			
+			let current_target = $(this);
+			var product_id = $(this).attr('data-id');
+			$.ajax({
+				headers: {
+				      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+
+				url:"/cart",
+				data:{product_id  : product_id},
+				method: "POST",
+				success: function(data)
+				{
+					if(data == 1){
+						
+						current_target.find('a').text("Item Added");
+						current_target.addClass('itemAddedToCart');
+						current_target.removeClass('addItemToCart');
+						var target = $('body').find("#cart-count-number");
+						var val    = parseInt(target.text()) + parseInt(data);
+									 target.html(val);
+					}
+					else{
+
+					}
+				}
+			});
+		});
+	}
+
+	function checkout_cart(){
+		$('form.form-checkout-cart').submit(function(evt) 
+    	{
+    		// evt.preventDefault();
+    		var x = $(this).serializeArray();
+    		var formData = new FormData(this);
+    		var error = [];
+			$.each(x, function(i, field){
+				console.log(field.value)
+				if(field.value == ""){
+					$('.account-content.checkout-staps .staps').append("<div class='alert alert-danger required-failed-error'>"+field.name+" is required!</div>")
+				}else{
+					formData.append(field.name ,  field.value);
+				}
+			    
+			});
+			console.log(error)
+
+
+    		// $('.loading').css('display','block');
+	     //    // evt.preventDefault();
+	     //    current_target = $(this);
+	     //    // var formData = new FormData(this);
+	     //    var description = $('.note-editable').html();
+	     //    if(!description){
+	     //    	description = $('.note-editable').val();
+	     //    }
+	     //    formData.append('description', description);
+	     //    $.ajax({
+		    //     type: 'POST',
+		    //     url: $(this).attr('action'),
+		    //     data:formData,
+		    //     cache:false,
+		    //     contentType: false,
+		    //     processData: false,
+		    //     success: function(data) {
+		    //     	if(current_target.hasClass('feed-create')){
+		    //     		showFeedData(data,current_target);
+		    //     	}
+		    //     	$('.loading').css('display','none');
+		    //         $('#return_alert').css('display','block');
+		    //         if(!current_target.hasClass('update')){
+		    //         	current_target.find('.form-control').val('');
+		    //     		current_target.find('.note-editable').html('');
+		    //         }
+		        	
+		    //     },
+		    //     error: function(data) {
+		    //     	$('.loading').css('display','none');
+		    //     }
+	     //    });
+	    });
+	}
+
+	function pin_request()
+	{
+		$("body").on('click','.pin-request',function(evt)
+		{
+			$('.loading').css('display','block');
+	        evt.preventDefault();
+	        var formData = new FormData(this);
+	        current_target = $(this);
+            formData.append("code", 		$('.code').val());
+
+            $.ajax({
+				headers: {
+				      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+
+				url:"/pin/get_info",
+				data:formData,
+				method: "POST",
+				contentType:false,
+        	    cache:false,
+        	    processData:false,
+	            success: function(data)
+				{
+					if(data.code == 1){
+						pin_info(data,current_target);
+					}
+					else{
+						$('.pin-alert').append('<h5 style="color:red">Please enter a valid code</h5>');
+					}
+					$('.loading').css('display','none');
+		            
+		            
+				}
+			});
         });
 	}
 
 	
 
-	function delete_transaction()
+	function checkout_tabs()
 	{
-		$("body").on('click','.delete-transaction',function()
-		{
-            $('.id').val($(this).data('id'));
-            $('.alert').css('display','none');
-            $('.modal-dialog').addClass('modal-sm');
-            $('.modal-title').html('ARE YOU SURE YOU WANT TO PROCEED?');
-            $('.modal-link').val('/transaction/delete');
-            $('.modal').modal('show');
-            $('.modal-body').css('display','none');
-        });
+		$("body").on('click','.required-failed-error',function()
+		{	
+			$(this).remove();
+		});
+		$("body").on('click','.checkout_tabs',function()
+		{	
+			$('.required-failed-error').remove();
+			var x = $('.form-checkout-cart').serializeArray();
+    		var formData = new FormData(this);
+    		var error = [];
+			$.each(x, function(i, field){
+				if(field.value == ""){
+					$('.checkout-staps').prepend("<div class='alert alert-danger required-failed-error'>"+field.name+" is required!<i class='fa fa-times pull-right'></i></div>");
+				}
+			});
+
+			if($('.required-failed-error').length > 0){
+				$('.proceed_checkout_btn').hide();
+			}
+			else{
+				$('.proceed_checkout_btn').show();
+			}
+			var checkout_tabs 	= $('.checkout_tabs');
+			var tab_name 		= $(this).attr('data-tab_name');
+			$.each(checkout_tabs,function(index,val){
+				$(val).removeClass('active');
+				var tab_id		= $(this).attr('data-tab_name');
+				$('#'+tab_id).hide();
+				
+			});
+			$("div[data-tab_name='"+tab_name+"']").addClass('active');
+			$("#"+tab_name).show();
+		});
 	}
 
 	function search_submit()
@@ -104,7 +228,6 @@ function transaction()
     {
     	$('form.form-submit').submit(function(evt) 
     	{
-    		alert(123)
     		$('.loading').css('display','block');
 	        evt.preventDefault();
 	        current_target = $(this);
@@ -122,20 +245,34 @@ function transaction()
 		        contentType: false,
 		        processData: false,
 		        success: function(data) {
-		        	console.log(data);
 		        	if(current_target.hasClass('feed-create')){
 		        		showFeedData(data,current_target);
 		        	}
 		        	$('.loading').css('display','none');
 		            $('#return_alert').css('display','block');
-		        	current_target.find('.form-control').val('');
-		        	current_target.find('.note-editable').html('');
+		            if(!current_target.hasClass('update')){
+		            	current_target.find('.form-control').val('');
+		        		current_target.find('.note-editable').html('');
+		            }
+		        	
 		        },
 		        error: function(data) {
 		        	$('.loading').css('display','none');
 		        }
 	        });
 	    });
+	}
+
+	function pin_info(data,current_target){
+		$('.first_name').val(data.info.user.userinfo.first_name);
+		$('.last_name').val(data.info.user.userinfo.last_name);
+		$('.email').val(data.info.user.userinfo.email);
+		$('.contact').val(data.info.user.userinfo.contact);
+		$('.address').val(data.info.user.userinfo.address);
+		$('.biography').val(data.info.user.userinfo.biography);
+
+		$('#my-billing-addresses').removeClass('in');
+		$('.input-group .form-control').css('z-index',0);
 	}
 
 	function showFeedData(data,current_target){

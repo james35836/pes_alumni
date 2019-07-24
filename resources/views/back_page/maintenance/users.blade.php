@@ -29,14 +29,9 @@
                                 <td><button class="pd-setting">{{$user->user_status}}</button></td>
                                 <td><button class="pd-setting">{{$user->group->name}}</button></td>
                                 <td><button class="pd-setting">{{$user->access}}</button></td>
-                                
-
-
-
-                                
                                 <td>{{$user->user_registered}}</td>
                                 <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    <a class="black-color" href="/manage/user/edit?id={{ $user->id }}&name={{ $user->name }}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                     <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </td>
                             </tr>

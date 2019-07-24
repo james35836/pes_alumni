@@ -16,6 +16,7 @@
         </div>
     </div>
 </div>
+
 <!-- Latest News block Start  -->
 <div id="blog">
     <div class="container">

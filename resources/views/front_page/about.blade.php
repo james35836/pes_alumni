@@ -6,7 +6,7 @@
         <div class="row">
             <div class="wwd">
                 <div class="col-md-12">
-                    <h2 class="tf">We made a unique & Beautyfull theme </h2>
+                    <h2 class="tf">Paloc Alumni Association</h2>
                 </div>
                 <div class="col-md-6">
                     <p>make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing</p>
@@ -19,26 +19,26 @@
         <div class="row">
             <div class="skill">
                 <div class="col-md-4">
-                    <h2 class="tf">Skills</h2>
+                    <h2 class="tf">Profession</h2>
                     <ul>
                         <li> <span>78%</span>
                         <div id="progress1">
-                            <h5>Production Skills</h5>
+                            <h5>House wife</h5>
                         </div>
                     </li>
                     <li> <span>92%</span>
                     <div id="progress2">
-                        <h5>Publishing  Skills</h5>
+                        <h5>Information technology</h5>
                     </div>
                 </li>
                 <li> <span>76%</span>
                 <div id="progress3">
-                    <h5>Marketing  Skills</h5>
+                    <h5>Education</h5>
                 </div>
             </li>
             <li> <span>98%</span>
             <div id="progress4">
-                <h5>Business  Skills</h5>
+                <h5>Farmer</h5>
             </div>
         </li>
     </ul>
@@ -46,9 +46,9 @@
 </div>
 <div class="Experiences">
 <div class="col-md-4">
-    <h2 class="tf">Experiences</h2>
+    <h2 class="tf">Alumni Pledge</h2>
     <div class="exp-detail">
-        <h5>Make a type specimen book. It has survived not only five centuries, but also the leap into electronic</h5>
+        <h5>PLEDGE OF LOYALTY</h5>
         <p>make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
     </div>
 </div>
@@ -58,15 +58,15 @@
     <h2 class="tf">Work</h2>
     <ul>
         <li><span>1</span>
-        <h5>but also the leap into electronic</h5>
+        <h5>Mission</h5>
         <p>The release of Letraset make a type specimen book</p>
     </li>
     <li><span>2</span>
-    <h5>remaining essentially unchanged</h5>
+    <h5>Vision</h5>
     <p> Lorem Ipsum passages, and more</p>
 </li>
 <li><span>3</span>
-<h5>has survived not only five centuries, but </h5>
+<h5>Goals </h5>
 <p>Essentially unchanged.desktop publishing </p>
 </li>
 </ul>

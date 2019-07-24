@@ -18,6 +18,8 @@
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 {
 Route::match(['get', 'post'], '/adminOnlyPage/', 'HomeController@admin');
+Route::match(['get', 'post'], '/alumni-dashboard/', 'AlumniController@alumni_dashboard');
+
 });
 
 
@@ -35,10 +37,17 @@ Route::match(['get', 'post'], '/superAdminOnlyPage/', 'HomeController@super_admi
 Route::get('/', 		'FrontController@index');
 Route::get('/stories', 	'FrontController@stories');
 Route::get('/shopping', 'FrontController@product');
+Route::get('/product/details', 'FrontController@product_details');
 Route::get('/events', 	'FrontController@events');
-Route::get('/posts/details', 	'FrontController@details');
+Route::get('/posts/details', 	'FrontController@post_details');
 Route::get('/about', 	'FrontController@about');
 Route::get('/contact', 	'FrontController@contact');
+
+
+Route::post('/pin/get_info', 	'PinController@pin_get_info');
+
+
+
 
 
 Route::get('/sign-in', 	'Auth\LoginController@alumni_login');
@@ -47,7 +56,11 @@ Route::get('/sign-up', 	'Auth\RegisterController@alumni_register');
 Route::post('/sign-up', 'Auth\RegisterController@alumni_register_submit');
 Auth::routes();
 
-Route::get('/alumni-dashboard', 'AlumniController@alumni_dashboard');
+
+
+
+
+// Route::get('/alumni-dashboard', 'AlumniController@alumni_dashboard');
 Route::get('/alumni-feeds', 	'AlumniController@alumni_feeds');
 Route::get('/alumni-list', 		'AlumniController@alumni_list');
 Route::get('/alumni-info', 		'AlumniController@alumni_info');
@@ -55,35 +68,32 @@ Route::get('/alumni-faculties', 'AlumniController@alumni_faculties');
 
 
 Route::get('/alumni-profile', 'AlumniController@alumni_profile');
-
 Route::get('/alumni-info-update', 'AlumniController@alumni_info_update');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallback');
 
-// Route::get('/manage/shop', 'ShopController@index');
-// Route::get('/manage/officer', 'OfficerController@index');
-// Route::get('/manage/events', 'PostController@index');
-// Route::get('/manage/stories', 'StoriesController@index');
-// Route::get('/manage/user', 'UserController@index');
 
+Route::resource('/manage/product', 'ProductController');
+Route::resource('/manage/user', 'UserController');
 Route::resource('/manage/events', 'PostController');
-Route::resource('/manage/shop', 'ShopController');
-// Route::resource('/manage/user', 'UserController');
-
+Route::resource('/cart', 'CartController');
 Route::post('/alumni/update_user_info', 'UserController@update');
-
 Route::resource('/alumni/feeds', 'PostController');
 
 
 
-Route::get('/manage/user/add', 			'UserController@manage_user_add');
+Route::get('/manage/user/add', 			'UserController@create');
 Route::post('/manage/user/add_submit',   'UserController@store');
+Route::get('/manage/user/edit', 			'UserController@manage_user_edit');
+Route::post('/manage/user/edit_submit',   'UserController@update');
 
 
 
 Route::get('/manage/post/add', 			'PostController@manage_post_add');
+Route::get('/manage/post/edit', 		'PostController@manage_post_edit');
 Route::post('/manage/post/add_submit', 	'PostController@store');
+Route::post('/manage/post/edit_submit', 'PostController@update');
 
 Route::get('/manage/events', 	'PostController@event_list');
 Route::get('/manage/stories', 	'PostController@story_list');
@@ -97,8 +107,10 @@ Route::post('/send_email', 'FrontController@send_email')->name('send_email');
 
 // Route::get('/checkout', 'PaymentController@index');
 
+Route::post('/proceed/checkout', 'PaymentController@createPayment')->name('proceed_checkout');
 
-Route::view('/checkout', 'checkout-page');
+Route::get('/checkout', 'FrontController@checkout');
+Route::view('/checkout-page', 'checkout-page');
 Route::post('/checkout', 'PaymentController@createPayment')->name('create-payment');
 Route::get('/confirm', 'PaymentController@confirmPayment')->name('confirm-payment');
 

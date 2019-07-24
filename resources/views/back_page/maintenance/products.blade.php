@@ -6,9 +6,9 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <h4>Events List</h4>
+                    <h4>Product List</h4>
                     <div class="add-product">
-                        <a href="/manage/post/add" target="_blank">Add Events</a>
+                        <a href="/manage/post/add" target="_blank">Add Product</a>
                     </div>
                     <div class="asset-inner">
                         <table>
@@ -22,20 +22,20 @@
                                 <th>Time</th>
                                 <th>Setting</th>
                             </tr>
-                            @foreach($_events as $key=> $event)
+                            @foreach($_data as $key=> $data)
                             <tr>
                                 <td>{{$key + 1}}</td>
-                                <td><img src="{{$event->thumbnail}}" alt="" /></td>
-                                <td>{{$event->name}}</td>
+                                <td><img src="{{$data->thumbnail}}" alt="" /></td>
+                                <td>{{$data->name}}</td>
                                 <td>
                                     <button class="pd-setting">Active</button>
                                 </td>
-                                <td>{{$event->description}}</td>
-                                <td>{{$event->date}}</td>
-                                <td>{{$event->time}}</td>
+                                <td>{{$data->description}}</td>
+                                <td>{{$data->date}}</td>
+                                <td>{{$data->time}}</td>
                                 
                                 <td>
-                                    <a class="black-color" href="/manage/post/edit?id={{ $event->id }}&name={{ $event->name }}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                    <a class="black-color" href="/manage/post/edit?id={{ $data->id }}&name={{ $data->name }}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                     <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
@@ -44,7 +44,7 @@
                         </table>
                     </div>
                     <div class="custom-pagination">
-                        {{$_events->links('pagination.paginate')}}
+                        {{$_data->links('pagination.paginate')}}
                     </div>
                 </div>
             </div>
