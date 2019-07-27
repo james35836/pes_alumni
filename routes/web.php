@@ -75,7 +75,7 @@ Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallb
 
 
 Route::resource('/manage/product', 'ProductController');
-Route::resource('/manage/user', 'UserController');
+Route::resource('/manage/users', 'UserController');
 Route::resource('/manage/events', 'PostController');
 Route::resource('/cart', 'CartController');
 Route::post('/alumni/update_user_info', 'UserController@update');

@@ -80,7 +80,7 @@ class FrontController extends Controller
 
     public function about()
     {
-        $data['_officer'] = User::all();
+        $data['_officer'] = User::where('type',1)->where('status',1)->get();
 
         return view('front_page.about',$data);
     }

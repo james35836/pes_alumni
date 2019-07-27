@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Group;
+use App\Pin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -69,6 +70,8 @@ class RegisterController extends Controller
         $rules['contact']                   = "required";
         $rules['birthdate']                 = "required";
         $rules['gender']                    = "required";
+        $rules['pin_id']                      = "required";
+        $rules['work']                      = "required";
         $rules['email']                     = "required|unique:users,email";
         $rules['password']                  = "required";
         $rules['password_confirmation']     = "required|same:password";
@@ -76,11 +79,23 @@ class RegisterController extends Controller
 
         $validator = Validator::make($data,$rules);
 
+        $pin = Pin::where('code',$data['pin_id'])->first();
+
         if($validator->fails()) {
-            return Redirect::to('/alumni/register')->withErrors($validator)->withInput(Input::except('password'));
+            return Redirect::to('/sign-up')->withErrors($validator)->withInput(Input::except('password'));
         } 
+        else if(!$pin){
+            return Redirect::back()->with('pin_error', 'Pin code does not exist');
+            return Redirect::to('/sign-up')->withErrors($validator)->withInput(Input::except('password'));
+        }
         else 
         {
+
+            
+            Pin::where('id',$pin_id)->update(['status'=>1]);
+
+
+            $data['pin_id']     = $pin['id'];
             $data['name']       = $data['first_name']." ".$data['last_name'];
             $data['auth']       = Crypt::encrypt($data['password']);
             $data['password']   = Hash::make($data['password']);

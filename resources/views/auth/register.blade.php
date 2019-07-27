@@ -17,6 +17,11 @@
                                     <p>Create your account.</p>
                                     <form method="POST" action="/sign-up" id="loginForm">
                                         @csrf
+                                        @if(session()->has('pin_error'))
+                                            <div class="alert alert-success">
+                                                {{ session()->get('pin_error') }}
+                                            </div>
+                                        @endif
                                         <div class="row">
                                             <div class="form-group col-lg-6">
                                                 <label>First Name</label>
@@ -96,6 +101,29 @@
                                                 @if ($errors->has('group_id'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('group_id') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label>Work</label>
+                                                <select class="form-control {{ $errors->has('work') ? ' is-invalid' : '' }}" id="work" name="work" value="{{ old('work') }}" required>
+                                                    <option>Education</option>
+                                                    <option>IT/Computer</option>
+                                                    <option>Agricuture</option>
+                                                    <option>House Wife</option>
+                                                </select>
+                                                @if ($errors->has('work'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('work') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                            <div class="form-group col-lg-6">
+                                                <label>Pin Code</label>
+                                                <input id="pin_id" type="pin_id" placeholder="Pin Code" class="form-control{{ $errors->has('pin_id') ? ' is-invalid' : '' }}" name="pin_id" value="{{ old('pin_id') }}" required>
+                                                @if ($errors->has('pin_id'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('pin_id') }}</strong>
                                                 </span>
                                                 @endif
                                             </div>

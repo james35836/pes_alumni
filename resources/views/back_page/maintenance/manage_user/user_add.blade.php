@@ -37,14 +37,10 @@
                             
 
                             <div class="form-group">
-                                <select name="type" class="form-control">
-                                    <option value="0">Select User Type</option>
-                                    <option value="0">Member</option>
-                                    <option value="1">Officer</option>
-                                    <option value="2">Editor</option>
-                                    <option value="3">Moderator</option>
-                                    <option value="4">Admin</option>
-                                    <option value="5">Super Admin</option>
+                                <select name="access" class="form-control">
+                                    <option value="member">Member</option>
+                                    <option value="editor">Editor</option>
+                                    <option value="admin">Admin</option>
                                 </select>
                             </div>
                             <div class="form-group">

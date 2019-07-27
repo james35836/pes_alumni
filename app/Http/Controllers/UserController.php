@@ -6,6 +6,7 @@ use App\Application;
 use App\Http\Classes\RegisterManual;
 use App\Http\Interfaces\RegisterInterface;
 use App\User;
+use App\Pin;
 use App\UserAccess;
 use App\UserInformation;
 use Illuminate\Http\Request;
@@ -59,14 +60,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['group_id'] = 1;
-        $data['password'] = "secret";
-        $data['password_confirmation'] = "secret";
+        $data['group_id']                   = 1;
+        $data['type']                       = 1;
+        $data['password']                   = "secret";
+        $data['password_confirmation']      = "secret";
         $rules['first_name']                = "required";
         $rules['middle_name']               = "required";
         $rules['last_name']                 = "required";
         $rules['contact']                   = "required";
-        // $rules['birthdate']                 = "required";
         $rules['gender']                    = "required";
         $rules['email']                     = "required|unique:users,email";
         $rules['password']                  = "required";
@@ -75,11 +76,18 @@ class UserController extends Controller
 
         $validator = Validator::make($data,$rules);
 
+        
+
         if($validator->fails()) {
             return Redirect::to('/alumni/register')->withErrors($validator)->withInput(Input::except('password'));
         } 
         else 
         {
+            $pin = Pin::where('status',0);
+            $pin_id = $pin->first()->id;
+            $pin->update(['status'=>1]);
+
+            $data['pin_id']     = $pin_id;
             $data['name']       = $data['first_name']." ".$data['last_name'];
             $data['auth']       = Crypt::encrypt($data['password']);
             $data['password']   = Hash::make($data['password']);

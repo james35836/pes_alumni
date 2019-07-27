@@ -28,10 +28,36 @@ class DatabaseSeeder extends Seeder
 
     public function users(){
         $faker = Faker::create();
-        foreach (range(1,3) as $index) {
+        foreach (range(1,4) as $key=>$index) {
+            
+
+            $position = "Member";
+            $status   = 1;
+            $access   = "member";
+            $type     = 1;
+
+            if($key == 0){
+                $position = "Developer";
+                $access   = "super_admin";
+                $type     = 2;
+            }
+
+            if($key == 1){
+                $position = "President";
+                $access   = "super_admin";
+            }
+
+            if($key == 2){
+                $position = "Vice-President";
+                $access   = "admin";
+            }
+
+            if($key == 3){
+                $position = "Secretary";
+                $access   = "admin";
+            }
+
             $pin = Pin::where('status',0);
-
-
             $pin_id = $pin->first()->id;
             $pin->update(['status'=>1]);
 
@@ -39,6 +65,10 @@ class DatabaseSeeder extends Seeder
                 'email' => $faker->email,
                 'group_id' => 1,
                 'pin_id' => $pin_id,
+                'position' => $position,
+                'status' => $status,
+                'access' => $access,
+                'type' => $type,
                 'password' => bcrypt('secret'),
                 'created_at' => Carbon::now(),
             ]);
