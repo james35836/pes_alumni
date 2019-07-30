@@ -151,6 +151,10 @@ body {}
 {
 	padding:30px;
 }
+.p-15
+{
+	padding:15px;
+}
 .bg-green {
     background: #1349b2;
 }
