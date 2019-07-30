@@ -7,9 +7,9 @@
         <title>PES | Alumni</title>
         <meta content="" name="description">
         <meta content="" name="author">
-        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-        <link rel="icon" type="image/png" href="images/favicon.png">
-        <link rel="apple-touch-icon" href="images/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="apple-touch-icon" href="/favicon.png">
         <link href="/frontend/Bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="/frontend/css/style.css" rel="stylesheet" type="text/css">
         <link href="/frontend/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -19,10 +19,14 @@
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="/frontend/js/DioProgress.js"></script>
         <script src="/js/sharelink.js"></script>
+        <script src="/js/frontend.js"></script>
         <meta property="og:image" content="/img/logo.jpg" />
         <link rel="stylesheet" href="/css/loader.css">
+        <link rel="stylesheet" href="/frontend/css/gallery.css">
     </head>
     <body id="index">
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=333100980642795&autoLogAppEvents=1"></script>
         <div class="wrapar">
             <div class="header">
                 <div class="header-top">
@@ -72,54 +76,7 @@
                             <div class="cart">
                                 <div class="cart-icon dropdown"></div>
                                 <a class="dropdown-toggle" href="/cart">My Cart( <b id="cart-count-number">{{ $cart_count }}</b> )</a>
-                                {{-- <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="cart.html">My Cart( 2 )<span> $261.20</span></a>
-                                <ul class="dropdown-menu pull-right cart-dropdown-menu">
-                                    <li>
-                                        <table class="table table-striped">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-center"><a href="product.html"><img class="img-thumbnail" src="/frontend/images/product/car3-70x92.jpg" alt="img"></a></td>
-                                                    <td class="text-left"><a href="#">Black African Print Pencil Skirt</a></td>
-                                                    <td class="text-right quality">X1</td>
-                                                    <td class="text-right price-new">$254.00</td>
-                                                    <td class="text-center"><button type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center"><a href="product.html"><img class="img-thumbnail" src="/frontend/images/product/car3-70x92.jpg" alt="img"></a></td>
-                                                    <td class="text-left"><a href="#">Black African Print Pencil Skirt</a></td>
-                                                    <td class="text-right quality">X1</td>
-                                                    <td class="text-right price-new">$254.00</td>
-                                                    <td class="text-center"><button type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></button></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </li>
-                                    <li>
-                                        <div class="minitotal">
-                                            <table class="table pricetotal">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-right"><strong>Sub-Total</strong></td>
-                                                        <td class="text-right price-new">$210.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                                                        <td class="text-right price-new">$2.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-right"><strong>VAT (20%)</strong></td>
-                                                        <td class="text-right price-new">$42.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-right"><strong>Total</strong></td>
-                                                        <td class="text-right price-new">$254.00</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="controls"> <a class="btn btn-primary pull-left" href="cart.html" id="view-cart"><i class="fa fa-shopping-cart"></i> View Cart </a> <a class="btn btn-primary pull-right" href="checkout.html" id="checkout"><i class="fa fa-share"></i> Checkout</a> </div>
-                                        </div>
-                                    </li>
-                                </ul> --}}
+                                
                             </div>
                         </div>
                     </div>
@@ -156,6 +113,7 @@
                                 <li><a href="/shopping">SHOPPING</a><span class="new">new</span></li>
                                 <li><a href="/events">EVENTS</a></li>
                                 <li><a href="/stories">STORIES</a></li>
+                                <li><a href="/gallery">GALLERY</a></li>
                                 <li><a href="/contact">CONTACT US</a></li>
                                 <li><a href="/about">ABOUT US</a></li>
                             </ul>

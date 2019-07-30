@@ -9,7 +9,24 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
 */
+
+/*
+|--------------------------------------------------------------------------
+| ACCESS LEVEL
+|--------------------------------------------------------------------------
+
+0 - member
+1 - Reserve
+2 - editor
+3 - admin
+4 - superadmin
+
+*/
+
+
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -42,6 +59,7 @@ Route::get('/events', 	'FrontController@events');
 Route::get('/posts/details', 	'FrontController@post_details');
 Route::get('/about', 	'FrontController@about');
 Route::get('/contact', 	'FrontController@contact');
+Route::get('/gallery', 	'FrontController@gallery');
 
 
 Route::post('/pin/get_info', 	'PinController@pin_get_info');

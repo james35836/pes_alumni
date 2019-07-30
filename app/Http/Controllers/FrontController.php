@@ -89,6 +89,11 @@ class FrontController extends Controller
         return view('front_page.contact');
     }
 
+    public function gallery()
+    {
+        return view('front_page.gallery');
+    }
+
 
     public function send_email(Request $request)
     {

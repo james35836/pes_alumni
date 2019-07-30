@@ -52,7 +52,7 @@ class LoginController extends Controller
     public function alumni_login_submit()
     {
         
-        
+        dd("dsad");
         return view('auth.login');
     }
 

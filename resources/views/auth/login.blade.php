@@ -12,8 +12,8 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="basic-login-inner">
-                                    <h3>Sign In</h3>
-                                    <p>Register User can get sign here</p>
+                                    <h3>Sign in</h3>
+                                    <p>PES Alumni Association</p>
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group-inner">
@@ -45,13 +45,14 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        
                                     </form>
                                 </div>
                             </div>
                             
                         </div>
                         <hr >
-                        <p class="text-center">OR</p>
+                        <!-- <p class="text-center">OR</p>
                         <hr>
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -61,7 +62,7 @@
                                     <a href="{{ url('/login/twitter') }}" class="button btn-social basic-ele-mg-b-10 googleplus span-left"> <span><i class="fa fa-google-plus"></i></span> Google+ </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

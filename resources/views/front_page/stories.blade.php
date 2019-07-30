@@ -47,9 +47,7 @@
             </div>
             <div class="col-md-3">
                 <div id="right">
-                    <div class="sidebar-widget">
-                        <a class="twitter-timeline" href="https://twitter.com/james35836?ref_src=twsrc%5Etfw">Tweets by james35836</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
+                    <div class="fb-page" data-href="https://www.facebook.com/Paloc-Elementary-School-Alumni-Home-Coming-900507006959872/" data-tabs="timeline" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Paloc-Elementary-School-Alumni-Home-Coming-900507006959872/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Paloc-Elementary-School-Alumni-Home-Coming-900507006959872/">Paloc Elementary School Alumni Home Coming</a></blockquote></div>
                 </div>
             </div>
         </div>

@@ -7,12 +7,12 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 p-30">
                         <div class="student-inner-std res-mg-b-30">
                             <div class="student-img">
-                                <img src="/backend/img/student/1.jpg" alt="" />
+                                <img src="{{$list->userinfo->user_profile}}" alt="" />
                             </div>
                             <div class="student-dtl">
-                                <h2>Alexam Angles</h2>
-                                <p class="dp">Computer Science</p>
-                                <p class="dp-ag"><b>Age:</b> 20 Years</p>
+                                <h2>{{$list->userinfo->name}}</h2>
+                                <p class="dp">ADVISER</p>
+                                <p class="dp-ag"><b>SY : {{$list->group->name}}</b></p>
                             </div>
                         </div>
                     </div>

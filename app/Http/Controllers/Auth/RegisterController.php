@@ -80,19 +80,19 @@ class RegisterController extends Controller
         $validator = Validator::make($data,$rules);
 
         $pin = Pin::where('code',$data['pin_id'])->first();
+        if(!$pin && $data['pin_id'] != ""){
 
+            $validator->after(function($validator) {
+                $validator->errors()->add('pin_id', 'Pin code is not valid!');
+            });  
+        }
         if($validator->fails()) {
             return Redirect::to('/sign-up')->withErrors($validator)->withInput(Input::except('password'));
         } 
-        else if(!$pin){
-            return Redirect::back()->with('pin_error', 'Pin code does not exist');
-            return Redirect::to('/sign-up')->withErrors($validator)->withInput(Input::except('password'));
-        }
-        else 
-        {
+        else{
 
             
-            Pin::where('id',$pin_id)->update(['status'=>1]);
+            Pin::where('id',$pin['id'])->update(['status'=>1]);
 
 
             $data['pin_id']     = $pin['id'];

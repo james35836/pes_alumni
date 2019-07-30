@@ -13,8 +13,8 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="basic-login-inner">
-                                    <h3>Sign Up</h3>
-                                    <p>Create your account.</p>
+                                    <h3>Sign up</h3>
+                                    <p>Create your PES alumni account.</p>
                                     <form method="POST" action="/sign-up" id="loginForm">
                                         @csrf
                                         @if(session()->has('pin_error'))
@@ -71,7 +71,6 @@
                                             <div class="form-group col-lg-6">
                                                 <label>Gender</label>
                                                 <select class="form-control {{ $errors->has('gender') ? ' is-invalid' : '' }}" id="gender" name="gender" value="{{ old('gender') }}" required>
-                                                    <option selected=""> Select Gender</option>
                                                     <option>Male</option>
                                                     <option>Female</option>
                                                 </select>
@@ -93,7 +92,6 @@
                                             <div class="form-group col-lg-6">
                                                 <label>Batch</label>
                                                 <select class="form-control {{ $errors->has('group_id') ? ' is-invalid' : '' }}" id="group_id" name="group_id" value="{{ old('group_id') }}" required>
-                                                    <option value=""> Select Group</option>
                                                     @foreach($_group as $group)
                                                     <option value="{{$group->id}}">{{$group->name}}</option>
                                                     @endforeach
@@ -148,7 +146,7 @@
                                             
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-success loginbtn">Register</button>
+                                            <button type="submit" class="btn btn-success loginbtn" style="border-radius: 0px;">Register</button>
                                         </div>
                                     </form>
                                 </div>
@@ -156,7 +154,7 @@
                             
                         </div>
                         <hr >
-                        <p class="text-center">OR</p>
+                        <!-- <p class="text-center">OR</p>
                         <hr>
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -166,7 +164,7 @@
                                     <a href="{{ url('/login/twitter') }}" class="button btn-social basic-ele-mg-b-10 googleplus span-left"> <span><i class="fa fa-google-plus"></i></span> Google+ </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

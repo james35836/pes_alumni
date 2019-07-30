@@ -8,7 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- favicon
         ============================================ -->
-        <link rel="shortcut icon" type="image/x-icon" href="/img/logo.png">
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="apple-touch-icon" href="/favicon.png">
         <!-- Google Fonts
         ============================================ -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -74,6 +76,8 @@
         <script src="/backend/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=333100980642795&autoLogAppEvents=1"></script>
         <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -87,9 +91,16 @@
                 <div class="left-custom-menu-adp-wrap comment-scrollbar">
                     <nav class="sidebar-nav left-sidebar-menu-pro">
                         <ul class="metismenu" id="menu1">
+                            <?php
+                                $dashboard_page = [4,3];
+                                $maintenance_page = [4,3];
+                            ?>
+
+                            @if(in_array(Auth::user()->access,$dashboard_page))
                             <li>
-                                <a title="Dashboard Page" href="/alumni-dashboard" aria-expanded="false"><span class="educate-icon educate-charts icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
+                                <a title="Dashboard Page" href="/alumni-dashboard" aria-expanded="false"><span class="educate-icon educate-charts icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Dashboards</span></a>
                             </li>
+                            @endif
                             <li>
                                 <a title="Feed Page" href="/alumni-feeds" aria-expanded="false"><span class="educate-icon educate-library icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">News Feed</span></a>
                             </li>
@@ -99,8 +110,9 @@
                             <li>
                                 <a title="Faculties Page" href="/alumni-faculties" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Professor List</span></a>
                             </li>
+                            @if(in_array(Auth::user()->access,$maintenance_page))
                             <li>
-                                <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Maintenance</span></a>
+                                <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Maintenance</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
                                     <li><a title="All Students" href="/manage/user"><span class="mini-sub-pro"> Alumni Users</span></a></li>
                                     <li><a title="All Students" href="/manage/officer"><span class="mini-sub-pro"> Alumni Officers</span></a></li>
@@ -110,6 +122,7 @@
                                     <li><a title="Students Profile" href="/manage/events"><span class="mini-sub-pro">Alumni Galleries</span></a></li>
                                 </ul>
                             </li>
+                            @endif
                         </ul>
                     </nav>
                 </div>

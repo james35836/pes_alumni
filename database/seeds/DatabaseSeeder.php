@@ -28,33 +28,47 @@ class DatabaseSeeder extends Seeder
 
     public function users(){
         $faker = Faker::create();
-        foreach (range(1,4) as $key=>$index) {
+        foreach (range(1,6) as $key=>$index) {
             
 
             $position = "Member";
             $status   = 1;
-            $access   = "member";
+            $access   = 0;
+            $email   = $faker->email;
+            $name   = $faker->name;
             $type     = 1;
 
             if($key == 0){
                 $position = "Developer";
-                $access   = "super_admin";
+                $access   = 4;
                 $type     = 2;
+                $email   = "jamesomosora@pesalumni.org";
+                $name   = "James Omosora";
             }
 
             if($key == 1){
                 $position = "President";
-                $access   = "super_admin";
+                $access   = 4;
+                $email   = "president@pesalumni.org";
+                $name   = "Rex Corpuz";
             }
 
             if($key == 2){
                 $position = "Vice-President";
-                $access   = "admin";
+                $access   = 3;
+                $email   = "vicepresident@pesalumni.org";
             }
 
             if($key == 3){
                 $position = "Secretary";
-                $access   = "admin";
+                $access   = 3;
+                $email   = "secretary@pesalumni.org";
+            }
+
+            if($key == 4){
+                $position = "Treasurer";
+                $access   = 3;
+                $email   = "treasurer@pesalumni.org";
             }
 
             $pin = Pin::where('status',0);
@@ -62,7 +76,7 @@ class DatabaseSeeder extends Seeder
             $pin->update(['status'=>1]);
 
             $id = DB::table('users')->insertGetId([
-                'email' => $faker->email,
+                'email' => $email,
                 'group_id' => 1,
                 'pin_id' => $pin_id,
                 'position' => $position,
@@ -74,7 +88,7 @@ class DatabaseSeeder extends Seeder
             ]);
 
             DB::table('userinfos')->insert([
-                'name' => $faker->name,
+                'name' => $name,
                 'user_id' => $id,
             ]);
         }
@@ -178,6 +192,20 @@ class DatabaseSeeder extends Seeder
                 'description'   => "Lets get together",
                 'group_id'      => 1,
                 'user_id'       => 1,
+                'created_at'    => Carbon::now(),
+            ]);
+
+            DB::table('posts')->insert([
+                'id'          => 3,
+                'thumbnail'     => "/posts_img/default_image.png",
+                'name'          => "James Omosora Story",
+                'date'          => Carbon::now(),
+                'time'          => "6:00 am - 9:00 pm",
+                'place'         => "Eaglesview Hotel",
+                'description'   => "Lets get together",
+                'group_id'      => 1,
+                'user_id'       => 1,
+                'type'       => "story_post",
                 'created_at'    => Carbon::now(),
             ]);
         }

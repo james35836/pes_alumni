@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->access == 'super_admin') {
+        if (Auth::check() && Auth::user()->access == 4) {
             return $next($request);
         }
         else {
