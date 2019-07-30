@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
     public function users(){
         $faker = Faker::create();
-        foreach (range(1,6) as $key=>$index) {
+        foreach (range(1,8) as $key=>$index) {
             
 
             $position = "Member";
@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             $email   = $faker->email;
             $name   = $faker->name;
             $type     = 1;
+            $group_id = 2;
 
             if($key == 0){
                 $position = "Developer";
@@ -71,13 +72,20 @@ class DatabaseSeeder extends Seeder
                 $email   = "treasurer@pesalumni.org";
             }
 
+            if($key == 5){
+                $position = "ADVISER";
+                $access   = 0;
+                $type     = 3;
+                $email   = "adviser@pesalumni.org";
+            }
+
             $pin = Pin::where('status',0);
             $pin_id = $pin->first()->id;
             $pin->update(['status'=>1]);
 
             $id = DB::table('users')->insertGetId([
                 'email' => $email,
-                'group_id' => 1,
+                'group_id' => $group_id,
                 'pin_id' => $pin_id,
                 'position' => $position,
                 'status' => $status,
