@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             $access   = 0;
             $email   = $faker->email;
             $name   = $faker->name;
-            $type     = 1;
+            $type     = 0;
             $group_id = 2;
 
             if($key == 0){
@@ -50,6 +50,7 @@ class DatabaseSeeder extends Seeder
             if($key == 1){
                 $position = "President";
                 $access   = 4;
+                $type     = 1;
                 $email   = "president@pesalumni.org";
                 $name   = "Rex Corpuz";
             }
@@ -57,18 +58,21 @@ class DatabaseSeeder extends Seeder
             if($key == 2){
                 $position = "Vice-President";
                 $access   = 3;
+                $type     = 1;
                 $email   = "vicepresident@pesalumni.org";
             }
 
             if($key == 3){
                 $position = "Secretary";
                 $access   = 3;
+                $type     = 1;
                 $email   = "secretary@pesalumni.org";
             }
 
             if($key == 4){
                 $position = "Treasurer";
                 $access   = 3;
+                $type     = 1;
                 $email   = "treasurer@pesalumni.org";
             }
 
