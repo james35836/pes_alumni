@@ -30,10 +30,6 @@
                                 <td><button class="pd-setting">{{$user->group->name}}</button></td>
                                 <td><button class="pd-setting">{{$user->access}}</button></td>
                                 
-
-
-
-                                
                                 <td>{{$user->user_registered}}</td>
                                 <td>
                                     <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

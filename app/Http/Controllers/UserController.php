@@ -6,6 +6,7 @@ use App\Application;
 use App\Http\Classes\RegisterManual;
 use App\Http\Interfaces\RegisterInterface;
 use App\User;
+use App\Userinfo;
 use App\Pin;
 use App\UserAccess;
 use App\UserInformation;
@@ -68,7 +69,6 @@ class UserController extends Controller
         $rules['middle_name']               = "required";
         $rules['last_name']                 = "required";
         $rules['contact']                   = "required";
-        $rules['gender']                    = "required";
         $rules['email']                     = "required|unique:users,email";
         $rules['password']                  = "required";
         $rules['password_confirmation']     = "required|same:password";
@@ -79,7 +79,10 @@ class UserController extends Controller
         
 
         if($validator->fails()) {
-            return Redirect::to('/alumni/register')->withErrors($validator)->withInput(Input::except('password'));
+
+            $response['status'] = 400;
+            $response['error'] = $validator->errors();
+            return $response;
         } 
         else 
         {
@@ -108,8 +111,6 @@ class UserController extends Controller
         $rules['middle_name']               = "required";
         $rules['last_name']                 = "required";
         $rules['contact']                   = "required";
-        // $rules['birthdate']                 = "required";
-        $rules['gender']                    = "required";
         $rules['group_id']                  = "required|integer";
 
         $validator = Validator::make($data,$rules);
@@ -119,16 +120,23 @@ class UserController extends Controller
         } 
         else 
         {
-            $id                     = $data['id'];
-            $update['name']           = $data['first_name']." ".$data['last_name'];
-            $update['first_name']     = $data['first_name'];
-            $update['middle_name']    = $data['middle_name'];
-            $update['last_name']      = $data['last_name'];
+            $id                       = $data['id'];
 
-            $update['contact']        = $data['contact'];
-            $update['gender']         = $data['gender'];
-            $update['email']          = $data['email'];
-            $user                   = User::where('id',$id)->with(['userinfo'])->update($update);
+            $user['email']              = $data['email'];
+            $user['type']               = $data['type'];
+            $user['access']             = $data['access'];
+            $user['position']           = $data['position'];
+                                        User::where('id',$id)->update($user);
+
+            $userinfo['name']           = $data['first_name']." ".$data['last_name'];
+            $userinfo['first_name']     = $data['first_name'];
+            $userinfo['middle_name']    = $data['middle_name'];
+            $userinfo['last_name']      = $data['last_name'];
+            $userinfo['contact']        = $data['contact'];
+                                        $check = Userinfo::where('user_id',$id)->update($userinfo);
+
+                                        dd($check);
+         
             return $user;
         }
     }

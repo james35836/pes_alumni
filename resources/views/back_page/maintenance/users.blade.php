@@ -7,7 +7,7 @@
                 <div class="product-status-wrap">
                     <h4>User List</h4>
                     <div class="add-product">
-                        <a href="#" data-toggle="modal" data-target="#PrimaryModalhdbgcl">Add Users</a>
+                        <a href="/manage/user/add" target="_blank" >Add Officer</a>
                     </div>
                     <div class="asset-inner">
                         <table>
@@ -26,12 +26,12 @@
                                 <td>{{$key + 1}}</td>
                                 <td><img src="{{$user->userinfo->user_profile}}" alt="" /></td>
                                 <td>{{$user->userinfo->name}}</td>
-                                <td><button class="pd-setting">{{$user->user_status}}</button></td>
-                                <td><button class="pd-setting">{{$user->group->name}}</button></td>
-                                <td><button class="pd-setting">{{$user->access}}</button></td>
+                                <td>{{$user->user_status}}</td>
+                                <td>{{$user->group->name}}</td>
+                                <td>{{$user->access_level}}</td>
                                 <td>{{$user->user_registered}}</td>
                                 <td>
-                                    <a class="black-color" href="/manage/user/edit?id={{ $user->id }}&name={{ $user->name }}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                    <a class="black-color" href="/manage/user/edit?id={{ $user->id }}&name={{ $user->userinfo->name }}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                     <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </td>
                             </tr>

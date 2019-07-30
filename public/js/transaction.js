@@ -248,13 +248,22 @@ function transaction()
 		        	if(current_target.hasClass('feed-create')){
 		        		showFeedData(data,current_target);
 		        	}
+		        	console.log(data)
 		        	$('.loading').css('display','none');
-		            $('#return_alert').css('display','block');
-		            if(!current_target.hasClass('update')){
-		            	current_target.find('.form-control').val('');
-		        		current_target.find('.note-editable').html('');
-		            }
-		        	
+		        	if(data.status == 400){
+		        		$('span.span-error').remove();
+		        		$.each(data.error,function(index,value){
+		        			$('[name="'+index+'"]').closest('div').append('<span class = "span-error">'+value+'</span>');
+		        		});
+		        	}
+		        	else{
+		        		$('#return_alert').css('display','block');
+
+		        		if(!current_target.hasClass('update')){
+			            	current_target.find('input.form-control').val('');
+			        		current_target.find('.note-editable').html('');
+			            }
+		        	}
 		        },
 		        error: function(data) {
 		        	$('.loading').css('display','none');

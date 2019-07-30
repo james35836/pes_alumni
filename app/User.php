@@ -28,7 +28,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    protected $appends = ['user_status','user_registered'];
+    protected $appends = ['user_status','user_registered','access_level'];
     
 
     public function getUserStatusAttribute(){
@@ -36,6 +36,28 @@ class User extends Authenticatable
     }
     public function getUserRegisteredAttribute(){
         return date("F j, Y", strtotime($this->created_at));
+    }
+
+    public function getAccessLevelAttribute(){
+
+        $access_level = "Member";
+
+        if($this->access == 1){
+            $access_level = "Reserve";
+        }
+
+        if($this->access == 2){
+            $access_level = "Editor";
+        }
+
+        if($this->access == 3){
+            $access_level = "Admin";
+        }
+
+        if($this->access == 4){
+            $access_level = "Super Admin";
+        }
+        return $access_level;
     }
     
 

@@ -2,10 +2,9 @@
 .gallery-title
 {
     font-size: 36px;
-    color: #1349b2;
     text-align: center;
     font-weight: 500;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
 }
 .gallery-title:after {
     content: "";
@@ -13,29 +12,27 @@
     width: 7.5%;
     left: 46.5%;
     height: 45px;
-    border-bottom: 1px solid #5e5e5e;
 }
 .filter-button
 {
     font-size: 18px;
     border: 1px solid #1349b2;
-    border-radius: 5px;
     text-align: center;
     color: #1349b2;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    background: none;
 
 }
 .filter-button:hover
 {
     font-size: 18px;
     border: 1px solid #1349b2;
-    border-radius: 5px;
     text-align: center;
     color: #ffffff;
     background-color: #1349b2;
 
 }
-.btn-default:active .filter-button:active
+.filter-button:active
 {
     background-color: #1349b2;
     color: white;

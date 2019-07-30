@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             if($key == 0){
                 $position = "Developer";
                 $access   = 4;
-                $type     = 2;
+                $type     = 3;
                 $email   = "jamesomosora@pesalumni.org";
                 $name   = "James Omosora";
             }

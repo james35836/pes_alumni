@@ -27,15 +27,9 @@
 
 
 
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 {
-Route::match(['get', 'post'], '/adminOnlyPage/', 'HomeController@admin');
-Route::match(['get', 'post'], '/alumni-dashboard/', 'AlumniController@alumni_dashboard');
+	Route::match(['get', 'post'], '/alumni-dashboard/', 'AlumniController@alumni_dashboard');
 
 });
 
@@ -93,18 +87,18 @@ Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallb
 
 
 Route::resource('/manage/product', 'ProductController');
-Route::resource('/manage/users', 'UserController');
+// Route::resource('/manage/user', 'UserController');
 Route::resource('/manage/events', 'PostController');
 Route::resource('/cart', 'CartController');
 Route::post('/alumni/update_user_info', 'UserController@update');
 Route::resource('/alumni/feeds', 'PostController');
 
 
-
+Route::get('/manage/user',         		'UserController@index');
 Route::get('/manage/user/add', 			'UserController@create');
-Route::post('/manage/user/add_submit',   'UserController@store');
-Route::get('/manage/user/edit', 			'UserController@manage_user_edit');
-Route::post('/manage/user/edit_submit',   'UserController@update');
+Route::post('/manage/user/add_submit',  'UserController@store');
+Route::get('/manage/user/edit', 		'UserController@show');
+Route::post('/manage/user/edit_submit', 'UserController@update');
 
 
 

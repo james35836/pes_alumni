@@ -13,56 +13,56 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <input name="last_name" value="{{ $data->last_name }}" type="text" class="form-control" placeholder="Last Name">
+                                <label>Last Name</label>
+                                <input name="last_name" value="{{ $data->userinfo->last_name }}" type="text" class="form-control" placeholder="Last Name">
                             </div>
                             <div class="form-group">
-                                <input name="first_name" value="{{ $data->first_name }}" type="text" class="form-control" placeholder="First Name">
+                                <label>First Name</label>
+                                <input name="first_name" value="{{ $data->userinfo->first_name }}" type="text" class="form-control" placeholder="First Name">
                             </div>
                             <div class="form-group">
-                                <input name="middle_name" value="{{ $data->middle_name }}" type="text" class="form-control" placeholder="Middle Name">
+                                <label>Middle Name</label>
+                                <input name="middle_name" value="{{ $data->userinfo->middle_name }}" type="text" class="form-control" placeholder="Middle Name">
                             </div>
                             <div class="form-group">
-                                <select name="gender" class="form-control">
-                                    <option {{ $data->gender == "Male" ? "selected" : "" }}>Male</option>
-                                    <option {{ $data->gender == "Female" ? "selected" : "" }}>Female</option>
+                                <label>User Type</label>
+                                <select name="type" class="form-control">
+                                    <option {{ $data->type == 0 ? "selected" : "" }} value="0">Member</option>
+                                    <option {{ $data->type == 1 ? "selected" : "" }} value="1">Officer</option>
+                                    <option {{ $data->type == 2 ? "selected" : "" }} value="2">Faculties</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
+                                <label>Email</label>
                                 <input name="email" value="{{ $data->email }}" type="text" class="form-control" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <input name="contact" value="{{ $data->contact }}" type="text" class="form-control" placeholder="Phone Number">
+                                <label>Phone Number</label>
+                                <input name="contact" value="{{ $data->userinfo->contact }}" type="text" class="form-control" placeholder="Phone Number">
                             </div>
                             
 
                             <div class="form-group">
-                                <select name="type" class="form-control">
-                                    <option value="0" {{ $data->gender == 0 ? "selected" : "" }}>Select User Type</option>
-                                    <option value="0" {{ $data->gender == 0 ? "selected" : "" }}>Member</option>
-                                    <option value="1" {{ $data->gender == 1 ? "selected" : "" }}>Officer</option>
-                                    <option value="2" {{ $data->gender == 2 ? "selected" : "" }}>Editor</option>
-                                    <option value="3" {{ $data->gender == 3 ? "selected" : "" }}>Moderator</option>
-                                    <option value="4" {{ $data->gender == 4 ? "selected" : "" }}>Admin</option>
-                                    <option value="5" {{ $data->gender == 5 ? "selected" : "" }}>Super Admin</option>
+                                <label>User Access</label>
+                                <select name="access" class="form-control">
+                                    <option value="0" {{ $data->access == 0 ? "selected" : "" }}>Member</option>
+                                    <option value="1" {{ $data->access == 1 ? "selected" : "" }}>Reserve</option>
+                                    <option value="2" {{ $data->access == 2 ? "selected" : "" }}>Editor</option>
+                                    <option value="3" {{ $data->access == 3 ? "selected" : "" }}>Admin</option>
+                                    <option value="4" {{ $data->access == 4 ? "selected" : "" }}>Super Admin</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select name="type" class="form-control">
-                                    <option value="member" {{ $data->type == "member" ? "selected" : "" }}>Select Position</option>
+                                <label>Position</label>
+                                <select name="position" class="form-control">
+                                    <option {{ $data->type == "Member" ? "selected" : "" }}>Member</option>
                                     <option {{ $data->type == "President" ? "selected" : "" }}>President</option>
                                     <option {{ $data->type == "Vice-President" ? "selected" : "" }}>Vice-President</option>
                                 </select>
                             </div>
                         </div>
-
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <textarea name="biography" class="form-control" row="5" placeholder="Create a simple bio for this user.">{!! $data->biography !!}</textarea>
-                            </div>
-                        </div>
-                        
                     </div>
                     <div class="row">
                         <div class="col-lg-12">

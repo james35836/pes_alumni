@@ -71,6 +71,7 @@
         ============================================ -->
         <link rel="stylesheet" href="/backend/css/modals.css">
         <link rel="stylesheet" href="/css/loader.css">
+        <link rel="stylesheet" href="/css/global.css">
         <!-- modernizr JS
         ============================================ -->
         <script src="/backend/js/vendor/modernizr-2.8.3.min.js"></script>
