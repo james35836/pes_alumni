@@ -120,7 +120,7 @@
                                     <li><a title="Add Students" href="/manage/product"><span class="mini-sub-pro">Alumni Products</span></a></li>
                                     <li><a title="Edit Students" href="/manage/events"><span class="mini-sub-pro"> Alumni Events</span></a></li>
                                     <li><a title="Students Profile" href="/manage/stories"><span class="mini-sub-pro">Alumni Stories</span></a></li>
-                                    <li><a title="Students Profile" href="/manage/events"><span class="mini-sub-pro">Alumni Galleries</span></a></li>
+                                    <li><a title="Students Profile" href="/manage/albums"><span class="mini-sub-pro">Alumni Galleries</span></a></li>
                                 </ul>
                             </li>
                             @endif

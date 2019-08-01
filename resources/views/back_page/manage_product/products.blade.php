@@ -16,23 +16,22 @@
                                 <th>No</th>
                                 <th>Image</th>
                                 <th>Name</th>
-                                <th>Status</th>
+                                <th>Sizes</th>
+                                <th>Price</th>
                                 <th>Description</th>
                                 <th>Date</th>
-                                <th>Time</th>
-                                <th>Setting</th>
+                                <th>Action</th>
                             </tr>
                             @foreach($_data as $key=> $data)
                             <tr>
                                 <td>{{$key + 1}}</td>
                                 <td><img src="{{$data->thumbnail}}" alt="" /></td>
                                 <td>{{$data->name}}</td>
-                                <td>
-                                    <button class="pd-setting">Active</button>
-                                </td>
+                                <td>{{$data->sizes}}</td>
+                                <td>{{$data->price}}</td>
+                                
                                 <td>{{$data->description}}</td>
-                                <td>{{$data->date}}</td>
-                                <td>{{$data->time}}</td>
+                                <td>{{$data->date_format}}</td>
                                 
                                 <td>
                                     <a class="black-color" href="/manage/post/edit?id={{ $data->id }}&name={{ $data->name }}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>

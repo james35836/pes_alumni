@@ -22,31 +22,31 @@ class PostController extends Controller
 
     public function manage_post_add(){
         $data['_category'] = Category::all();
-        return view('back_page.maintenance.manage_post.post_add',$data);
+        return view('back_page.manage_post.post_add',$data);
     }
 
     public function manage_post_edit(){
         $id = Request('id');
         $data['data'] = Post::findOrFail($id);
-        return view('back_page.maintenance.manage_post.post_edit',$data);
+        return view('back_page.manage_post.post_edit',$data);
     }
 
     public function event_list()
     {
         $data['_events'] = Post::where('type','event_post')->paginate(10);
-        return view('back_page.maintenance.events',$data);
+        return view('back_page.manage_post.events',$data);
     }
 
     public function story_list()
     {
         $data['_data'] = Post::where('type','event_post')->paginate(10);
-        return view('back_page.maintenance.stories',$data);
+        return view('back_page.manage_post.stories',$data);
     }
     
     public function index()
     {
         $data['_events'] = Post::all();
-        return view('back_page.maintenance.events',$data);
+        return view('back_page.manage_post.events',$data);
     }
 
     /**

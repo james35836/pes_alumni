@@ -36,26 +36,26 @@ class UserController extends Controller
     //         'userInformation.gallery', 'userInformation.cover','userAccesses', 'applications', 'shop', 'author']); //lazy loader
     // }
     public function create(){
-        return view('back_page.maintenance.manage_user.user_add');
+        return view('back_page.manage_user.user_add');
     }
 
     public function index(Request $request)
     {
         $data['_users'] = User::paginate(10);
-        return view('back_page.maintenance.users',$data);
+        return view('back_page.manage_user.users',$data);
     }
 
     public function officer_list()
     {
-        $data['_users'] = User::paginate(10);
-        return view('back_page.maintenance.officer',$data);
+        $data['_users'] = User::where('type',1)->paginate(10);
+        return view('back_page.manage_user.officer',$data);
     }
 
     public function show(Request $request)
     {
         $id = Request('id');
         $data['data'] = User::findorFail($id);
-        return view('back_page.maintenance.manage_user.user_edit',$data);
+        return view('back_page.manage_user.user_edit',$data);
     }
 
     public function store(Request $request)

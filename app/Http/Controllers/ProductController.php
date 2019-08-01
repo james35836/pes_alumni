@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         $data['_data'] = Product::paginate(10);
-        return view('back_page.maintenance.products',$data);
+        return view('back_page.manage_product.products',$data);
     }
 
     /**

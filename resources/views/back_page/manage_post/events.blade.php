@@ -16,7 +16,7 @@
                                 <th>No</th>
                                 <th>Image</th>
                                 <th>Name</th>
-                                <th>Status</th>
+                                <th>Venue</th>
                                 <th>Description</th>
                                 <th>Date</th>
                                 <th>Time</th>
@@ -27,11 +27,9 @@
                                 <td>{{$key + 1}}</td>
                                 <td><img src="{{$event->thumbnail}}" alt="" /></td>
                                 <td>{{$event->name}}</td>
-                                <td>
-                                    <button class="pd-setting">Active</button>
-                                </td>
+                                <td>{{$event->place}}</td>
                                 <td>{{$event->description}}</td>
-                                <td>{{$event->date}}</td>
+                                <td>{{$event->date_format}}</td>
                                 <td>{{$event->time}}</td>
                                 
                                 <td>

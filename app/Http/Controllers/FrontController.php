@@ -8,6 +8,7 @@ use App\Post;
 use App\Cart;
 use App\Product;
 use App\Category;
+use App\Album;
 use Mail;
 use Session;
 class FrontController extends Controller
@@ -91,7 +92,9 @@ class FrontController extends Controller
 
     public function gallery()
     {
-        return view('front_page.gallery');
+
+        $data['_data'] = Album::all();
+        return view('front_page.gallery',$data);
     }
 
 
