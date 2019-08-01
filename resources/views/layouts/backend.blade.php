@@ -6,6 +6,7 @@
         <title>PES Alumni</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-site-verification" content="97YnMozyQm5c-iZ9mnh6IlILWoBW1XfbsG4dDchIrY4" />
         <!-- favicon
         ============================================ -->
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">

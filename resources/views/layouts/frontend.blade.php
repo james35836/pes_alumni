@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="google-site-verification" content="97YnMozyQm5c-iZ9mnh6IlILWoBW1XfbsG4dDchIrY4" />
         <title>PES | Alumni</title>
         <meta content="" name="description">
         <meta content="" name="author">
