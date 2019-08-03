@@ -22,6 +22,7 @@ function transaction()
         	checkout_tabs();
         	search_submit();
         	submit_transaction();
+        	delete_item();
         });
 	}
 	function remove_result(){
@@ -82,43 +83,11 @@ function transaction()
 				}
 			    
 			});
-			console.log(error)
+		});
+			
 
 
-    		// $('.loading').css('display','block');
-	     //    // evt.preventDefault();
-	     //    current_target = $(this);
-	     //    // var formData = new FormData(this);
-	     //    var description = $('.note-editable').html();
-	     //    if(!description){
-	     //    	description = $('.note-editable').val();
-	     //    }
-	     //    formData.append('description', description);
-	     //    $.ajax({
-		    //     type: 'POST',
-		    //     url: $(this).attr('action'),
-		    //     data:formData,
-		    //     cache:false,
-		    //     contentType: false,
-		    //     processData: false,
-		    //     success: function(data) {
-		    //     	if(current_target.hasClass('feed-create')){
-		    //     		showFeedData(data,current_target);
-		    //     	}
-		    //     	$('.loading').css('display','none');
-		    //         $('#return_alert').css('display','block');
-		    //         if(!current_target.hasClass('update')){
-		    //         	current_target.find('.form-control').val('');
-		    //     		current_target.find('.note-editable').html('');
-		    //         }
-		        	
-		    //     },
-		    //     error: function(data) {
-		    //     	$('.loading').css('display','none');
-		    //     }
-	     //    });
-	    });
-	}
+    }
 
 	function pin_request()
 	{
@@ -161,15 +130,13 @@ function transaction()
 
 	function checkout_tabs()
 	{
-		$("body").on('click','.required-failed-error',function()
-		{	
+		$("body").on('click','.required-failed-error',function(){	
 			$(this).remove();
 		});
-		$("body").on('click','.checkout_tabs',function()
-		{	
+		$("body").on('click','.checkout_tabs',function(){	
 			$('.required-failed-error').remove();
 			var x = $('.form-checkout-cart').serializeArray();
-    		var formData = new FormData(this);
+    		var formData = new FormData();
     		var error = [];
 			$.each(x, function(i, field){
 				if(field.value == ""){
@@ -194,6 +161,25 @@ function transaction()
 			$("div[data-tab_name='"+tab_name+"']").addClass('active');
 			$("#"+tab_name).show();
 		});
+	}
+
+	function delete_item()
+	{
+		$("body").on('click','.delete-button',function(){
+
+			var container = $(this).closest('.delete-container');
+
+			var link      	= $(this).attr('link');
+
+			$(this).html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
+
+			$.get(link, function( data ) {
+				setTimeout(function(){ container.remove(); }, 3000);
+			  	
+			});
+			
+           
+        });
 	}
 
 	function search_submit()

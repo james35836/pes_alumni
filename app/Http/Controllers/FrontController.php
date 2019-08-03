@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Userinfo;
 use App\Post;
 use App\Cart;
 use App\Product;
@@ -82,6 +83,11 @@ class FrontController extends Controller
     public function about()
     {
         $data['_officer'] = User::where('type',1)->where('status',1)->get();
+
+        $base = Userinfo::distinct('work')->limit(4);
+
+        $data['work'] = $base->count('work');
+        $data['_work_detail'] = $base->get();
 
         return view('front_page.about',$data);
     }

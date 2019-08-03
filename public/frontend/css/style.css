@@ -2396,7 +2396,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffffff', e
 	padding: 0 10px;
 }
 .newslatter .input-group .form-control {
-	width: auto;
+	width: 100%;
 }
 .single-post-details {
 	padding: 0 20px 90px 90px;

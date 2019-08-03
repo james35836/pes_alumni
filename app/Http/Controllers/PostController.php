@@ -39,7 +39,7 @@ class PostController extends Controller
 
     public function story_list()
     {
-        $data['_data'] = Post::where('type','event_post')->paginate(10);
+        $data['_data'] = Post::where('type','story_post')->paginate(10);
         return view('back_page.manage_post.stories',$data);
     }
     

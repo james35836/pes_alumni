@@ -68,11 +68,13 @@ class AlbumController extends Controller
      * @param  \App\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function show(Album $album)
+    public function show(Request $request)
     {
-        //
-    }
 
+        $id = Request('id');
+        $data['data'] = Album::findorFail($id);
+        return view('back_page.manage_album.album_edit',$data);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -91,9 +93,33 @@ class AlbumController extends Controller
      * @param  \App\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Album $album)
+    public function update(Request $request)
     {
-        //
+        $data = $request->all();
+
+        Album::where('id',$data['id'])->update([
+            'name' => $data['name'],
+            'description' => $data['description']
+        ]);
+
+        if($request->file('images') !==  null){
+            foreach($request->file('images') as $key => $image)
+            {
+                $name = "/images/gallery-".$key.time().'.'.$image->getClientOriginalExtension();
+                $image->move(public_path().'/images/', $name);
+                Photo::create([
+                    'name' => $name,
+                    'album_id' => $data['id'],
+                    'description' => ""
+                ]);
+              
+            }
+
+            return back()->with('success', 'Album and photos successfully updated');
+
+        }
+        
+        return back()->with('success', 'Album successfully updated');
     }
 
     /**
@@ -102,8 +128,10 @@ class AlbumController extends Controller
      * @param  \App\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Album $album)
+    public function destroy($id)
     {
-        //
+        Photo::where('id',$id)->delete();
+
+        return "";
     }
 }

@@ -11,7 +11,7 @@
                         <div class="social-media-in">
                             <a target="_blank" href="{{$list->userinfo->fb_link}}"><i class="fa fa-facebook"></i></a>
                             <a target="_blank" href="{{$list->userinfo->twitter_link}}"><i class="fa fa-twitter"></i></a>
-                            <a target="_blank" href="{{$list->userinfo->linkedin_link}}"><i class="fa fa-pinterest"></i></a>
+                            <a target="_blank" href="{{$list->userinfo->linkedin_link}}"><i class="fa fa-linkedin"></i></a>
                             <a target="_blank" href="/alumni-profile?view=alumni-account&user={{$list->id}}"><i class="fa fa-eye"></i></a>
                         </div>
                         <img alt="logo" class="img-circle m-b" style="max-height: 80px;" src="{{$list->userinfo->user_profile}}">
@@ -34,6 +34,11 @@
                 </div>
             </div>
             @endforeach
+        </div>
+        <div class="row">
+            <div class="pagination-bar">
+                {{$_list->links('pagination.pagination')}}
+            </div>
         </div>
     </div>
 </div>

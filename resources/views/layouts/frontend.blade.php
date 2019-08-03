@@ -129,13 +129,13 @@
                     <div id="return_alert_icon"><i class="fa fa-check-circle-o" aria-hidden="true"></i></div>
                     <div id="return_alert_text">SUCCESS</div>
                 </div>
-                @if(Request::segment(2))
-                {{-- <div id="bread-crumb">
+                @if(Request::segment(1))
+                <div id="bread-crumb">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <div class="page-title text-capital">
-                                    <h4>{{ Request::segment(1) }}</h4>
+                                    <h4>{{ ucwords(Request::segment(1)) }}</h4>
                                 </div>
                             </div>
                             <div class="col-md-9 col-sm-9 col-xs-9">
@@ -143,13 +143,13 @@
                                     <ul>
                                         <li><a href="/">Home</a></li>
                                         <li>/</li>
-                                        <li><a href="/{{ Request::segment(2) }}">{{ Request::segment(1) }}</a></li>
+                                        <li><a href="/{{ Request::segment(1) }}">{{ ucwords(Request::segment(1)) }}</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div> 
                 @endif
                 @yield('content')
             </main>
@@ -163,7 +163,7 @@
                                     <h2 class="tf">Be The First To Hear Our Exciting News</h2>
                                     <p>Enter your email below to receive all the news and events.</p>
                                     <div class="input-group">
-                                        <input class=" form-control" type="text" placeholder="Email Here......">
+                                        <input class=" form-control" type="text" placeholder="Enter Email Here......">
                                         <button type="submit" value="Sign up" class="btn btn-large btn-primary">Sign up</button>
                                     </div>
                                 </form>

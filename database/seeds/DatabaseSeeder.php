@@ -24,6 +24,15 @@ class DatabaseSeeder extends Seeder
         
         $this->posts();
         $this->products();
+        $this->deletefile();
+    }
+
+    public function deletefile(){
+
+        $files = glob(public_path('images/*')); 
+        foreach($files as $key=>$file){ 
+            unlink($file); 
+        }
     }
 
     public function users(){
@@ -38,6 +47,7 @@ class DatabaseSeeder extends Seeder
             $name   = $faker->name;
             $type     = 0;
             $group_id = 2;
+            $work = "Education";
 
             if($key == 0){
                 $position = "Developer";
@@ -45,6 +55,7 @@ class DatabaseSeeder extends Seeder
                 $type     = 3;
                 $email   = "jamesomosora@pesalumni.org";
                 $name   = "James Omosora";
+                $work = "IT/Computer";
             }
 
             if($key == 1){
@@ -53,6 +64,7 @@ class DatabaseSeeder extends Seeder
                 $type     = 1;
                 $email   = "president@pesalumni.org";
                 $name   = "Rex Corpuz";
+                $work = "IT/Computer";
             }
 
             if($key == 2){
@@ -60,6 +72,7 @@ class DatabaseSeeder extends Seeder
                 $access   = 3;
                 $type     = 1;
                 $email   = "vicepresident@pesalumni.org";
+                $work = "Agricuture";
             }
 
             if($key == 3){
@@ -67,6 +80,7 @@ class DatabaseSeeder extends Seeder
                 $access   = 3;
                 $type     = 1;
                 $email   = "secretary@pesalumni.org";
+                $work = "House Wife";
             }
 
             if($key == 4){
@@ -79,7 +93,7 @@ class DatabaseSeeder extends Seeder
             if($key == 5){
                 $position = "ADVISER";
                 $access   = 0;
-                $type     = 3;
+                $type     = 2;
                 $email   = "adviser@pesalumni.org";
             }
 
@@ -102,6 +116,7 @@ class DatabaseSeeder extends Seeder
             DB::table('userinfos')->insert([
                 'name' => $name,
                 'user_id' => $id,
+                'work' => $work,
             ]);
         }
     }
@@ -183,7 +198,7 @@ class DatabaseSeeder extends Seeder
         {
             DB::table('posts')->insert([
                 'id'          => 1,
-                'thumbnail'     => "/posts_img/default_image.png",
+                'thumbnail'     => "/default_img/event.png",
                 'name'          => "Alumni Homecoming",
                 'date'          => Carbon::now(),
                 'time'          => "6:00 am - 9:00 pm",
@@ -196,7 +211,7 @@ class DatabaseSeeder extends Seeder
 
             DB::table('posts')->insert([
                 'id'          => 2,
-                'thumbnail'     => "/posts_img/default_image.png",
+                'thumbnail'     => "/default_img/event.png",
                 'name'          => "Alumni Events",
                 'date'          => Carbon::now(),
                 'time'          => "6:00 am - 9:00 pm",
@@ -209,7 +224,7 @@ class DatabaseSeeder extends Seeder
 
             DB::table('posts')->insert([
                 'id'          => 3,
-                'thumbnail'     => "/posts_img/default_image.png",
+                'thumbnail'     => "/default_img/event.png",
                 'name'          => "James Omosora Story",
                 'date'          => Carbon::now(),
                 'time'          => "6:00 am - 9:00 pm",
@@ -228,7 +243,7 @@ class DatabaseSeeder extends Seeder
         {
             DB::table('products')->insert([
                 'id'          => 1,
-                'thumbnail'     => "/products_img/tshirt.jpg",
+                'thumbnail'     => "/default_img/product1.png",
                 'name'          => "Fila Shirt",
                 'colors'        => "Blue/Red",
                 'price'         => 248,
@@ -241,7 +256,7 @@ class DatabaseSeeder extends Seeder
 
             DB::table('products')->insert([
                 'id'          => 2,
-                'thumbnail'     => "/products_img/tshirt.jpg",
+                'thumbnail'     => "/default_img/product2.png",
                 'name'          => "Nike Shirt",
                 'colors'        => "Blue/Red",
                 'price'         => 248,

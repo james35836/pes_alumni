@@ -31,10 +31,6 @@ class UserController extends Controller
 
 
 
-    // public function loadWithRelatedModel(){
-    //     $this->model = $this->model->with(['userInformation', 'userInformation.country', 'userInformation.role',
-    //         'userInformation.gallery', 'userInformation.cover','userAccesses', 'applications', 'shop', 'author']); //lazy loader
-    // }
     public function create(){
         return view('back_page.manage_user.user_add');
     }
@@ -49,6 +45,12 @@ class UserController extends Controller
     {
         $data['_users'] = User::where('type',1)->paginate(10);
         return view('back_page.manage_user.officer',$data);
+    }
+
+    public function faculties_list()
+    {
+        $data['_users'] = User::where('type',2)->paginate(10);
+        return view('back_page.manage_user.faculties',$data);
     }
 
     public function show(Request $request)

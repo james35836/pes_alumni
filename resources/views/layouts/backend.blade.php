@@ -398,7 +398,11 @@
               
         </div>
     </div>
-    @if(Request::segment(1) != "alumni-list")
+
+    <?php
+        
+    ?>
+    @if(Request::segment(1) == "alumni-list" && Request::segment(1) == "alumni-faculties")
     <div class="top-space" style="height:20px;"></div>
     @else
     
@@ -410,7 +414,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <ul class="breadcome-menu">
-                                    <li><b>Alumni List</b></li>
+                                    <li><b>{{ucwords(str_replace('-',' ',Request::segment(1)))}} {{ucwords(Request::segment(2))}}</b></li>
                                 </ul>
                             </div>
                         </div>

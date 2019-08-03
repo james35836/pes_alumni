@@ -38,7 +38,7 @@
                                                     <h5><a href="/product/details?id={{ $product->id }}&name={{ $product->name }}">{{ $product->name }}</a></h5>
                                                 </div>
                                                 <div class="review"></div>
-                                                <div class="price"> <span class="price-new">&#8369; {{ $product->product_price }}</span> </div>
+                                                <div class="price"> <span class="price-new">{!! $product->product_price !!}</span> </div>
                                                 <div class="addto-cart"><a href="#">Add to Cart</a></div>
                                             </div>
                                         </div>
@@ -55,7 +55,7 @@
             <div class="col-md-9 col-sm-8">
                 <!-- right block Start  -->
                 <div id="right">
-                    <div class="category-banner"> <a href="#"><img src="/frontend/images/product/Category-banner.jpg" alt="#"></a> </div>
+                    <div class="category-banner"> <a href="#"><img src="/img/banner.png" alt="#"></a> </div>
                     <div class="row">
                         <div class="col-md-6">
                             
@@ -95,7 +95,7 @@
                                             <div class="product-name">
                                                 <h4><a href="/product/details?id={{ $data->id }}&name={{ $data->name }}">{{ $data->name }} </a></h4>
                                             </div>
-                                            <div class="price"> <span class="price-old">{{ $data->product_price }}</span> <span class="price-new">&#8369; {{ $data->product_price }}</span> </div>
+                                            <div class="price"> <span class="price-old">{!! $data->product_price !!}</span> <span class="price-new">{!! $data->product_price !!}</span> </div>
                                             <div class="product-hov">
                                                 <ul>
                                                     <li class="wish"><a href="/product/details?id={{ $data->id }}&name={{ $data->name }}"></a></li>

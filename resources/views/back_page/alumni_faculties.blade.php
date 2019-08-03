@@ -19,6 +19,11 @@
             @endforeach
             
         </div>
+        <div class="row">
+            <div class="pagination-bar">
+                {{$_list->links('pagination.pagination')}}
+            </div>
+        </div>
     </div>
 </div>
 @endsection

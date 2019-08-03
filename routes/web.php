@@ -132,7 +132,13 @@ Route::post('/manage/post/edit_submit', 'PostController@update');
 Route::get('/manage/albums', 			'AlbumController@index');
 Route::get('/manage/album/add', 		'AlbumController@create');
 Route::post('/manage/album/add_submit', 	'AlbumController@store');
+Route::get('/manage/album/edit', 	'AlbumController@show');
+Route::post('/manage/album/edit_submit', 	'AlbumController@update');
 
 
+
+
+
+Route::get('/photo/delete/{id}', 			'AlbumController@destroy');
 
 
