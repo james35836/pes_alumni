@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\Post;
@@ -64,7 +65,8 @@ class AlumniController extends Controller
 
     public function alumni_profile()
     {
-        $id                     = Request('user');
+        $id                     = Request('user') ? Request('user') : Auth::user()->id;
+
         $view                   = Request('view');
         $data['data']           = User::findorFail($id);
         $data['data']['view']   = $view;

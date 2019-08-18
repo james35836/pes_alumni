@@ -46,7 +46,7 @@
                 <div class="product-payment-inner-st res-mg-t-30 analysis-progrebar-ctn">
                     <ul id="myTabedu1" class="tab-review-design">
                         <li class="active"><a href="#description">Account</a></li>
-                        @if($data->view == "my-account")
+                        @if($data->id == Auth::user()->id)
                         <li><a href="#INFORMATION">Profile</a></li>
                         @endif
                     </ul>
@@ -68,6 +68,7 @@
                                                 </div>
                                                 <div class="ex-pro">
                                                     <ul>
+                                                        <li><i class="fa fa-angle-right"></i><b><span style="display: inline-block;width: 84px;">ID</span></b>  {{$data->pin->code}}</li>
                                                         <li><i class="fa fa-angle-right"></i><b><span style="display: inline-block;width: 84px;">Name</span></b>  {{$data->userinfo->name}}</li>
                                                         <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 84px;">Civil Status</span></b>{{$data->userinfo->civil_status ?: "N/A"}}</li>
                                                         <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 84px;">Gender</span></b> {{$data->userinfo->gender ?: "N/A"}}</li>
@@ -106,9 +107,8 @@
                                                 </div>
                                                 <div class="ex-pro">
                                                     <ul>
-                                                        <li><i class="fa fa-angle-right"></i><b><span style="display: inline-block;width: 200px;">Permanent Address</span></b>  {{$data->userinfo->permanent_address ?: "N/A"}} </li>
-                                                        <li><i class="fa fa-angle-right"></i> <b><span style="display: inline-block;width: 200px;">Current Address</span></b> {{$data->userinfo->current_address ?: "N/A"}}</li>
-                                                    </ul>
+                                                        <li><i class="fa fa-angle-right"></i><b><span style="display: inline-block;width: 200px;"> Address</span></b>  {{$data->userinfo->address ?: "N/A"}} </li>
+                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -170,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if($data->view == "my-account")
+                        @if($data->id == Auth::user()->id)
                         <div class="product-tab-list tab-pane fade" id="INFORMATION">
                             <form class="form-submit update" method="POST" action= "/manage/user/edit_submit">
                                 @csrf

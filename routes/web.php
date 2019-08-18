@@ -136,6 +136,14 @@ Route::post('/manage/album/edit_submit', 	'AlbumController@update');
 
 
 
+Route::get('/manage/pins', 			'PinController@index');
+Route::get('/manage/pin/add', 			'PinController@create');
+Route::get('/manage/pin/edit', 		'PinController@store');
+Route::post('/manage/pin/add_submit', 	'PinController@show');
+Route::post('/manage/pin/edit_submit', 'PinController@update');
+
+
+
 
 
 Route::get('/photo/delete/{id}', 			'AlbumController@destroy');

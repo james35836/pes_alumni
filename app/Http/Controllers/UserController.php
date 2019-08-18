@@ -144,11 +144,14 @@ class UserController extends Controller
             $userinfo['biography']      = isset($data['biography']) ? $data['biography'] : "N/A";
             $userinfo['work']           = isset($data['work']) ? $data['work'] : "EDUCATION";
 
-            $userinfo['name']           = $data['first_name']." ".$data['last_name'];
+            $userinfo['name']           = ucwords($data['first_name']." ".$data['last_name']);
             $userinfo['first_name']     = $data['first_name'];
             $userinfo['middle_name']    = $data['middle_name'];
             $userinfo['last_name']      = $data['last_name'];
+            $userinfo['gender']         = $data['gender'];
             $userinfo['contact']        = $data['contact'];
+            $userinfo['address']        = $data['address'];
+            $userinfo['civil_status']   = $data['civil_status'];
                                         $check = Userinfo::where('user_id',$id)->update($userinfo);
 
                                         dd($userinfo['name']);

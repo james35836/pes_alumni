@@ -15,7 +15,7 @@
                             <a target="_blank" href="/alumni-profile?view=alumni-account&user={{$list->id}}"><i class="fa fa-eye"></i></a>
                         </div>
                         <img alt="logo" class="img-circle m-b" style="max-height: 80px;" src="{{$list->userinfo->user_profile}}">
-                        <h3><a href="/alumni-profile?view=alumni-account&user={{$list->id}}">{{$list->userinfo->name}}</a></h3>
+                        <h3><a class="one_line" href="/alumni-profile?view=alumni-account&user={{$list->id}}">{{$list->userinfo->name}}</a></h3>
                         <p class="all-pro-ad">{{$list->userinfo->work_position ?: "Graduate"}}</p>
                         <p class="bio-container-list" style="height:70px;">
                             {{$list->userinfo->biography ?: "Nothing to show"}}
@@ -23,10 +23,12 @@
                     </div>
                     <div class="panel-footer contact-footer">
                         <div class="professor-stds-int">
-                            <div class="professor-stds" style="width:50%">
-                                <div class="contact-stat" style="width:100%"><span>Batch</span> <br><strong>{{$list->group->name}}</strong></div>
+                            <div class="professor-stds" style="width:100%">
+                                <div class="contact-stat " style="width:100%"><span>Batch</span> <br><strong>{{$list->group->name}}</strong></div>
                             </div>
-                            <div class="professor-stds" style="width:50%">
+                         </div>
+                        <div class="professor-stds-int">
+                            <div class="professor-stds" style="width:100%">
                                 <div class="contact-stat" style="width:100%"><span>Join</span> <br><strong>{{$list->user_registered}}</strong></div>
                             </div>
                         </div>

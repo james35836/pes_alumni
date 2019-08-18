@@ -56,10 +56,13 @@
                             </div>
                             <div class="form-group">
                                 <label>Position</label>
-                                <select name="position" class="form-control">
-                                    <option {{ $data->type == "Member" ? "selected" : "" }}>Member</option>
-                                    <option {{ $data->type == "President" ? "selected" : "" }}>President</option>
-                                    <option {{ $data->type == "Vice-President" ? "selected" : "" }}>Vice-President</option>
+                                <select name="position" class="form-control"> {{$data->position }}
+                                    <option {{ $data->position == "Member" ? "selected" : "" }}>Member</option>
+                                    <option {{ $data->position == "President" ? "selected" : "" }}>President</option>
+                                    <option {{ $data->position == "Vice-President" ? "selected" : "" }}>Vice-President</option>
+                                    <option {{ $data->position == "Secretary" ? "selected" : "" }}>Secretary</option>
+                                    <option {{ $data->position == "Treasurer" ? "selected" : "" }}>Treasurer</option>
+                                    <option {{ $data->position == "Auditor" ? "selected" : "" }}>Auditor</option>
                                 </select>
                             </div>
                         </div>

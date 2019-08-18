@@ -16,7 +16,7 @@ class PinController extends Controller
     {
         $code = $request->code;
         $data['code']  = 0;
-        $data['info'] = Pin::with(['user'])->where('code',$code)->where('status',1)->first();
+        $data['info'] = Pin::where('code',$code)->where('status',1)->first();
         if($data['info']){
             $data['code']  = 1;
         }
@@ -25,7 +25,9 @@ class PinController extends Controller
 
     public function index()
     {
-        //
+        $data['_data'] = Pin::paginate(10);
+
+        return view('back_page.manage_pin.pins',$data);
     }
 
     /**

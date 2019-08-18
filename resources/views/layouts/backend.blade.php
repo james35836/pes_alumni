@@ -100,7 +100,7 @@
 
                             @if(in_array(Auth::user()->access,$dashboard_page))
                             <li>
-                                <a title="Dashboard Page" href="/alumni-dashboard" aria-expanded="false"><span class="educate-icon educate-charts icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Dashboards</span></a>
+                                <a title="Dashboard Page" href="/alumni-dashboard" aria-expanded="false"><span class="educate-icon educate-charts icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
                             </li>
                             @endif
                             <li>
@@ -110,12 +110,13 @@
                                 <a title="List Page" href="/alumni-list" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Alumni List</span></a>
                             </li>
                             <li>
-                                <a title="Faculties Page" href="/alumni-faculties" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Professor List</span></a>
+                                <a title="Faculties Page" href="/alumni-faculties" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Faculty List</span></a>
                             </li>
                             @if(in_array(Auth::user()->access,$maintenance_page))
                             <li>
                                 <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Maintenance</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
+                                    <li><a title="All Students" href="/manage/pins"><span class="mini-sub-pro"> Alumni Pin Code</span></a></li>
                                     <li><a title="All Students" href="/manage/user"><span class="mini-sub-pro"> Alumni Users</span></a></li>
                                     <li><a title="All Students" href="/manage/officer"><span class="mini-sub-pro"> Alumni Officers</span></a></li>
                                     <li><a title="Add Students" href="/manage/product"><span class="mini-sub-pro">Alumni Products</span></a></li>
@@ -230,7 +231,7 @@
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                     </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="/alumni-profile?view=my-account&user={{Auth::user()->id}}"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a></li>
+                                                        <li><a href="/alumni-profile"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a></li>
                                                         <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a></li>
                                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                             @csrf
@@ -526,6 +527,7 @@
 ============================================ -->
 <script src="/backend/js/tab.js"></script>
 <script type="text/javascript" src="/js/transaction.js"></script>
+<script type="text/javascript" src="/js/backend.js"></script>
 
 
 
