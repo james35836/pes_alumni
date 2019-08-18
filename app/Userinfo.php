@@ -9,8 +9,8 @@ class Userinfo extends Model
 {
 
 	protected $fillable = [
-        'name', 'first_name', 'middle_name','last_name', 'contact', 'birthdate','gender', 'current_address', 'permanent_address','college_school', 'college_graduated', 'high_school', 'high_graduated', 'biography',
-        'civil_status', 'fb_link', 'twitter_link','instagram_link', 'linkedin_link', 'work','work_position',
+        'name', 'first_name', 'middle_name','last_name', 'contact', 'birthdate','gender', 'address','college_school', 'high_school', 'biography',
+        'civil_status', 'fb_link', 'twitter_link','instagram_link', 'linkedin_link', 'work'
     ];
 
     protected $appends = ['user_profile'];

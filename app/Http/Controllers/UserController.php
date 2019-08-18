@@ -107,28 +107,42 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $data = $request->all();
-        // dd($data);
-        $data['group_id'] = 1;
-        $rules['first_name']                = "required";
-        $rules['middle_name']               = "required";
-        $rules['last_name']                 = "required";
+
+
+        $data['type']               = isset($data['type']) ? $data['type'] : Auth::user()->type;
+        $data['access']             = isset($data['access']) ? $data['access'] : Auth::user()->access;
+        $data['position']           = isset($data['position']) ? $data['position'] : Auth::user()->position;
+        $data['group_id']           = isset($data['group_id']) ? $data['group_id'] : Auth::user()->group_id;
+        $data['contact']            = isset($data['contact']) ? $data['contact'] : "09*********";
+        
         $rules['contact']                   = "required";
         $rules['group_id']                  = "required|integer";
 
         $validator = Validator::make($data,$rules);
 
         if($validator->fails()) {
+
             return "error";
         } 
         else 
         {
-            $id                       = $data['id'];
+            $id                         = $data['id'];
 
             $user['email']              = $data['email'];
             $user['type']               = $data['type'];
             $user['access']             = $data['access'];
             $user['position']           = $data['position'];
                                         User::where('id',$id)->update($user);
+
+
+
+            $userinfo['contact']        = isset($data['contact']) ? $data['contact'] : "09*********";
+            $userinfo['birthdate']      = isset($data['birthdate']) ? $data['birthdate'] : "mm/dd/YYYY";
+            $userinfo['address']        = isset($data['address']) ? $data['address'] : "N/A";
+            $userinfo['college_school']  = isset($data['college_school']) ? $data['college_school'] : "N/A";
+            $userinfo['high_school']    = isset($data['high_school']) ? $data['high_school'] : "N/A";
+            $userinfo['biography']      = isset($data['biography']) ? $data['biography'] : "N/A";
+            $userinfo['work']           = isset($data['work']) ? $data['work'] : "EDUCATION";
 
             $userinfo['name']           = $data['first_name']." ".$data['last_name'];
             $userinfo['first_name']     = $data['first_name'];
@@ -137,8 +151,7 @@ class UserController extends Controller
             $userinfo['contact']        = $data['contact'];
                                         $check = Userinfo::where('user_id',$id)->update($userinfo);
 
-                                        dd($check);
-         
+                                        dd($userinfo['name']);
             return $user;
         }
     }

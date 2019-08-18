@@ -438,7 +438,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="footer-copy-right">
-            <p>Copyright © 2018. All rights reserved. Powered by <a target="_blank" href="https://www.linkedin.com/in/elven-man-on-b6788b141/">James Omosora</a></p>
+            <p>© 2018. All rights reserved. Powered by <a target="_blank" href="https://www.linkedin.com/in/elven-man-on-b6788b141/">James Omosora</a></p>
         </div>
     </div>
 </div>

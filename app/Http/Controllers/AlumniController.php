@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Post;
+use App\Product;
 
 
 class AlumniController extends Controller
@@ -20,14 +21,29 @@ class AlumniController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function alumni_dashboard()
     {
-        $data['_list'] = User::all();
+        $data['user_count'] = User::count();
+        $data['admin_count'] = User::where('access',4)->orWhere('access',3)->count();
+        $data['member_count'] = User::where('access',0)->count();
+        $data['inactive_count'] = User::where('status',0)->count();
+
+        $data['user_percent'] = 100;
+        $data['admin_percent'] = ($data['admin_count'] /  $data['user_count']) * 100;
+        $data['member_percent'] = ($data['member_count'] /  $data['user_count']) * 100;
+        $data['inactive_percent'] = ($data['inactive_count'] /  $data['user_count']) * 100;
+
+
+
+
+
+        $data['event_count'] = Post::where('type','event_post')->count();
+        $data['story_count'] = Post::where('type','story_post')->count();
+        $data['product_count'] = Product::count();
+
+
+
+
         return view('back_page.alumni_dashboard',$data);
     }
     public function alumni_list()
@@ -44,16 +60,6 @@ class AlumniController extends Controller
     {
         $data['_feed'] = Post::all()->sortByDesc("created_at")->where('type','feed_post');
         return view('back_page.alumni_feeds',$data);
-    }
-
-    public function alumni_info()
-    {
-        return view('back_page.alumni_info');
-    }
-
-    public function alumni_info_update()
-    {
-        return view('back_page.alumni_info_update');
     }
 
     public function alumni_profile()

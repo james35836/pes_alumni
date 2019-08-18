@@ -99,7 +99,6 @@ Route::get('/alumni-faculties', 'AlumniController@alumni_faculties');
 
 
 Route::get('/alumni-profile', 'AlumniController@alumni_profile');
-Route::get('/alumni-info-update', 'AlumniController@alumni_info_update');
 
 
 

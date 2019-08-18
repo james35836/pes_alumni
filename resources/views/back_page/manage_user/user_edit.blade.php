@@ -7,7 +7,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="product-status-wrap">
                 <h4>Edit User</h4>
-                <form class="form-submit update" method="POST" action= "/manage/user/edit_submit">
+                <form class="" method="POST" action= "/manage/user/edit_submit">
                     @csrf
                     <input name="id" value="{{ $data->id }}" type="hidden">
                     <div class="row">

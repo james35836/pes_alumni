@@ -22,8 +22,8 @@
                     <h2 class="tf">Profession</h2>
                     <ul>
                         @foreach($_work_detail as $key=>$detail)
-                        <li> <span>78%</span>
-                            <div id="progress{{$key+1}}">
+                        <li> <span>{{$key+50}}%</span>
+                            <div id="progress{{$key+1}}" number="{{$key+50}}">
                                 <h5>{{$detail->work}}</h5>
                             </div>
                         </li>
@@ -89,7 +89,8 @@
 </div>
 <script type="text/javascript">
     $( "#progress1" ).appendSimpleProgressBar();
-    $( "#progress1" ).slow( { width:"78" } );
+    var num1 = $( "#progress1" ).attr( 'number');
+    $( "#progress1" ).slow( { width:num1 } );
 
     $( "#progress2" ).appendSimpleProgressBar();
     $( "#progress2" ).slow( { width:"92" } );

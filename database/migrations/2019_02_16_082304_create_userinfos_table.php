@@ -23,12 +23,9 @@ class CreateUserinfosTable extends Migration
             $table->string('contact')->nullable();
             $table->string('gender')->nullable();
             $table->string('birthdate')->nullable();
-            $table->string('current_address')->nullable();
-            $table->string('permanent_address')->nullable();
-            $table->string('college_school')->nullable();
-            $table->string('college_graduated')->nullable();
+            $table->string('address')->nullable();
             $table->string('high_school')->nullable();
-            $table->string('high_graduated')->nullable();
+            $table->string('college_school')->nullable();
             $table->text('biography')->nullable();
             $table->string('civil_status')->nullable();
             $table->string('fb_link')->default('https://www.facebook.com/');
@@ -36,7 +33,6 @@ class CreateUserinfosTable extends Migration
             $table->string('instagram_link')->default('https://www.instagram.com/');
             $table->string('linkedin_link')->default('https://www.linkedin.com/');
             $table->string('work')->nullable();
-            $table->string('work_position')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
