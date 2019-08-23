@@ -30,20 +30,13 @@ class AlumniController extends Controller
         $data['inactive_count'] = User::where('status',0)->count();
 
         $data['user_percent'] = 100;
-        $data['admin_percent'] = ($data['admin_count'] /  $data['user_count']) * 100;
-        $data['member_percent'] = ($data['member_count'] /  $data['user_count']) * 100;
-        $data['inactive_percent'] = ($data['inactive_count'] /  $data['user_count']) * 100;
-
-
-
-
+        $data['admin_percent'] = round(($data['admin_count'] /  $data['user_count']) * 100,2);
+        $data['member_percent'] = round(($data['member_count'] /  $data['user_count']) * 100,2);
+        $data['inactive_percent'] = round(($data['inactive_count'] /  $data['user_count']) * 100,2);
 
         $data['event_count'] = Post::where('type','event_post')->count();
         $data['story_count'] = Post::where('type','story_post')->count();
         $data['product_count'] = Product::count();
-
-
-
 
         return view('back_page.alumni_dashboard',$data);
     }

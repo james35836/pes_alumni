@@ -3,7 +3,7 @@
 <div id="blog-page-contain">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div id="left">
                     @foreach($_data as $data)
                     <div class="post-item">
@@ -45,9 +45,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div id="right">
-                    <div class="fb-page" data-href="https://www.facebook.com/Paloc-Elementary-School-Alumni-Home-Coming-900507006959872/" data-tabs="timeline" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Paloc-Elementary-School-Alumni-Home-Coming-900507006959872/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Paloc-Elementary-School-Alumni-Home-Coming-900507006959872/">Paloc Elementary School Alumni Home Coming</a></blockquote></div>
+                    <div class="fb-page" data-href="https://www.facebook.com/pesalumni.org/" data-tabs="timeline" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/pesalumni.org/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/pesalumni.org/">Paloc Elementary School Alumni</a></blockquote></div>
                 </div>
             </div>
         </div>

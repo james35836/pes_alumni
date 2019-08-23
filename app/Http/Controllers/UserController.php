@@ -8,6 +8,7 @@ use App\Http\Interfaces\RegisterInterface;
 use App\User;
 use App\Userinfo;
 use App\Pin;
+use App\Group;
 use App\UserAccess;
 use App\UserInformation;
 use Illuminate\Http\Request;
@@ -57,6 +58,7 @@ class UserController extends Controller
     {
         $id = Request('id');
         $data['data'] = User::findorFail($id);
+        $data['_group'] = Group::all();
         return view('back_page.manage_user.user_edit',$data);
     }
 
@@ -108,17 +110,23 @@ class UserController extends Controller
     {
         $data = $request->all();
 
+        //retrieve old dataa of user
 
-        $data['type']               = isset($data['type']) ? $data['type'] : Auth::user()->type;
-        $data['access']             = isset($data['access']) ? $data['access'] : Auth::user()->access;
-        $data['position']           = isset($data['position']) ? $data['position'] : Auth::user()->position;
-        $data['group_id']           = isset($data['group_id']) ? $data['group_id'] : Auth::user()->group_id;
-        $data['contact']            = isset($data['contact']) ? $data['contact'] : "09*********";
+        $id       = $data['id'];
+        $old      = User::findorFail($id);
+        $old_data = UserInfo::findorFail($id);
         
-        $rules['contact']                   = "required";
+
+
+        $data['type']               = isset($data['type']) ? $data['type'] : $old->type;
+        $data['access']             = isset($data['access']) ? $data['access'] : $old->access;
+        $data['position']           = isset($data['position']) ? $data['position'] : $old->position;
+        $data['group_id']           = isset($data['group_id']) ? $data['group_id'] : $old->group_id;
+        
         $rules['group_id']                  = "required|integer";
 
         $validator = Validator::make($data,$rules);
+
 
         if($validator->fails()) {
 
@@ -126,7 +134,7 @@ class UserController extends Controller
         } 
         else 
         {
-            $id                         = $data['id'];
+            
 
             $user['email']              = $data['email'];
             $user['type']               = $data['type'];
@@ -134,27 +142,42 @@ class UserController extends Controller
             $user['position']           = $data['position'];
                                         User::where('id',$id)->update($user);
 
+            $image_name = $old_data->profile;
+            if($request->file('profile') != null){
+
+                $image = $request->file('profile');
+
+                $image_name = "/images/profile-".time().'.'.$image->getClientOriginalExtension();
+                $image->move(public_path().'/images/', $image_name);
+            }
+
+            
 
 
-            $userinfo['contact']        = isset($data['contact']) ? $data['contact'] : "09*********";
-            $userinfo['birthdate']      = isset($data['birthdate']) ? $data['birthdate'] : "mm/dd/YYYY";
-            $userinfo['address']        = isset($data['address']) ? $data['address'] : "N/A";
-            $userinfo['college_school']  = isset($data['college_school']) ? $data['college_school'] : "N/A";
-            $userinfo['high_school']    = isset($data['high_school']) ? $data['high_school'] : "N/A";
-            $userinfo['biography']      = isset($data['biography']) ? $data['biography'] : "N/A";
-            $userinfo['work']           = isset($data['work']) ? $data['work'] : "EDUCATION";
+
+            $userinfo['contact']        = isset($data['contact']) ? $data['contact'] : $old_data->contact;
+            $userinfo['birthdate']      = isset($data['birthdate']) ? $data['birthdate'] : $old_data->birthdate;
+            $userinfo['address']        = isset($data['address']) ? $data['address'] : $old_data->address;
+            $userinfo['college_school'] = isset($data['college_school']) ? $data['college_school'] : $old_data->college_school;
+            $userinfo['high_school']    = isset($data['high_school']) ? $data['high_school'] : $old_data->high_school;
+            $userinfo['biography']      = isset($data['biography']) ? $data['biography'] : $old_data->biography;
+            $userinfo['work']           = isset($data['work']) ? $data['work'] : $old_data->work;
+
+            $userinfo['fb_link']        = isset($data['fb_link']) ? $data['fb_link'] : $old_data->fb_link;
+            $userinfo['twitter_link']   = isset($data['twitter_link']) ? $data['twitter_link'] : $old_data->twitter_link;
+            $userinfo['linkedin_link']   = isset($data['linkedin_link']) ? $data['linkedin_link'] : $old_data->linkedin_link;
 
             $userinfo['name']           = ucwords($data['first_name']." ".$data['last_name']);
+            $userinfo['profile']        = $image_name;
             $userinfo['first_name']     = $data['first_name'];
             $userinfo['middle_name']    = $data['middle_name'];
             $userinfo['last_name']      = $data['last_name'];
-            $userinfo['gender']         = $data['gender'];
-            $userinfo['contact']        = $data['contact'];
-            $userinfo['address']        = $data['address'];
-            $userinfo['civil_status']   = $data['civil_status'];
+            $userinfo['gender']         = isset($data['gender']) ? $data['gender'] : $old_data->gender;
+            $userinfo['civil_status']   = isset($data['civil_status']) ? $data['civil_status'] : $old_data->civil_status;
                                         $check = Userinfo::where('user_id',$id)->update($userinfo);
 
-                                        dd($userinfo['name']);
+
+
             return $user;
         }
     }

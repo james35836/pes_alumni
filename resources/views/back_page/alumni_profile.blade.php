@@ -178,6 +178,10 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
+                                            <label>Select Profile</label>
+                                            <input name="profile" value="" type="file" class="form-control">
+                                        </div>
+                                        <div class="form-group">
                                             <label>Last Name</label>
                                             <input name="last_name" value="{{ $data->userinfo->last_name }}" type="text" class="form-control" placeholder="Last Name">
                                         </div>
@@ -211,10 +215,6 @@
                                                 <option value="Female" {{ $data->userinfo->gender  == "Female" ? "selected" : ""}}>Female</option>
                                             </select>
                                         </div>
-
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                       
                                         <div class="form-group">
                                             <label>Status</label>
                                             <select name = "civil_status" class="form-control" value="{{$data->userinfo->civil_status}}">
@@ -222,6 +222,11 @@
                                                 <option value="Married" {{ $data->userinfo->civil_status  == "Married" ? "selected" : ""}}>Married</option>
                                             </select>
                                         </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                       
+                                        
 
                                         <div class="form-group">
                                             <label>Work</label>
@@ -233,16 +238,30 @@
                                             </select>
                                         </div>
                                         
+                                        <div class="form-group">
+                                            <label>High School</label>
+                                            <input type="text" name = "high_school" class="form-control" value="{{$data->userinfo->high_school  ?: ""}}" placeholder="High School">
+                                        </div>
 
                                         <div class="form-group">
                                             <label>College School</label>
                                             <input type="text" name = "college_school" class="form-control" value="{{$data->userinfo->college_school  ?: ""}}" placeholder="College School">
                                         </div>
-                                        
+
                                         <div class="form-group">
-                                            <label>High School</label>
-                                            <input type="text" name = "high_school" class="form-control" value="{{$data->userinfo->high_school  ?: ""}}" placeholder="High School">
+                                            <label>Facebook Link</label>
+                                            <input type="text" name = "fb_link" class="form-control" value="{{$data->userinfo->fb_link  ?: ""}}" placeholder="Facebook Link">
                                         </div>
+                                        <div class="form-group">
+                                            <label>Twitter Link</label>
+                                            <input type="text" name = "twitter_link" class="form-control" value="{{$data->userinfo->twitter_link  ?: ""}}" placeholder="Twitter Link">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Linkedin Link</label>
+                                            <input type="text" name = "linkedin_link" class="form-control" value="{{$data->userinfo->linkedin_link  ?: ""}}" placeholder="Linkedin link">
+                                        </div>
+                                        
+                                        
                                         
                                         <div class="form-group">
                                             <label>Address</label>

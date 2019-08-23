@@ -557,6 +557,7 @@ body {}
 }
 .header-right-info .nav>li>a>img{
 	width: 26px;
+	height: 26px;
     border-radius: 50%;
 }
 .header-right-info .author-project-icon{

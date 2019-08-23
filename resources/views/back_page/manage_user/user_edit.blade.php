@@ -7,7 +7,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="product-status-wrap">
                 <h4>Edit User</h4>
-                <form class="" method="POST" action= "/manage/user/edit_submit">
+                <form class="form-submit update" method="POST" action= "/manage/user/edit_submit">
                     @csrf
                     <input name="id" value="{{ $data->id }}" type="hidden">
                     <div class="row">
@@ -30,6 +30,14 @@
                                     <option {{ $data->type == 0 ? "selected" : "" }} value="0">Member</option>
                                     <option {{ $data->type == 1 ? "selected" : "" }} value="1">Officer</option>
                                     <option {{ $data->type == 2 ? "selected" : "" }} value="2">Faculties</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Batch</label>
+                                <select name="status" class="form-control">
+                                    @foreach($_group as $group)
+                                    <option {{ $group->id ==  $data->group_id ? "selected" : "" }}>{{ $group->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -56,13 +64,21 @@
                             </div>
                             <div class="form-group">
                                 <label>Position</label>
-                                <select name="position" class="form-control"> {{$data->position }}
+                                <select name="position" class="form-control">
                                     <option {{ $data->position == "Member" ? "selected" : "" }}>Member</option>
                                     <option {{ $data->position == "President" ? "selected" : "" }}>President</option>
                                     <option {{ $data->position == "Vice-President" ? "selected" : "" }}>Vice-President</option>
                                     <option {{ $data->position == "Secretary" ? "selected" : "" }}>Secretary</option>
                                     <option {{ $data->position == "Treasurer" ? "selected" : "" }}>Treasurer</option>
                                     <option {{ $data->position == "Auditor" ? "selected" : "" }}>Auditor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>User Status</label>
+                                <select name="status" class="form-control">
+                                    <option {{ $data->status == "0" ? "selected" : "" }}>Need Approval</option>
+                                    <option {{ $data->status == "1" ? "selected" : "" }}>Active</option>
+                                    <option {{ $data->status == "2" ? "selected" : "" }}>Deactivated</option>
                                 </select>
                             </div>
                         </div>
