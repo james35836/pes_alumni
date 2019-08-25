@@ -20,8 +20,11 @@
                                 <input name="first_name" type="text" class="form-control" placeholder="First Name">
                             </div>
                             <div class="form-group">
-                                <label>Middle Name</label>
-                                <input name="middle_name" type="text" class="form-control" placeholder="Middle Name">
+                                <label>Gender</label>
+                                <select name="gender" class="form-control">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>User Type</label>
