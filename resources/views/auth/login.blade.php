@@ -7,52 +7,49 @@
             <!-- Logo & Information Panel-->
             
             <!-- Form Panel    -->
-            <div class="col-lg-6 bg-white offset-md-3">
+            <div class="col-lg-6 bg-white offset-md-4">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  <form class="form-validate" method="POST" action="{{ route('login') }}">
-                        @csrf
-                    <div class="form-group">
-                        <input id="email" type="email" required data-msg="Please enter your email" class="input-material @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                        @error('email')
-                            <span class="invalid-feedback" style="display:block;" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <label for="email" class="label-material">{{ __('Email') }}</label>
-                          
-                    </div>
-
-                    <div class="form-group">
-                        <input id="password" type="password" required data-msg="Please enter your password" class="input-material @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="new-password" autofocus>
-
-                        @error('password')
-                        {{-- {{ dd($message) }} --}}
-                            <span class="invalid-feedback" style="display:block;" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <label for="password" class="label-material">{{ __('Password') }}</label>
-                          
-                    </div>
-                    <div class="form-group terms-conditions">
-                      <input id="remember" name="remember" type="checkbox" value="1" class="checkbox-template"  {{ old('remember') ? 'checked' : '' }}>
-                      <label for="register-agree">{{ __('Remember Me') }}</label>
-
-                      
-                    </div>
-                    <div class="form-group">
-                      <button id="regidter" type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                  </form>
+                  <form method="POST" action="{{ route('login') }}">
+                                        @csrf
+                                        <div class="form-group-inner">
+                                            <label>Email</label>
+                                            <input type="email" placeholder="Enter Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                            @if ($errors->has('email'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group-inner">
+                                            <label>Password</label>
+                                            <input type="password" placeholder="Enter Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                            @if ($errors->has('password'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                        <div class="login-btn-inner">
+                                            <div class="inline-remember-me">
+                                                <button class="btn btn-sm btn-primary pull-right login-submit-cs" type="submit">Log In</button>
+                                                <label>
+                                                    <div class="icheckbox_square-green" style="position: relative;">
+                                                        <input type="checkbox" class="i-checks" style="position: absolute; opacity: 0;" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                    </div> Remember me
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
                     @if (Route::has('password.request'))
                         <a class="signup" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
                     @endif
                     <br>
-                  <small>Don't have account? </small><a href="/sign-up" class="signup">Sign Up</a>
+                  <small>Don't have account? </small><a href="/" class="signup">Sign Up</a>
                 </div>
               </div>
             </div>
