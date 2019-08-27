@@ -8,7 +8,7 @@
                 <div class="daily-feeds card">
 
                     <div class="card-header">
-                        @if(Auth::user()->userinfo->type > 0)
+                        @if(Auth::user()->type > 0)
                         <form method="POST" action="{{ route('posts.store') }}">
                             @csrf
                             <input type="hidden" name="type" value="feed_post" />
