@@ -1,77 +1,65 @@
 @extends('layouts.auth')
+
 @section('content')
-<div class="auth-container mg-t-30 p-30">
-    
-    <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 m-auto">
-            <div class="sparkline8-list mt-b-30">
-                
-                <div class="sparkline8-graph">
-                    <div class="basic-login-form-ad">
-                        
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="basic-login-inner">
-                                    <h3>Sign in</h3>
-                                    <p>PES Alumni Association</p>
-                                    <form method="POST" action="{{ route('login') }}">
-                                        @csrf
-                                        <div class="form-group-inner">
-                                            <label>Email</label>
-                                            <input type="email" placeholder="Enter Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-                                            @if ($errors->has('email'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('email') }}</strong>
-                                            </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group-inner">
-                                            <label>Password</label>
-                                            <input type="password" placeholder="Enter Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-                                            @if ($errors->has('password'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
-                                            @endif
-                                        </div>
-                                        <div class="login-btn-inner">
-                                            <div class="inline-remember-me">
-                                                <button class="btn btn-sm btn-primary pull-right login-submit-cs" type="submit">Log In</button>
-                                                <label>
-                                                    <div class="icheckbox_square-green" style="position: relative;">
-                                                        <input type="checkbox" class="i-checks" style="position: absolute; opacity: 0;" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                                    </div> Remember me
-                                                </label>
-                                            </div>
-                                        </div>
-                                        
-                                    </form>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <hr >
-                        <!-- <p class="text-center">OR</p>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="login-social-inner text-center">
-                                    <a href="{{ url('/login/twitter') }}" class="button btn-social basic-ele-mg-b-10 facebook span-left"> <span><i class="fa fa-facebook"></i></span> Facebook </a>
-                                    <a href="{{ url('/login/twitter') }}" class="button btn-social basic-ele-mg-b-10 twitter span-left"> <span><i class="fa fa-twitter"></i></span> Twitter </a>
-                                    <a href="{{ url('/login/twitter') }}" class="button btn-social basic-ele-mg-b-10 googleplus span-left"> <span><i class="fa fa-google-plus"></i></span> Google+ </a>
-                                </div>
-                            </div>
-                        </div> -->
+<div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+          <div class="row">
+            <!-- Logo & Information Panel-->
+            
+            <!-- Form Panel    -->
+            <div class="col-lg-6 bg-white offset-md-3">
+              <div class="form d-flex align-items-center">
+                <div class="content">
+                  <form class="form-validate" method="POST" action="{{ route('login') }}">
+                        @csrf
+                    <div class="form-group">
+                        <input id="email" type="email" required data-msg="Please enter your email" class="input-material @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                        @error('email')
+                            <span class="invalid-feedback" style="display:block;" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <label for="email" class="label-material">{{ __('Email') }}</label>
+                          
                     </div>
+
+                    <div class="form-group">
+                        <input id="password" type="password" required data-msg="Please enter your password" class="input-material @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="new-password" autofocus>
+
+                        @error('password')
+                        {{-- {{ dd($message) }} --}}
+                            <span class="invalid-feedback" style="display:block;" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <label for="password" class="label-material">{{ __('Password') }}</label>
+                          
+                    </div>
+                    <div class="form-group terms-conditions">
+                      <input id="remember" name="remember" type="checkbox" value="1" class="checkbox-template"  {{ old('remember') ? 'checked' : '' }}>
+                      <label for="register-agree">{{ __('Remember Me') }}</label>
+
+                      
+                    </div>
+                    <div class="form-group">
+                      <button id="regidter" type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                  </form>
+                    @if (Route::has('password.request'))
+                        <a class="signup" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    @endif
+                    <br>
+                  <small>Don't have account? </small><a href="/sign-up" class="signup">Sign Up</a>
                 </div>
+              </div>
             </div>
-            <div class="text-center login-footer">
-                <p>Copyright © {{date('Y')}}. All rights reserved. Powered by <a target="_blank" href="https://www.linkedin.com/in/elven-man-on-b6788b141/">James Omosora</a></p>
-            </div>
+          </div>
         </div>
-        
-    </div>
-</div>
+      </div>
 
 @endsection
+
+
