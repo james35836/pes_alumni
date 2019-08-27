@@ -6,6 +6,7 @@ use App\Album;
 use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Input;
 
 class AlbumController extends Controller
 {
@@ -27,7 +28,7 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        return view('back_page.manage_album.album_add');
+        return view('back_page.manage_album.add');
     }
 
     /**
@@ -40,25 +41,31 @@ class AlbumController extends Controller
     {
         $data = $request->all();
 
-        $album_id = Album::insertGetId([
-            'name' => $data['name'],
-            'description' => $data['description']
-        ]);
+        $rules['images']                = "required";
+        $rules['name']                 = "required";
 
+        request()->validate($rules);
 
-        foreach($request->file('images') as $key => $image)
-        {
-            $name = "/images/gallery-".$key.time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path().'/images/', $name);
-            Photo::create([
-                'name' => $name,
-                'album_id' => $album_id,
-                'description' => ""
-            ]);
-          
+        // $data['count_images'] = count($request->file('images'));
+
+        $album = Album::create($data);
+        if( count($request->file('images')) > 0){
+            foreach($request->file('images') as $key => $image)
+            {
+                $name = "/images/gallery-".$key.time().'.'.$image->getClientOriginalExtension();
+                $image->move(public_path().'/images/', $name);
+                Photo::create([
+                    'name' => $name,
+                    'album_id' => $album->id,
+                    'description' => ""
+                ]);
+              
+            }
         }
 
-        return back()->with('success', 'Album and photos successfully added');
+        
+
+        return redirect()->route('albums.index')->with('success','Album and photos successfully added');
 
     }
 
@@ -81,9 +88,10 @@ class AlbumController extends Controller
      * @param  \App\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function edit(Album $album)
+    public function edit($id)
     {
-        //
+        $data['data'] = Album::findorFail($id);
+        return view('back_page.manage_album.edit',$data);
     }
 
     /**

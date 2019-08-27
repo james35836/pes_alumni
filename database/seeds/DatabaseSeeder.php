@@ -114,7 +114,7 @@ class DatabaseSeeder extends Seeder
             ]);
 
             DB::table('userinfos')->insert([
-                'name' => $name,
+                'first_name' => $name,
                 'user_id' => $id,
                 'work' => $work,
             ]);

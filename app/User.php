@@ -34,6 +34,9 @@ class User extends Authenticatable
     public function getUserStatusAttribute(){
         return $this->status == 0 ? 'Need Approval' : "Active";
     }
+    
+    
+
     public function getUserRegisteredAttribute(){
         return date("F j, Y", strtotime($this->created_at));
     }

@@ -20,22 +20,14 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
-    public function manage_post_add(){
-        $data['_category'] = Category::all();
-        return view('back_page.manage_post.post_add',$data);
-    }
-
+    
     public function manage_post_edit(){
         $id = Request('id');
         $data['data'] = Post::findOrFail($id);
         return view('back_page.manage_post.post_edit',$data);
     }
 
-    public function event_list()
-    {
-        $data['_events'] = Post::where('type','event_post')->paginate(10);
-        return view('back_page.manage_post.events',$data);
-    }
+    
 
     public function story_list()
     {
@@ -45,7 +37,13 @@ class PostController extends Controller
     
     public function index()
     {
-        $data['_events'] = Post::all();
+        $data['_events'] = Post::paginate(10);
+        return view('back_page.manage_post.events',$data);
+    }
+
+    public function events()
+    {
+        $data['_events'] = Post::where('type','event_post')->paginate(10);
         return view('back_page.manage_post.events',$data);
     }
 
@@ -56,7 +54,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $data['type'] = ['event_post'=>'Event','story_post'=>'Story','announcement_post'=>'Announcement'];
+        $data['_category'] = Category::all();
+        return view('back_page.manage_post.add',$data);
     }
 
     /**
@@ -67,6 +67,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
         $data  = $request->all();
         $rules = array(
             // 'thumbnail'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -101,8 +104,8 @@ class PostController extends Controller
             $data['user_id'] =  Auth::user()->id;
             $data['created_at'] =  Carbon::now();
             $new = Post::create($data);
-            $id = $new->id;
-            return Post::findOrFail($id)->load('user');
+            ***            
+            return redirect()->back();
 
 
         }
@@ -125,9 +128,12 @@ class PostController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        $data['type'] = ['event_post','story_post','announcement_post'];
+
+        $data['post'] = Post::findOrFail($id);
+        return view('back_page.manage_post.edit',$data);
     }
 
     /**

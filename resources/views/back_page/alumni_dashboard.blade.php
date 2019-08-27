@@ -1,4 +1,120 @@
 @extends('layouts.backend')
+
+
+@section('content')
+<!-- Dashboard Counts Section-->
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+      <div class="row bg-white has-shadow">
+        <!-- Item -->
+        <div class="col-xl-3 col-sm-6">
+          <div class="item d-flex align-items-center">
+            <div class="icon bg-violet"><i class="icon-user"></i></div>
+            <div class="title"><span>All<br>Users</span>
+              <div class="progress">
+                <div role="progressbar" style="width:{{$user_percent}}%; height: 4px;"  aria-valuenow="{{$user_percent}}" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+            </div>
+        </div>
+        <div class="number"><strong>{{$user_count}}</strong></div>
+    </div>
+</div>
+<!-- Item -->
+<div class="col-xl-3 col-sm-6">
+  <div class="item d-flex align-items-center">
+    <div class="icon bg-red"><i class="icon-padnote"></i></div>
+    <div class="title"><span>Alumni<br>Admin</span>
+      <div class="progress">
+        <div role="progressbar" style="width: {{ $admin_percent }}%; height: 4px;" aria-valuenow="{{ $admin_percent }}" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+    </div>
+</div>
+<div class="number"><strong>{{ $admin_count }}</strong></div>
+</div>
+</div>
+<!-- Item -->
+<div class="col-xl-3 col-sm-6">
+  <div class="item d-flex align-items-center">
+    <div class="icon bg-green"><i class="icon-bill"></i></div>
+    <div class="title"><span>Alumni<br>Member</span>
+      <div class="progress">
+        <div role="progressbar" style="width: {{ $member_percent }}%; height: 4px;" aria-valuenow="{{ $member_percent }}" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
+    </div>
+</div>
+<div class="number"><strong>{{ $member_count }}</strong></div>
+</div>
+</div>
+<!-- Item -->
+<div class="col-xl-3 col-sm-6">
+  <div class="item d-flex align-items-center">
+    <div class="icon bg-orange"><i class="icon-check"></i></div>
+    <div class="title"><span>Member<br>Inactive</span>
+      <div class="progress">
+        <div role="progressbar" style="width: {{ $inactive_percent }}%; height: 4px;" aria-valuenow="{{ $inactive_percent }}" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+    </div>
+</div>
+<div class="number"><strong>{{ $inactive_count }}</strong></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+      <div class="row bg-white has-shadow">
+        <!-- Item -->
+        <div class="col-xl-3 col-sm-6">
+          <div class="item d-flex align-items-center">
+            <div class="icon bg-violet"><i class="icon-user"></i></div>
+            <div class="title"><span>Published<br>Stories</span>
+             
+        </div>
+        <div class="number"><strong>{{$story_count}}</strong></div>
+    </div>
+</div>
+<!-- Item -->
+<div class="col-xl-3 col-sm-6">
+  <div class="item d-flex align-items-center">
+    <div class="icon bg-red"><i class="icon-padnote"></i></div>
+    <div class="title"><span>Published<br>Events</span>
+ 
+</div>
+<div class="number"><strong>{{ $event_count }}</strong></div>
+</div>
+</div>
+<!-- Item -->
+<div class="col-xl-3 col-sm-6">
+  <div class="item d-flex align-items-center">
+    <div class="icon bg-green"><i class="icon-bill"></i></div>
+    <div class="title"><span>Posted<br>Products</span>
+
+</div>
+<div class="number"><strong>{{ $product_count }}</strong></div>
+</div>
+</div>
+<!-- Item -->
+<div class="col-xl-3 col-sm-6">
+  <div class="item d-flex align-items-center">
+    <div class="icon bg-orange"><i class="icon-check"></i></div>
+    <div class="title"><span>Member<br>Inactive</span>
+
+</div>
+<div class="number"><strong>{{ $inactive_count }}</strong></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+@endsection
+
+
+
+{{-- @extends('layouts.backend')
 @section('content')
 <div class="analytics-sparkle-area">
     <div class="container-fluid">
@@ -98,4 +214,4 @@
 </div>
 
 
-@endsection
+@endsection --}}

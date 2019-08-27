@@ -1,536 +1,196 @@
-<!doctype html>
-<html class="no-js" lang="en">
+
+<!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>PES Alumni</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="google-site-verification" content="97YnMozyQm5c-iZ9mnh6IlILWoBW1XfbsG4dDchIrY4" />
-        <!-- favicon
-        ============================================ -->
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
-        <link rel="icon" type="image/png" href="/favicon.png">
-        <link rel="apple-touch-icon" href="/favicon.png">
-        <!-- Google Fonts
-        ============================================ -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
-        <!-- Bootstrap CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/bootstrap.min.css">
-        <!-- Bootstrap CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/font-awesome.min.css">
-        <!-- owl.carousel CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/owl.carousel.css">
-        <link rel="stylesheet" href="/backend/css/owl.theme.css">
-        <link rel="stylesheet" href="/backend/css/owl.transitions.css">
-        <!-- animate CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/animate.css">
-        <!-- normalize CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/normalize.css">
-        <!-- meanmenu icon CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/meanmenu.min.css">
-        <!-- main CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/main.css">
-        <!-- dropzone CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/dropzone/dropzone.css">
-        <!-- forms CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/form/all-type-forms.css">
-        <!-- educate icon CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/educate-custon-icon.css">
-        <!-- morrisjs CSS
-        ============================================ -->
-        <!-- mCustomScrollbar CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/scrollbar/jquery.mCustomScrollbar.min.css">
-        <!-- metisMenu CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/metisMenu/metisMenu.min.css">
-        <link rel="stylesheet" href="/backend/css/metisMenu/metisMenu-vertical.css">
-        <!-- calendar CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/calendar/fullcalendar.min.css">
-        <link rel="stylesheet" href="/backend/css/calendar/fullcalendar.print.min.css">
-
-        <link rel="stylesheet" href="/backend/css/summernote/summernote.css">
-        <!-- style CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/style.css">
-        <!-- responsive CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/responsive.css">
-        <!-- modals CSS
-        ============================================ -->
-        <link rel="stylesheet" href="/backend/css/modals.css">
-        <link rel="stylesheet" href="/css/loader.css">
-        <link rel="stylesheet" href="/css/global.css">
-        <!-- modernizr JS
-        ============================================ -->
-        <script src="/backend/js/vendor/modernizr-2.8.3.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="robots" content="all,follow">
+        <!-- Bootstrap CSS-->
+        <link rel="stylesheet" href="/backend/vendor/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome CSS-->
+        <link rel="stylesheet" href="/backend/vendor/font-awesome/css/font-awesome.min.css">
+        <!-- Fontastic Custom icon font-->
+        <link rel="stylesheet" href="/backend/css/fontastic.css">
+        <!-- Google fonts - Poppins -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+        <!-- theme stylesheet-->
+        <link rel="stylesheet" href="/backend/css/style.blue.css" id="theme-stylesheet">
+        <!-- Custom stylesheet - for your changes-->
+        <link rel="stylesheet" href="/backend/css/custom.css">
+        <!-- Favicon-->
+        <link rel="shortcut icon" href="/favicon.png">
     </head>
     <body>
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=333100980642795&autoLogAppEvents=1"></script>
-        <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <!-- Start Left menu area -->
-        <div class="left-sidebar-pro">
-            <nav id="sidebar" class="">
-                <div class="sidebar-header">
-                    <a href="index.html"><img class="main-logo" src="/img/logo.jpg" alt="" /></a>
-                    <strong><a href="index.html"><img class="small-logo" src="/img/logo-small.jpg" alt="" /></a></strong>
-                </div>
-                <div class="left-custom-menu-adp-wrap comment-scrollbar">
-                    <nav class="sidebar-nav left-sidebar-menu-pro">
-                        <ul class="metismenu" id="menu1">
-                            <?php
-                                $dashboard_page = [4,3];
-                                $maintenance_page = [4,3];
-                            ?>
-
-                            @if(in_array(Auth::user()->access,$dashboard_page))
-                            <li>
-                                <a title="Dashboard Page" href="/alumni-dashboard" aria-expanded="false"><span class="educate-icon educate-charts icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
-                            </li>
-                            @endif
-                            <li>
-                                <a title="Feed Page" href="/alumni-feeds" aria-expanded="false"><span class="educate-icon educate-library icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">News Feed</span></a>
-                            </li>
-                            <li>
-                                <a title="List Page" href="/alumni-list" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Alumni List</span></a>
-                            </li>
-                            <li>
-                                <a title="Faculties Page" href="/alumni-faculties" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Faculty List</span></a>
-                            </li>
-                            @if(in_array(Auth::user()->access,$maintenance_page))
-                            <li>
-                                <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Maintenance</span></a>
-                                <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a title="All Students" href="/manage/pins"><span class="mini-sub-pro"> Alumni Pin Code</span></a></li>
-                                    <li><a title="All Students" href="/manage/user"><span class="mini-sub-pro"> Alumni Users</span></a></li>
-                                    <li><a title="All Students" href="/manage/officer"><span class="mini-sub-pro"> Alumni Officers</span></a></li>
-                                    <li><a title="Add Students" href="/manage/product"><span class="mini-sub-pro">Alumni Products</span></a></li>
-                                    <li><a title="Edit Students" href="/manage/events"><span class="mini-sub-pro"> Alumni Events</span></a></li>
-                                    <li><a title="Students Profile" href="/manage/stories"><span class="mini-sub-pro">Alumni Stories</span></a></li>
-                                    <li><a title="Students Profile" href="/manage/albums"><span class="mini-sub-pro">Alumni Galleries</span></a></li>
-                                </ul>
-                            </li>
-                            @endif
-                        </ul>
-                    </nav>
-                </div>
-            </nav>
-        </div>
-        <!-- End Left menu area -->
-        <!-- Start Welcome area -->
-        <div class="all-content-wrapper">
-            <div class="container-fluid logo-container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="logo-pro">
-                            <a href="/"><img class="main-logo" src="/backend/img/logo/logo.png" alt="" /></a>
+        <div class="page">
+            <!-- Main Navbar-->
+            <header class="header">
+                <nav class="navbar">
+                    <!-- Search Box-->
+                    <div class="search-box">
+                        <button class="dismiss"><i class="icon-close"></i></button>
+                        <form id="searchForm" action="#" role="search">
+                            <input type="search" placeholder="What are you looking for..." class="form-control">
+                        </form>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="navbar-holder d-flex align-items-center justify-content-between">
+                            <!-- Navbar Header-->
+                            <div class="navbar-header">
+                                <!-- Navbar Brand -->
+                                <a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                                    <div class="brand-text d-none d-lg-inline-block"><span>PES </span><strong>Alumni</strong></div>
+                                    <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>PES</strong></div>
+                                </a>
+                                <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn"><span></span><span></span><span></span></a>
+                            </div>
+                            <!-- Navbar Menu -->
+                            <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                                <!-- Search-->
+                                <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                                <!-- Notifications-->
+                                {{-- <li class="nav-item dropdown">
+                                    <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
+                                    <ul aria-labelledby="notifications" class="dropdown-menu">
+                                        <li>
+                                            <a rel="nofollow" href="#" class="dropdown-item">
+                                                <div class="notification">
+                                                    <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You have 6 new messages </div>
+                                                    <div class="notification-time"><small>4 minutes ago</small></div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a rel="nofollow" href="#" class="dropdown-item">
+                                                <div class="notification">
+                                                    <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
+                                                    <div class="notification-time"><small>4 minutes ago</small></div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a rel="nofollow" href="#" class="dropdown-item">
+                                                <div class="notification">
+                                                    <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
+                                                    <div class="notification-time"><small>4 minutes ago</small></div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a rel="nofollow" href="#" class="dropdown-item">
+                                                <div class="notification">
+                                                    <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have 2 followers</div>
+                                                    <div class="notification-time"><small>10 minutes ago</small></div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
+                                    </ul>
+                                </li> --}}
+                                <!-- Messages                        -->
+                                <li class="nav-item dropdown">
+                                    <a id="messages" class="nav-link" href="/profile"><i class="fa fa-user-circle-o"></i></a>
+                                </li>
+                                
+                                <!-- Logout    -->
+                                <li class="nav-item">
+                                    <a  href="{{ route('logout') }}" class="nav-link logout" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"> 
+                                    <span class="d-none d-sm-inline"> {{ __('Logout') }}</span><i class="fa fa-sign-out"></i>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="header-advance-area">
-                <div class="header-top-area">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="header-top-wraper">
-                                    <div class="row">
-                                        <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
-                                            <div class="menu-switcher-pro">
-                                                <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
-                                                <i class="educate-icon educate-nav"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                            
-                                        </div>
-                                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
-                                            <div class="header-right-info">
-                                                <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                    
-                                                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-bell" aria-hidden="true"></i><span class="indicator-nt"></span></a>
-                                                    <div role="menu" class="notification-author dropdown-menu animated zoomIn">
-                                                        <div class="notification-single-top">
-                                                            <h1>Notifications</h1>
-                                                        </div>
-                                                        <ul class="notification-menu">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="educate-icon educate-checked edu-checked-pro admin-check-pro" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Advanda Cro</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-cloud edu-cloud-computing-down" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Sulaiman din</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-eraser edu-shield" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <div class="notification-icon">
-                                                                        <i class="fa fa-line-chart edu-analytics-arrow" aria-hidden="true"></i>
-                                                                    </div>
-                                                                    <div class="notification-content">
-                                                                        <span class="notification-date">16 Sept</span>
-                                                                        <h2>Victor Jara</h2>
-                                                                        <p>Please done this project as soon possible.</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="notification-view">
-                                                            <a href="#">View All Notification</a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                        <img src="{{Auth::user()->userinfo->user_profile}}" alt="" />
-                                                        <span class="admin-name">{{ Auth::user()->userinfo->name }}</span>
-                                                        <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                                                    </a>
-                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="/alumni-profile"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a></li>
-                                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a></li>
-                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                            @csrf
-                                                        </form>
-                                                    </ul>
-                                                </li>
-                                                <li class="nav-item nav-setting-open">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-menu"></i></a>
-                                                    <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated zoomIn">
-                                                        <ul class="nav nav-tabs custon-set-tab">
-                                                            
-                                                            
-                                                            <li><a data-toggle="tab" href="#Settings">Settings</a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="tab-content custom-bdr-nt">
-                                                        
-                                                        
-                                                        <div id="Settings" class="tab-pane fade in active">
-                                                            <div class="setting-panel-area">
-                                                                <div class="note-heading-indicate">
-                                                                    <h2><i class="fa fa-gears"></i> Settings Panel</h2>
-                                                                    <p> You have 20 Settings. 5 not completed.</p>
-                                                                </div>
-                                                                <ul class="setting-panel-list">
-                                                                    <li>
-                                                                        <div class="checkbox-setting-pro">
-                                                                            <div class="checkbox-title-pro">
-                                                                                <h2>Show notifications</h2>
-                                                                                <div class="ts-custom-check">
-                                                                                    <div class="onoffswitch">
-                                                                                        <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
-                                                                                        <label class="onoffswitch-label" for="example">
-                                                                                            <span class="onoffswitch-inner"></span>
-                                                                                            <span class="onoffswitch-switch"></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="checkbox-setting-pro">
-                                                                            <div class="checkbox-title-pro">
-                                                                                <h2>Disable Chat</h2>
-                                                                                <div class="ts-custom-check">
-                                                                                    <div class="onoffswitch">
-                                                                                        <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example3">
-                                                                                        <label class="onoffswitch-label" for="example3">
-                                                                                            <span class="onoffswitch-inner"></span>
-                                                                                            <span class="onoffswitch-switch"></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="checkbox-setting-pro">
-                                                                            <div class="checkbox-title-pro">
-                                                                                <h2>Enable history</h2>
-                                                                                <div class="ts-custom-check">
-                                                                                    <div class="onoffswitch">
-                                                                                        <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example4">
-                                                                                        <label class="onoffswitch-label" for="example4">
-                                                                                            <span class="onoffswitch-inner"></span>
-                                                                                            <span class="onoffswitch-switch"></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="checkbox-setting-pro">
-                                                                            <div class="checkbox-title-pro">
-                                                                                <h2>Show charts</h2>
-                                                                                <div class="ts-custom-check">
-                                                                                    <div class="onoffswitch">
-                                                                                        <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example7">
-                                                                                        <label class="onoffswitch-label" for="example7">
-                                                                                            <span class="onoffswitch-inner"></span>
-                                                                                            <span class="onoffswitch-switch"></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="checkbox-setting-pro">
-                                                                            <div class="checkbox-title-pro">
-                                                                                <h2>Update everyday</h2>
-                                                                                <div class="ts-custom-check">
-                                                                                    <div class="onoffswitch">
-                                                                                        <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example2">
-                                                                                        <label class="onoffswitch-label" for="example2">
-                                                                                            <span class="onoffswitch-inner"></span>
-                                                                                            <span class="onoffswitch-switch"></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="checkbox-setting-pro">
-                                                                            <div class="checkbox-title-pro">
-                                                                                <h2>Global search</h2>
-                                                                                <div class="ts-custom-check">
-                                                                                    <div class="onoffswitch">
-                                                                                        <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example6">
-                                                                                        <label class="onoffswitch-label" for="example6">
-                                                                                            <span class="onoffswitch-inner"></span>
-                                                                                            <span class="onoffswitch-switch"></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="checkbox-setting-pro">
-                                                                            <div class="checkbox-title-pro">
-                                                                                <h2>Offline users</h2>
-                                                                                <div class="ts-custom-check">
-                                                                                    <div class="onoffswitch">
-                                                                                        <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example5">
-                                                                                        <label class="onoffswitch-label" for="example5">
-                                                                                            <span class="onoffswitch-inner"></span>
-                                                                                            <span class="onoffswitch-switch"></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                </nav>
+            </header>
+            <div class="page-content d-flex align-items-stretch">
+                <!-- Side Navbar -->
+                <nav class="side-navbar ">
+                    <!-- Sidebar Header-->
+                    <div class="sidebar-header d-flex align-items-center">
+                        <a href="/profile">
+                            <div class="avatar"><img src="{{ Auth::user()->userinfo->user_profile }}" alt="..." class="img-fluid rounded-circle"></div>
+                            <div class="title">
+                                <br>
+                                <h1 class="h4">{{ Auth::user()->userinfo->name }}</h1>
+                                <p>{{ Auth::user()->position }}</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Sidebar Navidation Menus--><span class="heading">{{ Auth::user()->position }} </span>
+
+                    <ul class="list-unstyled">
+                        @if(Auth::user()->type > 1)
+                        <li class="{{ Request::segment(1) == "dashboard" ? "active" : "" }}"><a href="{{ route('dashboard') }}"> <i class="icon-home"></i>Dashboard </a></li>
+                        @endif
+                        <li class="{{ Request::segment(1) == "roles" ? "active" : "" }}"><a href="{{ route('alumni_feeds') }}"> <i class="icon-home"></i>Alumni Feeds</a></li>
+                        <li class="{{ Request::segment(1) == "roles" ? "active" : "" }}"><a href="{{ route('alumni_list') }}"> <i class="icon-home"></i>Alumni List</a></li>
+                        <li class="{{ Request::segment(1) == "roles" ? "active" : "" }}"><a href="{{ route('alumni_faculties') }}"> <i class="icon-home"></i>Alumni Adviser</a></li>
+                        @if(Auth::user()->type > 1)
+                        <ul class="list-unstyled">
+                            
+                            <li>
+                                <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Manage </a>
+                                <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                                    <li class="{{ Request::segment(1) == "pins" ? "active" : "" }}"><a href="{{ route('pins.index') }}"> <i class="icon-home"></i>Codes</a></li>
+                                    <li class="{{ Request::segment(1) == "users" ? "active" : "" }}"><a href="{{ route('users.index') }}"> <i class="icon-home"></i>Users</a></li>
+                                    <li class="{{ Request::segment(1) == "officers" ? "active" : "" }}"><a href="{{ route('officers') }}"> <i class="icon-home"></i>Officers</a></li>
+                                    <li class="{{ Request::segment(1) == "faculties" ? "active" : "" }}"><a href="{{ route('faculties') }}"> <i class="icon-home"></i>Faculties</a></li>
+                                    <li class="{{ Request::segment(1) == "products" ? "active" : "" }}"><a href="{{ route('products.index') }}"> <i class="icon-home"></i>Products</a></li>
+                                    <li class="{{ Request::segment(1) == "events" ? "active" : "" }}"><a href="{{ route('events') }}"> <i class="icon-home"></i>Events</a></li>
+                                    <li class="{{ Request::segment(1) == "albums" ? "active" : "" }}"><a href="{{ route('albums.index') }}"> <i class="icon-home"></i>Galleries</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        @endif
+
+                    </ul>
+                </nav>
+                <div class="content-inner ">
+                    <!-- Page Header-->
+                    <header class="page-header">
+                        <div class="container-fluid">
+                            <h2 class="no-margin-bottom">{{ ucwords(Request::segment(1)) }}</h2>
+                        </div>
+                    </header>
+                    <!-- Dashboard Counts Section-->
+                    <main>  
+                        @yield('content')
+                    </main>
+                    <!-- Page Footer-->
+                    <footer class="main-footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>PES Alumni Association &copy; 2018-{{ date('Y') }}</p>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <p>Powered by:  <a href="https://www.linkedin.com/in/elven-man-on-b6788b141/" class="external">James Omosora</a></p>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </footer>
                 </div>
             </div>
         </div>
-        <div class="mobile-menu-area">
-            
-            <div class="container text-center">
-                <ul class="list-inline">
-                    <li class="list-inline-item"><a href="/alumni-dashboard"><span class="educate-icon educate-charts icon-wrap"></span></a></li>
-                    <li class="list-inline-item"><a href="/alumni-feeds"><span class="educate-icon educate-library icon-wrap"></span></a></li>
-                    <li class="list-inline-item"><a href="/alumni-list"><span class="educate-icon educate-student icon-wrap"></span></a></li>
-                    <li class="list-inline-item"><a href="/alumni-faculties"><span class="educate-icon educate-professor icon-wrap"></span></a></li>
-                    <li class="list-inline-item"><a href="/alumni-faculties"><span class="educate-icon educate-pages icon-wrap"></span></a></li>
-                </ul>
-
-                
-              
-        </div>
-    </div>
-
-    <?php
+        <!-- JavaScript files-->
+        <script src="/backend/vendor/jquery/jquery.min.js"></script>
+        <script src="/backend/vendor/popper.js/umd/popper.min.js"> </script>
+        <script src="/backend/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/backend/vendor/jquery.cookie/jquery.cookie.js"> </script>
+        {{-- <script src="/backend/vendor/chart.js/Chart.min.js"></script> --}}
+        <script src="/backend/vendor/jquery-validation/jquery.validate.min.js"></script>
+        {{-- <script src="/backend/js/charts-home.js"></script> --}}
+        <!-- Main File-->
+        <script src="/backend/js/front.js"></script>
+        <script src="/js/backend.js"></script>
         
-    ?>
-    @if(Request::segment(1) == "alumni-list" && Request::segment(1) == "alumni-faculties")
-    <div class="top-space" style="height:20px;"></div>
-    @else
-    
-    <div class="breadcome-area">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="breadcome-list">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <ul class="breadcome-menu">
-                                    <li><b>{{ucwords(str_replace('-',' ',Request::segment(1)))}} {{ucwords(Request::segment(2))}}</b></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-</div>
-<main style="min-height: 510px;">
-<div class="loading" style="display:none;">Loading&#8230;</div>
-<div id="return_alert">
-    <div id="return_alert_icon"><i class="fa fa-check-circle-o" aria-hidden="true"></i></div>
-    <div id="return_alert_text">SUCCESS</div>
-</div>
-@yield('content')
-</main>
-<div class="footer-copyright-area">
-<div class="container-fluid">
-<div class="row">
-    <div class="col-lg-12">
-        <div class="footer-copy-right">
-            <p>© 2018. All rights reserved. Powered by <a target="_blank" href="https://www.linkedin.com/in/elven-man-on-b6788b141/">James Omosora</a></p>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-<!-- jquery
-============================================ -->
-<script src="/backend/js/vendor/jquery-1.12.4.min.js"></script>
-<!-- bootstrap JS
-============================================ -->
-<script src="/backend/js/bootstrap.min.js"></script>
-<!-- wow JS
-============================================ -->
-<script src="/backend/js/wow.min.js"></script>
-<!-- price-slider JS
-============================================ -->
-<script src="/backend/js/jquery-price-slider.js"></script>
-<!-- meanmenu JS
-============================================ -->
-<script src="/backend/js/jquery.meanmenu.js"></script>
-<!-- owl.carousel JS
-============================================ -->
-<script src="/backend/js/owl.carousel.min.js"></script>
-<!-- sticky JS
-============================================ -->
-<script src="/backend/js/jquery.sticky.js"></script>
-<!-- scrollUp JS
-============================================ -->
-<script src="/backend/js/jquery.scrollUp.min.js"></script>
-<!-- counterup JS
-============================================ -->
-<script src="/backend/js/counterup/jquery.counterup.min.js"></script>
-<script src="/backend/js/counterup/waypoints.min.js"></script>
-<script src="/backend/js/counterup/counterup-active.js"></script>
-<!-- mCustomScrollbar JS
-============================================ -->
-<script src="/backend/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/backend/js/scrollbar/mCustomScrollbar-active.js"></script>
-<!-- metisMenu JS
-============================================ -->
-<script src="/backend/js/metisMenu/metisMenu.min.js"></script>
-<script src="/backend/js/metisMenu/metisMenu-active.js"></script>
-<!-- morrisjs JS
-============================================ -->
-<!-- morrisjs JS
-============================================ -->
-<script src="/backend/js/sparkline/jquery.sparkline.min.js"></script>
-<script src="/backend/js/sparkline/jquery.charts-sparkline.js"></script>
-<script src="/backend/js/sparkline/sparkline-active.js"></script>
-<!-- calendar JS
-============================================ -->
-<script src="/backend/js/calendar/moment.min.js"></script>
-<script src="/backend/js/calendar/fullcalendar.min.js"></script>
-<script src="/backend/js/calendar/fullcalendar-active.js"></script>
-<!-- plugins JS
-============================================ -->
-<script src="/backend/js/plugins.js"></script>
-<!-- main JS
-============================================ -->
-<script src="/backend/js/main.js"></script>
-<!-- tawk chat JS
-============================================ -->
-<!-- <script src="/backend/js/tawk-chat.js"></script> -->
-<!-- maskedinput JS
-============================================ -->
-<script src="/backend/js/jquery.maskedinput.min.js"></script>
-<script src="/backend/js/masking-active.js"></script>
-<!-- datepicker JS
-============================================ -->
-<script src="/backend/js/datepicker/jquery-ui.min.js"></script>
-<script src="/backend/js/datepicker/datepicker-active.js"></script>
-<!-- form validate JS
-============================================ -->
-<script src="/backend/js/form-validation/jquery.form.min.js"></script>
-<script src="/backend/js/form-validation/jquery.validate.min.js"></script>
-<script src="/backend/js/form-validation/form-active.js"></script>
-<!-- dropzone JS
-============================================ -->
-<script src="/backend/js/dropzone/dropzone.js"></script>
-
-<script src="/backend/js/summernote/summernote.min.js"></script>
-<script src="/backend/js/summernote/summernote-active.js"></script>
-<!-- tab JS
-============================================ -->
-<script src="/backend/js/tab.js"></script>
-<script type="text/javascript" src="/js/transaction.js"></script>
-<script type="text/javascript" src="/js/backend.js"></script>
-
-
-
-
-</body>
+    </body>
 </html>
+

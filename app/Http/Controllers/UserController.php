@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Response;
+use Redirect;
 class UserController extends Controller
 {
     private $model;
@@ -30,89 +31,109 @@ class UserController extends Controller
         });
     }
 
+    public function profile()
+    {
+        $id                 =  request('id') ? request('id') : Auth::user()->id;
+
+        $data['user']       = User::findorFail($id);
+        $data['group']      = Group::pluck('name','id')->all();
+        $data['gender']     = ['Male','Female'];
+        $data['type']       = ['Member','Officer','Faculties'];
+        $data['civil_status']       = ['Single','Married','Separated'];
+        $data['status']     = ['Need Approval','Active','Deactivate'];
+        $data['access']     = [0=>'Member',1=>'Reserve',2=>'Editor',3=>'Admin',4=>'Super Admin'];
+        $data['position']   = ['Member','President','Vice-president','Secretary','Treasurer'];
+        $data['work']   = ['IT/Computer','Education','Agricuture','House Wife'];
+
+        return view('back_page.manage_user.profile',$data);
+    }
+
 
 
     public function create(){
-        return view('back_page.manage_user.user_add');
+
+        $data['group']      = Group::pluck('name','id')->all();
+        $data['gender']     = ['Male','Female'];
+        $data['type']       = ['Member','Officer','Faculties'];
+        $data['status']     = ['Need Approval','Active','Deactivate'];
+        $data['access']     = [0=>'Member',1=>'Reserve',2=>'Editor',3=>'Admin',4=>'Super Admin'];
+        $data['position']   = ['Member','President','Vice-president','Secretary','Treasurer'];
+
+        return view('back_page.manage_user.add',$data);
     }
 
     public function index(Request $request)
     {
         $data['_users'] = User::paginate(10);
-        return view('back_page.manage_user.users',$data);
+        return view('back_page.manage_user.users',$data); 
     }
 
-    public function officer_list()
+    public function officers()
     {
         $data['_users'] = User::where('type',1)->paginate(10);
         return view('back_page.manage_user.officer',$data);
+    
     }
 
-    public function faculties_list()
+    public function faculties()
     {
         $data['_users'] = User::where('type',2)->paginate(10);
         return view('back_page.manage_user.faculties',$data);
     }
 
-    public function show(Request $request)
+
+
+    public function edit($id)
     {
-        $id = Request('id');
-        $data['data'] = User::findorFail($id);
-        $data['_group'] = Group::all();
-        return view('back_page.manage_user.user_edit',$data);
+        $data['user']       = User::findorFail($id);
+        $data['group']      = Group::pluck('name','id')->all();
+        $data['gender']     = ['Male','Female'];
+        $data['type']       = ['Member','Officer','Faculties'];
+        $data['status']     = ['Need Approval','Active','Deactivate'];
+        $data['access']     = [0=>'Member',1=>'Reserve',2=>'Editor',3=>'Admin',4=>'Super Admin'];
+        $data['position']   = ['Member','President','Vice-president','Secretary','Treasurer'];
+        return view('back_page.manage_user.edit',$data);
     }
 
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['group_id']                   = 1;
-        $data['type']                       = 1;
-        $data['password']                   = "secret";
-        $data['password_confirmation']      = "secret";
+
+
+
         $rules['first_name']                = "required";
-        $rules['middle_name']               = "required";
         $rules['last_name']                 = "required";
         $rules['contact']                   = "required";
         $rules['email']                     = "required|unique:users,email";
         $rules['password']                  = "required";
-        $rules['password_confirmation']     = "required|same:password";
-        $rules['group_id']                  = "required|integer";
+        $rules['confirm-password']          = "required|same:password";
 
-        $validator = Validator::make($data,$rules);
+        request()->validate($rules);
 
-        
+        $pin = Pin::where('status',0);
+        $pin_id = $pin->first()->id;
+        $pin->update(['status'=>1]);
 
-        if($validator->fails()) {
+        $data['pin_id']     = $pin_id;
+        $data['name']       = $data['first_name']." ".$data['last_name'];
+        $data['auth']       = Crypt::encrypt($data['password']);
+        $data['password']   = Hash::make($data['password']);
+        $user               = User::create($data);
+        $userInfo           = $user->Userinfo()->create($data);
 
-            $response['status'] = 400;
-            $response['error'] = $validator->errors();
-            return $response;
-        } 
-        else 
-        {
-            $pin = Pin::where('status',0);
-            $pin_id = $pin->first()->id;
-            $pin->update(['status'=>1]);
-
-            $data['pin_id']     = $pin_id;
-            $data['name']       = $data['first_name']." ".$data['last_name'];
-            $data['auth']       = Crypt::encrypt($data['password']);
-            $data['password']   = Hash::make($data['password']);
-            $user               = User::create($data);
-            $userInfo           = $user->Userinfo()->create($data);
 
             
-            return $userInfo;
-        }
+            
+        return redirect()->route('users.index')->with('success','User created successfully.');
+        
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
 
         //retrieve old dataa of user
 
-        $id       = $data['id'];
         $old      = User::findorFail($id);
         $old_data = UserInfo::findorFail($id);
         
@@ -130,7 +151,7 @@ class UserController extends Controller
 
         if($validator->fails()) {
 
-            return "error";
+            return redirect()->route('user_list')->with('success','User Updated successfully.');
         } 
         else 
         {
@@ -177,8 +198,7 @@ class UserController extends Controller
                                         $check = Userinfo::where('user_id',$id)->update($userinfo);
 
 
-
-            return $user;
+            return redirect()->route('user_list')->with('success','User Updated successfully.');
         }
     }
 

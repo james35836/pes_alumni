@@ -1,29 +1,39 @@
+
+
 @extends('layouts.backend')
 @section('content')
-<div class="contacts-area mg-b-15">
-    <div class="container-fluid">
-        <div class="row">
-            @foreach($_list as $list)
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 p-30">
-                <div class="student-inner-std res-mg-b-30">
-                    <div class="student-img">
-                        <img src="{{$list->userinfo->user_profile}}" alt="" />
-                    </div>
-                    <div class="student-dtl">
-                        <h2>{{$list->userinfo->name}}</h2>
-                        <p class="dp">ADVISER</p>
-                        <p class="dp-ag"><b>SY : {{$list->group->year}}</b></p>
-                    </div>
-                </div>
+<section class="forms">
+   <div class="container-fluid">
+      <div class="row">
+         @foreach($_list as $list)
+   
+         <div class="col-lg-3">
+            <div class="client card">
+               <div class="card-body text-center">
+                  <div class="client-avatar">
+                     <img style="max-height:100px;" src="{{$list->userinfo->user_profile}}" alt="..." class="img-fluid rounded-circle">
+                     <div class="status bg-green"></div>
+                  </div>
+                  <div class="client-title">
+                     <h3 class="limit_one_line">{{$list->userinfo->name}}</h3>
+                     <span>{{$list->userinfo->work_position ?: "Adviser"}}</span><a href="/profile?id={{ $list->id }}">View Profile</a>
+                  </div>
+                  <div class="client-info">
+                     <div class="text-center" style="height:70px;">
+                        <p> {{$list->userinfo->biography ?: "Nothing to show"}}</p>
+                     </div>
+                  </div>
+                  <div class="client-social d-flex justify-content-between">
+                    <a href="{{$list->userinfo->fb_link}}" target="_blank"><i class="fa fa-facebook"></i></a>
+                    <a href="{{$list->userinfo->twitter_link}}" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fa fa-instagram"></i></a>
+                    <a href="{{$list->userinfo->linkedin_link}}" target="_blank"><i class="fa fa-linkedin"></i></a></div>
+               </div>
             </div>
-            @endforeach
-            
-        </div>
-        <div class="row">
-            <div class="pagination-bar">
-                {{$_list->links('pagination.pagination')}}
-            </div>
-        </div>
-    </div>
-</div>
+         </div>
+         @endforeach
+      </div>
+   </div>
+</section>
+
 @endsection

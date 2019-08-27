@@ -57,7 +57,7 @@ Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallb
 
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 {
-	Route::match(['get', 'post'], '/alumni-dashboard/', 'AlumniController@alumni_dashboard');
+	Route::match(['get', 'post'], '/alumni-dashboard/', 'AlumniController@alumni_dashboard')->name('dashboard');
 });
 
 
@@ -92,10 +92,10 @@ Auth::routes();
 
 
 // Route::get('/alumni-dashboard', 'AlumniController@alumni_dashboard');
-Route::get('/alumni-feeds', 	'AlumniController@alumni_feeds');
-Route::get('/alumni-list', 		'AlumniController@alumni_list');
-Route::get('/alumni-info', 		'AlumniController@alumni_info');
-Route::get('/alumni-faculties', 'AlumniController@alumni_faculties');
+Route::get('/alumni-feeds', 	'AlumniController@alumni_feeds')->name('alumni_feeds');
+Route::get('/alumni-list', 		'AlumniController@alumni_list')->name('alumni_list');
+Route::get('/alumni-info', 		'AlumniController@alumni_info')->name('alumni_info');
+Route::get('/alumni-faculties', 'AlumniController@alumni_faculties')->name('alumni_faculties');
 
 
 Route::get('/alumni-profile', 'AlumniController@alumni_profile');
@@ -109,12 +109,8 @@ Route::post('/alumni/update_user_info', 'UserController@update');
 Route::resource('/alumni/feeds', 		'PostController');
 
 
-Route::get('/manage/officer', 			'UserController@officer_list');
-Route::get('/manage/user',         		'UserController@index');
-Route::get('/manage/user/add', 			'UserController@create');
-Route::post('/manage/user/add_submit',  'UserController@store');
-Route::get('/manage/user/edit', 		'UserController@show');
-Route::post('/manage/user/edit_submit', 'UserController@update');
+Route::get('/officer', 			'UserController@officer_list');
+
 
 
 
@@ -136,16 +132,28 @@ Route::post('/manage/album/edit_submit', 	'AlbumController@update');
 
 
 
-Route::get('/manage/pins', 			'PinController@index');
-Route::get('/manage/pin/add', 			'PinController@create');
-Route::get('/manage/pin/edit', 		'PinController@store');
-Route::post('/manage/pin/add_submit', 	'PinController@show');
-Route::post('/manage/pin/edit_submit', 'PinController@update');
-
-
-
-
 
 Route::get('/photo/delete/{id}', 			'AlbumController@destroy');
+
+
+
+
+Route::group(['middleware' => ['auth']], function() {
+
+    Route::get('/profile', 'UserController@profile')->name('profile');
+
+    
+	Route::get('/officers', 			'UserController@officers')->name('officers');
+	Route::get('/faculties', 			'UserController@faculties')->name('faculties');
+    Route::resource('users','UserController');
+    Route::resource('pins','PinController');
+    Route::resource('products','ProductController');
+    Route::resource('albums','AlbumController');
+
+
+    Route::get('/events', 			'PostController@events')->name('events');
+    Route::resource('posts','PostController');
+});
+
 
 

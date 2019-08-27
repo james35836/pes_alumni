@@ -96,7 +96,7 @@ class RegisterController extends Controller
 
 
             $data['pin_id']     = $pin['id'];
-            $data['name']       = $data['first_name']." ".$data['last_name'];
+            
             $data['auth']       = Crypt::encrypt($data['password']);
             $data['password']   = Hash::make($data['password']);
             $user               = User::create($data);
