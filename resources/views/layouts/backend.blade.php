@@ -126,13 +126,13 @@
                     <!-- Sidebar Navidation Menus--><span class="heading">{{ Auth::user()->position }} </span>
 
                     <ul class="list-unstyled">
-                        @if(Auth::user()->type > 1)
+                        @if(Auth::user()->access > 1)
                         <li class="{{ Request::segment(1) == "dashboard" ? "active" : "" }}"><a href="{{ route('dashboard') }}"> <i class="icon-home"></i>Dashboard </a></li>
                         @endif
                         <li class="{{ Request::segment(1) == "roles" ? "active" : "" }}"><a href="{{ route('alumni_feeds') }}"> <i class="icon-home"></i>Alumni Feeds</a></li>
                         <li class="{{ Request::segment(1) == "roles" ? "active" : "" }}"><a href="{{ route('alumni_list') }}"> <i class="icon-home"></i>Alumni List</a></li>
                         <li class="{{ Request::segment(1) == "roles" ? "active" : "" }}"><a href="{{ route('alumni_faculties') }}"> <i class="icon-home"></i>Alumni Adviser</a></li>
-                        @if(Auth::user()->type > 1)
+                        @if(Auth::user()->access > 1)
                         <ul class="list-unstyled">
                             
                             <li>
