@@ -196,7 +196,7 @@ class UserController extends Controller
                                         $check = Userinfo::where('user_id',$id)->update($userinfo);
 
 
-            return redirect()->route('user_list')->with('success','User Updated successfully.');
+            return redirect()->route('users.index')->with('success','User Updated successfully.');
         }
     }
 
