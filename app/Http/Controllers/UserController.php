@@ -115,7 +115,6 @@ class UserController extends Controller
         $pin->update(['status'=>1]);
 
         $data['pin_id']     = $pin_id;
-        $data['name']       = $data['first_name']." ".$data['last_name'];
         $data['auth']       = Crypt::encrypt($data['password']);
         $data['password']   = Hash::make($data['password']);
         $user               = User::create($data);
@@ -188,7 +187,6 @@ class UserController extends Controller
             $userinfo['twitter_link']   = isset($data['twitter_link']) ? $data['twitter_link'] : $old_data->twitter_link;
             $userinfo['linkedin_link']   = isset($data['linkedin_link']) ? $data['linkedin_link'] : $old_data->linkedin_link;
 
-            $userinfo['name']           = ucwords($data['first_name']." ".$data['last_name']);
             $userinfo['profile']        = $image_name;
             $userinfo['first_name']     = $data['first_name'];
             $userinfo['middle_name']    = $data['middle_name'];
