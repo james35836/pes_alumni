@@ -15,34 +15,60 @@
     <link rel="stylesheet" href="/backend/css/fontastic.css">
     <!-- Google fonts - Poppins -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="/backend/css/style.blue.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="/backend/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        <style>
+            .note
+            {
+                text-align: center;
+                height: 80px;
+                background: #0062cc;
+                color: #fff;    line-height: 80px;
+            }
+            .form-content
+            {
+                padding: 5%;
+                border: 1px solid #ced4da;
+                margin-bottom: 2%;
+            }
+            .form-control{
+                border-radius: 0;
+                height:40px;
+            }
+            .btn-submit-form
+            {
+                border:none;
+                width: 50%;
+                cursor: pointer;
+                background: #0062cc;
+                color: #fff;
+                padding:10px;
+            }
+            .register-form{
+                padding:40px 20px;
+            }
+            .login-form{
+                padding:50px 20px;
+            }
+            .button-container{
+                text-align: center;
+            }
+            .form-content-info a{
+                text-decoration: none;
+                color:#32363a;
+                font-size: 11px;
+            }
+
+            label{
+               color:#32363a;
+                font-size: 15px; 
+            }
+        </style>
   </head>
   <body>
-    <div class="page login-page">
-      @yield('content')
-      
-      <div class="copyrights text-center">
-        <p>Powered by <a href="https://bootstrapious.com" class="external">James Omosora</a>
-          <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-        </p>
-      </div>
-    </div>
-    <!-- JavaScript files-->
-    <script src="/backend/vendor/jquery/jquery.min.js"></script>
-    <script src="/backend/vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="/backend/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/backend/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="/backend/vendor/chart.js/Chart.min.js"></script>
-    <script src="/backend/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <!-- Main File-->
-    <script src="/backend/js/front.js"></script>
+    @yield('content')
   </body>
 </html>
