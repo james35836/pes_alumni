@@ -17,8 +17,15 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $data['_data'] = Photo::paginate(10);
+        $data['_data'] = Album::paginate(10);
         return view('back_page.manage_album.albums',$data);
+    }
+
+
+    public function delete($id){
+        Photo::where('id',$id)->delete();
+
+        return back()->with('success', 'Album successfully updated');
     }
 
     /**
@@ -138,8 +145,9 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        Photo::where('id',$id)->delete();
+        Album::where('id',$id)->delete();
+        // Photo::where('id',$id)->delete();
 
-        return "";
+        return back()->with('success', 'Album successfully updated');
     }
 }

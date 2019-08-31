@@ -15,7 +15,7 @@
                         
                         <div class="card-header d-flex align-items-center">
                             <div class="col-md-6">
-                                <h3 class="h4">Add Album</h3>
+                                <h3 class="h4">Update Album</h3>
                             </div>
                             <div class="col-md-6">
                                 <div class="pull-right">
@@ -34,7 +34,7 @@
                             </div>
                         @endif
                         <div class="card-body">
-                            {!! Form::model($data, ['method' => 'PATCH','enctype'=>'multipart/form-data','class' => 'form-horizontal row','route' => ['users.update', $data->id]]) !!}
+                            {!! Form::model($data, ['method' => 'PATCH','enctype'=>'multipart/form-data','class' => 'form-horizontal row','route' => ['albums.update', $data->id]]) !!}
                             
                                 @csrf
                                 <div class="form-group col-md-6">
@@ -57,7 +57,7 @@
                                         {!! Form::textarea('description', null, array('rows' => '3','placeholder' => 'Description','class' => 'form-control')) !!}
                                     </div>
                                 </div>
-								<div class="form-group col-md-12">
+								<div class="form-group col-md-6 offset-md-3">
 									<div class="table-responsive">
 			                            <table class="table table-borderless">
 			                                <thead>
@@ -74,9 +74,7 @@
 			                                <td><img  style="height:100px;" src="{{$data->name}}" alt="" /></td>
 			                                
 			                                <td>
-			                                    {!! Form::open(['method' => 'DELETE','route' => ['albums.destroy', $data->id],'style'=>'display:inline']) !!}
-			                                    {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger','disabled'=>'true']) !!}
-			                                    {!! Form::close() !!}
+                                                <a type="button" href="/photo/delete/{{ $data->id }}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
 			                                </td>
 			                            </tr>
 			                            @endforeach

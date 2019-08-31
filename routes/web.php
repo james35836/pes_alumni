@@ -102,46 +102,10 @@ Route::get('/alumni-profile', 'AlumniController@alumni_profile');
 
 
 
-
-Route::resource('/manage/product', 'ProductController');
-
-Route::post('/alumni/update_user_info', 'UserController@update');
-Route::resource('/alumni/feeds', 		'PostController');
-
-
-Route::get('/officer', 			'UserController@officer_list');
-
-
-
-
-
-Route::get('/manage/events', 			'PostController@event_list');
-Route::get('/manage/stories', 			'PostController@story_list');
-Route::get('/manage/post/add', 			'PostController@manage_post_add');
-Route::get('/manage/post/edit', 		'PostController@manage_post_edit');
-Route::post('/manage/post/add_submit', 	'PostController@store');
-Route::post('/manage/post/edit_submit', 'PostController@update');
-
-
-
-Route::get('/manage/albums', 			'AlbumController@index');
-Route::get('/manage/album/add', 		'AlbumController@create');
-Route::post('/manage/album/add_submit', 	'AlbumController@store');
-Route::get('/manage/album/edit', 	'AlbumController@show');
-Route::post('/manage/album/edit_submit', 	'AlbumController@update');
-
-
-
-
-Route::get('/photo/delete/{id}', 			'AlbumController@destroy');
-
-
-
-
 Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/profile', 'UserController@profile')->name('profile');
-
+    Route::get('/photo/delete/{id}',            'AlbumController@delete');
     
 	Route::get('/officers', 			'UserController@officers')->name('officers');
 	Route::get('/faculties', 			'UserController@faculties')->name('faculties');

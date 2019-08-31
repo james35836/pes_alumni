@@ -26,7 +26,6 @@
                                 <thead>
                                     <tr>
                                 <th>No</th>
-                                <th>Image</th>
                                 <th>Album Name</th>
                                 <th>Album Description</th>
                                
@@ -38,14 +37,13 @@
                             @foreach($_data as $key=> $data)
                             <tr>
                                 <td>{{$key + 1}}</td>
-                                <td><img  style="height:40px;" src="{{$data->name}}" alt="" /></td>
-                                <td>{{$data->album->name}}</td>
-                                <td>{{$data->album->description}}</td>
+                                <td>{{$data->name}}</td>
+                                <td>{{$data->description}}</td>
                                 
                                 <td>
                                     <a class="btn btn-sm btn-primary" href="{{ route('albums.edit',$data->id) }}">Edit</a>
                                     {!! Form::open(['method' => 'DELETE','route' => ['albums.destroy', $data->id],'style'=>'display:inline']) !!}
-                                    {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger','disabled'=>'true']) !!}
+                                    {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger']) !!}
                                     {!! Form::close() !!}
                                 </td>
                             </tr>

@@ -104,7 +104,7 @@ class PostController extends Controller
             $data['user_id'] =  Auth::user()->id;
             $data['created_at'] =  Carbon::now();
             $new = Post::create($data);
-            ***            
+            
             return redirect()->back();
 
 
