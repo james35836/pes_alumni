@@ -70,7 +70,7 @@ class RegisterController extends Controller
         $rules['contact']                   = "required";
         $rules['birthdate']                 = "required";
         $rules['gender']                    = "required";
-        $rules['pin_id']                      = "required";
+        // $rules['pin_id']                      = "required";
         $rules['work']                      = "required";
         $rules['email']                     = "required|unique:users,email";
         $rules['password']                  = "required";
@@ -79,23 +79,15 @@ class RegisterController extends Controller
 
         $validator = Validator::make($data,$rules);
 
-        $pin = Pin::where('code',$data['pin_id'])->first();
-        if(!$pin && $data['pin_id'] != ""){
-
-            $validator->after(function($validator) {
-                $validator->errors()->add('pin_id', 'Pin code is not valid!');
-            });  
-        }
         if($validator->fails()) {
             return Redirect::to('/sign-up')->withErrors($validator)->withInput(Input::except('password'));
         } 
         else{
+            $pin = Pin::where('status',0);
+            $pin_id = $pin->first()->id;
+            $pin->update(['status'=>1]);
 
-            
-            Pin::where('id',$pin['id'])->update(['status'=>1]);
-
-
-            $data['pin_id']     = $pin['id'];
+            $data['pin_id']     = $pin_id;
             
             $data['auth']       = Crypt::encrypt($data['password']);
             $data['password']   = Hash::make($data['password']);

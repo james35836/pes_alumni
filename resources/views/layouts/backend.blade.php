@@ -20,8 +20,13 @@
         <link rel="stylesheet" href="/backend/css/style.blue.css" id="theme-stylesheet">
         <!-- Custom stylesheet - for your changes-->
         <link rel="stylesheet" href="/backend/css/custom.css">
+        <link rel="stylesheet" href="/css/global.css">
         <!-- Favicon-->
         <link rel="shortcut icon" href="/favicon.png">
+
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+
     </head>
     <body>
         <div class="page">
@@ -127,15 +132,16 @@
 
                     <ul class="list-unstyled">
                         @if(Auth::user()->access > 1)
-                        <li class="{{ Request::segment(1) == "dashboard" ? "active" : "" }}"><a href="{{ route('dashboard') }}"> <i class="icon-home"></i>Dashboard </a></li>
+                        <li class="{{ Request::segment(1) == "alumni-dashboard" ? "active" : "" }}"><a href="{{ route('dashboard') }}"> <i class="icon-home"></i>Dashboard </a></li>
                         @endif
-                        <li class="{{ Request::segment(1) == "roles" ? "active" : "" }}"><a href="{{ route('alumni_feeds') }}"> <i class="icon-home"></i>Alumni Feeds</a></li>
-                        <li class="{{ Request::segment(1) == "roles" ? "active" : "" }}"><a href="{{ route('alumni_list') }}"> <i class="icon-home"></i>Alumni List</a></li>
-                        <li class="{{ Request::segment(1) == "roles" ? "active" : "" }}"><a href="{{ route('alumni_faculties') }}"> <i class="icon-home"></i>Alumni Adviser</a></li>
+                        <li class="{{ Request::segment(1) == "alumni-feeds" ? "active" : "" }}"><a href="{{ route('alumni_feeds') }}"> <i class="icon-home"></i>Alumni Feeds</a></li>
+                        <li class="{{ Request::segment(1) == "alumni-list" ? "active" : "" }}"><a href="{{ route('alumni_list') }}"> <i class="icon-home"></i>Alumni List</a></li>
+                        <li class="{{ Request::segment(1) == "alumni-faculties" ? "active" : "" }}"><a href="{{ route('alumni_faculties') }}"> <i class="icon-home"></i>Alumni Adviser</a></li>
                         @if(Auth::user()->access > 1)
                         <ul class="list-unstyled">
                             
                             <li>
+
                                 <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Manage </a>
                                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                                     <li class="{{ Request::segment(1) == "pins" ? "active" : "" }}"><a href="{{ route('pins.index') }}"> <i class="icon-home"></i>Codes</a></li>
@@ -179,6 +185,7 @@
                 </div>
             </div>
         </div>
+
         <!-- JavaScript files-->
         <script src="/backend/vendor/jquery/jquery.min.js"></script>
         <script src="/backend/vendor/popper.js/umd/popper.min.js"> </script>
@@ -186,10 +193,19 @@
         <script src="/backend/vendor/jquery.cookie/jquery.cookie.js"> </script>
         {{-- <script src="/backend/vendor/chart.js/Chart.min.js"></script> --}}
         <script src="/backend/vendor/jquery-validation/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
         {{-- <script src="/backend/js/charts-home.js"></script> --}}
         <!-- Main File-->
         <script src="/backend/js/front.js"></script>
         <script src="/js/backend.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('.date-picker').datetimepicker({
+                    format: 'L'
+                });
+            });
+        </script>
         
     </body>
 </html>

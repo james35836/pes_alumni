@@ -13,5 +13,21 @@ $(document).ready(function(){
         $(this).html('Copied');
 
     });
+
+    $("body").on('click','.delete-button',function(){
+			console.log("delete")
+			var container = $(this).closest('.delete-container');
+
+			var link      	= $(this).attr('link');
+
+			$(this).html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
+
+			$.get(link, function( data ) {
+				setTimeout(function(){ container.remove(); }, 3000);
+			  	
+			});
+			
+           
+        });
     
 });

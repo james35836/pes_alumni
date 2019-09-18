@@ -117,7 +117,7 @@ class PostController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Post $post)
     {
         //
     }
@@ -197,9 +197,12 @@ class PostController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function delete($id)
     {
-        //
+        Post::where('id',$id)->delete();
+        // Photo::where('id',$id)->delete();
+
+        return back()->with('success', 'Post successfully updated');
     }
 }
 

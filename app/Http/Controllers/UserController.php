@@ -37,13 +37,18 @@ class UserController extends Controller
 
         $data['user']       = User::findorFail($id);
         $data['group']      = Group::pluck('name','id')->all();
-        $data['gender']     = ['Male','Female'];
         $data['type']       = ['Member','Officer','Faculties'];
-        $data['civil_status']       = ['Single','Married','Separated'];
         $data['status']     = ['Need Approval','Active','Deactivate'];
         $data['access']     = [0=>'Member',1=>'Reserve',2=>'Editor',3=>'Admin',4=>'Super Admin'];
+
+        $data['civil_status']       = ['Single','Married','Separated'];
+        $data['civil_status'] = array_combine($data['civil_status'], $data['civil_status']);
         $data['position']   = ['Member','President','Vice-president','Secretary','Treasurer'];
-        $data['work']   = ['IT/Computer','Education','Agricuture','House Wife'];
+        $data['position']   = array_combine($data['position'], $data['position']);
+        $data['work']       = ['IT/Computer','Education','Agricuture','House Wife'];
+        $data['work']       = array_combine($data['work'], $data['work']);
+        $data['gender']     = ['Male','Female'];
+        $data['gender'] = array_combine($data['gender'], $data['gender']);
 
         return view('back_page.manage_user.profile',$data);
     }
@@ -53,11 +58,18 @@ class UserController extends Controller
     public function create(){
 
         $data['group']      = Group::pluck('name','id')->all();
-        $data['gender']     = ['Male','Female'];
         $data['type']       = ['Member','Officer','Faculties'];
         $data['status']     = ['Need Approval','Active','Deactivate'];
         $data['access']     = [0=>'Member',1=>'Reserve',2=>'Editor',3=>'Admin',4=>'Super Admin'];
+
+        $data['civil_status']       = ['Single','Married','Separated'];
+        $data['civil_status'] = array_combine($data['civil_status'], $data['civil_status']);
         $data['position']   = ['Member','President','Vice-president','Secretary','Treasurer'];
+        $data['position']   = array_combine($data['position'], $data['position']);
+        $data['work']       = ['IT/Computer','Education','Agricuture','House Wife'];
+        $data['work']       = array_combine($data['work'], $data['work']);
+        $data['gender']     = ['Male','Female'];
+        $data['gender'] = array_combine($data['gender'], $data['gender']);
 
         return view('back_page.manage_user.add',$data);
     }
@@ -87,11 +99,19 @@ class UserController extends Controller
     {
         $data['user']       = User::findorFail($id);
         $data['group']      = Group::pluck('name','id')->all();
-        $data['gender']     = ['Male','Female'];
         $data['type']       = ['Member','Officer','Faculties'];
         $data['status']     = ['Need Approval','Active','Deactivate'];
         $data['access']     = [0=>'Member',1=>'Reserve',2=>'Editor',3=>'Admin',4=>'Super Admin'];
+
+        $data['civil_status']       = ['Single','Married','Separated'];
+        $data['civil_status'] = array_combine($data['civil_status'], $data['civil_status']);
         $data['position']   = ['Member','President','Vice-president','Secretary','Treasurer'];
+        $data['position']   = array_combine($data['position'], $data['position']);
+        $data['work']       = ['IT/Computer','Education','Agricuture','House Wife'];
+        $data['work']       = array_combine($data['work'], $data['work']);
+        $data['gender']     = ['Male','Female'];
+        $data['gender'] = array_combine($data['gender'], $data['gender']);
+
         return view('back_page.manage_user.edit',$data);
     }
 
@@ -152,9 +172,7 @@ class UserController extends Controller
 
             return redirect()->route('user_list')->with('success','User Updated successfully.');
         } 
-        else 
-        {
-            
+        else{
 
             $user['email']              = $data['email'];
             $user['type']               = $data['type'];
@@ -163,6 +181,7 @@ class UserController extends Controller
                                         User::where('id',$id)->update($user);
 
             $image_name = $old_data->profile;
+
             if($request->file('profile') != null){
 
                 $image = $request->file('profile');
@@ -170,10 +189,6 @@ class UserController extends Controller
                 $image_name = "/images/profile-".time().'.'.$image->getClientOriginalExtension();
                 $image->move(public_path().'/images/', $image_name);
             }
-
-            
-
-
 
             $userinfo['contact']        = isset($data['contact']) ? $data['contact'] : $old_data->contact;
             $userinfo['birthdate']      = isset($data['birthdate']) ? $data['birthdate'] : $old_data->birthdate;
@@ -186,6 +201,7 @@ class UserController extends Controller
             $userinfo['fb_link']        = isset($data['fb_link']) ? $data['fb_link'] : $old_data->fb_link;
             $userinfo['twitter_link']   = isset($data['twitter_link']) ? $data['twitter_link'] : $old_data->twitter_link;
             $userinfo['linkedin_link']   = isset($data['linkedin_link']) ? $data['linkedin_link'] : $old_data->linkedin_link;
+            $userinfo['instagram_link']   = isset($data['instagram_link']) ? $data['instagram_link'] : $old_data->instagram_link;
 
             $userinfo['profile']        = $image_name;
             $userinfo['first_name']     = $data['first_name'];
@@ -195,7 +211,9 @@ class UserController extends Controller
             $userinfo['civil_status']   = isset($data['civil_status']) ? $data['civil_status'] : $old_data->civil_status;
                                         $check = Userinfo::where('user_id',$id)->update($userinfo);
 
-
+            if($id == Auth::user()->id){
+                return redirect()->route('profile')->with('success','Profile Updated successfully.');
+            }
             return redirect()->route('users.index')->with('success','User Updated successfully.');
         }
     }

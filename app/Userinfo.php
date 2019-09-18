@@ -13,7 +13,7 @@ class Userinfo extends Model
         'civil_status', 'fb_link', 'twitter_link','instagram_link', 'linkedin_link', 'work'
     ];
 
-    protected $appends = ['user_profile','name'];
+    protected $appends = ['user_profile','name','birthdate_formatted'];
     
 
     public function user(){
@@ -28,6 +28,12 @@ class Userinfo extends Model
     public function getNameAttribute(){
         return $this->first_name . " " . $this->last_name;
     }
+
+    public function getBirthdateFormattedAttribute(){
+        return $this->birthdate ? date('D, M j, Y',strtotime($this->birthdate)) : "";
+    }
+
+    
 
 
 

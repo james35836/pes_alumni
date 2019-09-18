@@ -166,7 +166,7 @@ function transaction()
 	function delete_item()
 	{
 		$("body").on('click','.delete-button',function(){
-
+			console.log("delete")
 			var container = $(this).closest('.delete-container');
 
 			var link      	= $(this).attr('link');

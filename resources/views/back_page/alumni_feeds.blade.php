@@ -24,7 +24,7 @@
                     <div class="card-body no-padding">
                         @foreach($_feed as $feed)
 
-                        <div class="item clearfix">
+                        <div class="item clearfix delete-container">
                             <div class="feed d-flex justify-content-between">
                                 <div class="feed-body d-flex justify-content-between"><a href="#" class="feed-profile"><img src="{{$feed->user->userinfo->user_profile}}" alt="person" class="img-fluid rounded-circle"></a>
                                     <div class="content">
@@ -35,7 +35,13 @@
                                 <div class="date text-right"><small>5min ago</small></div>
                             </div>
                             <div class="quote has-shadow"> <small>{{$feed->description}}</small></div>
-                            {{-- <div class="CTAs pull-right"><a href="#" class="btn btn-xs btn-secondary"><i class="fa fa-thumbs-up"> </i>Like</a></div> --}}
+                            @if(Auth::user()->access > 1)
+                
+                            <div class="CTAs pull-right">
+                                <button type="button" class="btn-sm btn btn-danger waves-effect delete-button" link="/post/delete/{{$feed->id}}"><i class="fa fa-times"> </i> Delete</button>
+                                {{-- <span href="#" class="btn btn-xs btn-danger delete-button" link="/post/delete/{{$feed->id}}"><i class="fa fa-times"> </i>Delete</span> --}}
+                            </div>
+                            @endif
                         </div>
 
                         @endforeach

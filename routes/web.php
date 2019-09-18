@@ -106,6 +106,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/profile', 'UserController@profile')->name('profile');
     Route::get('/photo/delete/{id}',            'AlbumController@delete');
+    Route::get('/post/delete/{id}',            'PostController@delete');
     
 	Route::get('/officers', 			'UserController@officers')->name('officers');
 	Route::get('/faculties', 			'UserController@faculties')->name('faculties');

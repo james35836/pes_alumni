@@ -20,6 +20,7 @@
                         </div>
                         <div class="client-title">
                             <h3><br>{{ $user->userinfo->name }}</h3>
+                            <label class="form-control-label">{{ $user->userinfo->work }}</label>
                         </div>
                     </div>
                     @if(Auth::user()->id == $user->id)
@@ -34,98 +35,105 @@
             </div>
             <!-- Form Elements -->
             <div class="col-lg-8 tab-content">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @endif
                 <div  role="tabpanel" aria-labelledby="edit-profile-tab" class="tab-pane fade edit-profile-tab active show">
                     <div class="card" >
                         <div class="card-header d-flex align-items-center">
                             <h3 class="h4">Basic Information</h3>
                         </div>
                         <div class="card-body">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal ">
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Name</label>
-                                    <div class="col-sm-9">{{$user->userinfo->name}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->name}}</p></div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Email</label>
-                                    <div class="col-sm-9">{{$user->email}}</div>
+                                    <div class="col-sm-9"><p>{{$user->email}}</p></div>
                                 </div>
                                 @if($user->userinfo->contact)
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Contact</label>
-                                    <div class="col-sm-9">{{$user->userinfo->contact}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->contact}}</p></div>
                                 </div>
                                 @endif
                                 @if($user->userinfo->gender)
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Gender</label>
-                                    <div class="col-sm-9">{{$user->userinfo->gender}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->gender}}</p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->civil_status)
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Status</label>
-                                    <div class="col-sm-9">{{$user->userinfo->civil_status}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->civil_status}}</p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->birthdate)
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Birthdate</label>
-                                    <div class="col-sm-9">{{$user->userinfo->birthdate}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->birthdate_formatted}}</p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->address)
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Address</label>
-                                    <div class="col-sm-9">{{$user->userinfo->address}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->address}}</p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->high_school)
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">High School</label>
-                                    <div class="col-sm-9">{{$user->userinfo->high_school}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->high_school}}</p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->college_school)
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">College</label>
-                                    <div class="col-sm-9">{{$user->userinfo->college_school}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->college_school}}</p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->work)
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Work</label>
-                                    <div class="col-sm-9">{{$user->userinfo->work}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->work}}</p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->biography)
                                 <div class="form-group row">
                                     <label class="col-sm-3 form-control-label">Biography</label>
-                                    <div class="col-sm-9">{{$user->userinfo->biography}}</div>
+                                    <div class="col-sm-9"><p>{{$user->userinfo->biography}}</p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->fb_link)
                                 
-                                <div class="form-group row">
+                                <div class="form-group row circle-icon">
                                     <label class="col-sm-3 form-control-label">Facebook</label>
-                                    <div class="col-sm-9">{{$user->userinfo->fb_link}}</div>
+
+                                    <div class="col-sm-9"> <p>View me on <a href="{{$user->userinfo->fb_link}}" class="fa fa-facebook"></a></p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->twitter_link)
-                                <div class="form-group row">
+                                <div class="form-group row circle-icon">
                                     <label class="col-sm-3 form-control-label">Twitter</label>
-                                    <div class="col-sm-9">{{$user->userinfo->twitter_link}}</div>
+                                    <div class="col-sm-9"> <p>View me on <a href="{{$user->userinfo->twitter_link}}" class="fa fa-twitter"></a></p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->instagram_link)
-                                <div class="form-group row">
+                                <div class="form-group row circle-icon">
                                     <label class="col-sm-3 form-control-label">Instagram</label>
-                                    <div class="col-sm-9">{{$user->userinfo->instagram_link}}</div>
+                                    <div class="col-sm-9"> <p>View me on <a href="{{$user->userinfo->instagram_link}}" class="fa fa-instagram"></a></p></div>
                                 </div>
                                  @endif
                                 @if($user->userinfo->linkedin_link)
-                                <div class="form-group row">
+                                <div class="form-group row circle-icon">
                                     <label class="col-sm-3 form-control-label">LinkedIn</label>
-                                    <div class="col-sm-9">{{$user->userinfo->linkedin_link}}</div>
+                                    <div class="col-sm-9"> <p>View me on <a href="{{$user->userinfo->linkedin_link}}" class="fa fa-linkedin"></a></p></div>
                                 </div>
                                  @endif
 
@@ -137,12 +145,6 @@
                 </div>
                 <div  role="tabpanel" aria-labelledby="edit-settings-tab" class="tab-pane fade edit-settings-tab">
                     <div class="card" >
-                        <div class="card-close">
-                            <div class="dropdown">
-                                <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
-                            </div>
-                        </div>
                         <div class="card-header d-flex align-items-center">
                             <h3 class="h4">Update Information</h3>
                         </div>
@@ -157,9 +159,16 @@
                             </div>
                         @endif
                         <div class="card-body">
-                            {!! Form::model($user, ['method' => 'PATCH','class' => 'form-horizontal row','route' => ['users.update', $user->id]]) !!}
+                            {!! Form::model($user, ['method' => 'PATCH','class' => 'form-horizontal row','enctype'=>'multipart/form-data','route' => ['users.update', $user->id]]) !!}
                             
                                 @csrf
+                                <div class="form-group col-md-6">
+                                    <div class="form-group">
+                                        <label>Select Profile:</label>
+                                        {!! Form::file('profile', [])!!}
+                                    </div>
+                                </div>
+
                                 <div class="form-group col-md-6">
                                     <div class="form-group">
                                         <label>Last Name:</label>
@@ -181,17 +190,29 @@
                                     </div>
                                 </div>
 
+                                
                                 <div class="form-group col-md-6">
                                     <div class="form-group">
-                                        <label>Birthdate:</label>
-                                        {!! Form::text('birthdate', $user->userinfo->birthdate, array('placeholder' => 'Birthdate','class' => 'form-control')) !!}
+                                        <label>Email:</label>
+                                        {!! Form::text('email', $user->email, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group">
+                                        <label>Phone Number:</label>
+                                        {!! Form::text('contact', $user->userinfo->contact, array('placeholder' => 'Phone Number','class' => 'form-control')) !!}
                                     </div>
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <div class="form-group">
-                                        <label>Phone Number:</label>
-                                        {!! Form::text('contact', $user->userinfo->contact, array('placeholder' => 'Phone Number','class' => 'form-control')) !!}
+                                        <label>Birthdate:</label>
+                                        <div class="input-group date date-picker" data-target-input="nearest">
+                                            {!! Form::text('birthdate', $user->userinfo->birthdate, array('placeholder' => 'Birthdate','class' => 'form-control datetimepicker-input','data-target'=>'.date-picker')) !!}
+                                            <div class="input-group-append" data-target=".date-picker" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -226,8 +247,7 @@
                                     <label>Work</label>
                                     {!! Form::select('work',$work, $user->userinfo->work, ['class' => 'form-control']) !!}
                                 </div>
-
-
+                                
                                 <div class="form-group col-md-6">
                                     <div class="form-group">
                                         <label>Address:</label>
@@ -239,6 +259,30 @@
                                     <div class="form-group">
                                         <label>Biography:</label>
                                         {!! Form::textarea('biography', $user->userinfo->biography, array('placeholder' => 'Address','rows'=>2,'class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group">
+                                        <label>Facebook Link:</label>
+                                        {!! Form::text('fb_link', $user->userinfo->fb_link, array('placeholder' => 'Facebook Link','class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group">
+                                        <label>Twitter Link:</label>
+                                        {!! Form::text('twitter_link', $user->userinfo->twitter_link, array('placeholder' => 'Twitter Link','class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group">
+                                        <label>Instagram Link:</label>
+                                        {!! Form::text('linkedin_link', $user->userinfo->linkedin_link, array('placeholder' => 'Instagram Link','class' => 'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group">
+                                        <label>LinkedIn Link:</label>
+                                        {!! Form::text('instagram_link', $user->userinfo->instagram_link, array('placeholder' => 'LinkedIn Link','class' => 'form-control')) !!}
                                     </div>
                                 </div>
                                

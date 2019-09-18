@@ -75,7 +75,16 @@
                             </div>
                             <div class="form-group col-lg-6">
                                 <label>Birthdate</label>
-                                <input id="datepicker" type="text" placeholder="Birthdate" class="form-control{{ $errors->has('birthdate') ? ' is-invalid' : '' }}" name="birthdate" value="{{ old('birthdate') }}" required autofocus>
+                                
+                                <div class="input-group date date-picker" data-target-input="nearest">
+                                    <input id="datepicker" type="text" placeholder="Birthdate" class="form-control{{ $errors->has('birthdate') ? ' is-invalid' : '' }} datetimepicker-input" data-target="date-picker" name="birthdate" value="{{ old('birthdate') }}" required autofocus>
+
+                                    <div class="input-group-append" data-target=".date-picker" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+
+
                                 @if ($errors->has('birthdate'))
                                 <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('birthdate') }}</strong>
@@ -110,6 +119,20 @@
                                 @endif
                             </div>
                             <div class="form-group col-lg-6">
+                                <label>Civil Status</label>
+                                <select class="form-control {{ $errors->has('civil_status') ? ' is-invalid' : '' }}" id="civil_status" name="civil_status" value="{{ old('civil_status') }}" required>
+                                    <option>Single</option>
+                                    <option>Married</option>
+                                    <option>Widow</option>
+                                    <option>Separated</option>
+                                </select>
+                                @if ($errors->has('civil_status'))
+                                <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('civil_status') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            {{-- <div class="form-group col-lg-6">
                                 <label>Pin Code</label>
                                 <input id="pin_id" type="pin_id" placeholder="Pin Code" class="form-control{{ $errors->has('pin_id') ? ' is-invalid' : '' }}" name="pin_id" value="{{ old('pin_id') }}" required>
                                 @if ($errors->has('pin_id'))
@@ -117,7 +140,7 @@
                                 <strong>{{ $errors->first('pin_id') }}</strong>
                                 </span>
                                 @endif
-                            </div>
+                            </div> --}}
                             <div class="form-group col-lg-6">
                                 <label>Create Password</label>
                                 <input id="password" type="password" placeholder="Create Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" required autofocus>
