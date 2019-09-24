@@ -162,18 +162,20 @@ class UserController extends Controller
         $data['access']             = isset($data['access']) ? $data['access'] : $old->access;
         $data['position']           = isset($data['position']) ? $data['position'] : $old->position;
         $data['group_id']           = isset($data['group_id']) ? $data['group_id'] : $old->group_id;
+        $data['status']             = isset($data['status']) ? $data['status'] : $old->status;
         
-        $rules['group_id']                  = "required|integer";
+        $rules['group_id']          = "required|integer";
 
         $validator = Validator::make($data,$rules);
 
 
         if($validator->fails()) {
-
-            return redirect()->route('user_list')->with('success','User Updated successfully.');
+            return redirect()->route('user_list')->with('success','Failed to Update.');
         } 
         else{
 
+            $user['group_id']           = $data['group_id'];
+            $user['status']             = $data['status'];
             $user['email']              = $data['email'];
             $user['type']               = $data['type'];
             $user['access']             = $data['access'];

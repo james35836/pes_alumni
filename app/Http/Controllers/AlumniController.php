@@ -42,7 +42,7 @@ class AlumniController extends Controller
     }
     public function alumni_list()
     {
-        $data['_list'] = User::where('type',1)->paginate(10);
+        $data['_list'] = User::where('type','!=',2)->where('status',1)->paginate(10);
         return view('back_page.alumni_list',$data);
     }
     public function alumni_faculties()
