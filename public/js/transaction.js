@@ -95,7 +95,7 @@ function transaction()
 		{
 			$('.loading').css('display','block');
 	        evt.preventDefault();
-	        var formData = new FormData(this);
+	        var formData = new FormData();
 	        current_target = $(this);
             formData.append("code", 		$('.code').val());
 
@@ -259,12 +259,13 @@ function transaction()
 	}
 
 	function pin_info(data,current_target){
-		$('.first_name').val(data.info.user.userinfo.first_name);
-		$('.last_name').val(data.info.user.userinfo.last_name);
-		$('.email').val(data.info.user.userinfo.email);
-		$('.contact').val(data.info.user.userinfo.contact);
-		$('.address').val(data.info.user.userinfo.address);
-		$('.biography').val(data.info.user.userinfo.biography);
+		console.log(data)
+		$('.first_name').val(data.user.userinfo.first_name);
+		$('.last_name').val(data.user.userinfo.last_name);
+		$('.email').val(data.user.email);
+		$('.contact').val(data.user.userinfo.contact);
+		$('.address').val(data.user.userinfo.address);
+		$('.biography').val(data.user.userinfo.biography);
 
 		$('#my-billing-addresses').removeClass('in');
 		$('.input-group .form-control').css('z-index',0);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pin;
+use App\User;
 use Illuminate\Http\Request;
 
 class PinController extends Controller
@@ -19,6 +20,11 @@ class PinController extends Controller
         $data['info'] = Pin::where('code',$code)->where('status',1)->first();
         if($data['info']){
             $data['code']  = 1;
+            $id = $data['info']->id;
+            $data['user'] = User::with(['userinfo'])->find($id);
+            if($data['user']){
+                $data['user_code']  = true;
+            }
         }
         return $data;
     }

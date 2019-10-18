@@ -1,3 +1,5 @@
-<div class=”title m-b-md”>
-You cannot access this page! This is for only ‘{{$role}}’”
-</div>
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif

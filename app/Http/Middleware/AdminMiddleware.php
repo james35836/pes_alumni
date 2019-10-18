@@ -19,8 +19,11 @@ class AdminMiddleware
         if (Auth::check() && Auth::user()->access == 4) {
             return $next($request);
         }
+        else if(Auth::check() && Auth::user()->status == 0){
+            return redirect('/redirect')->with('message', 'Please wait until admin recognize you as an alumni of Paloc Elementary School');
+        }
         else {
-            return redirect('/alumni-feeds')->with('role', 'ADMIN');
+            return redirect('/alumni-feeds');
         }
         
     }

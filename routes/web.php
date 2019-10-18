@@ -45,6 +45,9 @@ Route::post('/checkout', 			'PaymentController@createPayment')->name('create-pay
 Route::get('/confirm', 				'PaymentController@confirmPayment')->name('confirm-payment');
 
 
+Route::get('/redirect',              'HomeController@redirect')->name('redirect');
+
+
 
 Route::resource('/cart', 'CartController');
 
@@ -116,7 +119,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('albums','AlbumController');
 
 
-    Route::get('/events', 			'PostController@events')->name('events');
+    Route::get('/event', 			'PostController@events')->name('event');
     Route::resource('posts','PostController');
 });
 
