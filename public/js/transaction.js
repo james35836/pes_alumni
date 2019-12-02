@@ -76,8 +76,9 @@ function transaction()
     		var error = [];
 			$.each(x, function(i, field){
 				console.log(field.value)
+				console.log(i)
 				if(field.value == ""){
-					$('.account-content.checkout-staps .staps').append("<div class='alert alert-danger required-failed-error'>"+field.name+" is required!</div>")
+					$('.account-content.checkout-staps .staps').append("<div class='alert alert-danger required-failed-error'>"+field.name+"ss is required!</div>")
 				}else{
 					formData.append(field.name ,  field.value);
 				}
@@ -93,6 +94,7 @@ function transaction()
 	{
 		$("body").on('click','.pin-request',function(evt)
 		{
+			console.log("ka,es")
 			$('.loading').css('display','block');
 	        evt.preventDefault();
 	        var formData = new FormData();
@@ -136,9 +138,10 @@ function transaction()
 		$("body").on('click','.checkout_tabs',function(){	
 			$('.required-failed-error').remove();
 			var x = $('.form-checkout-cart').serializeArray();
-    		var formData = new FormData();
+			
     		var error = [];
 			$.each(x, function(i, field){
+				console.log(field.name)
 				if(field.value == ""){
 					$('.checkout-staps').prepend("<div class='alert alert-danger required-failed-error'>"+field.name+" is required!<i class='fa fa-times pull-right'></i></div>");
 				}

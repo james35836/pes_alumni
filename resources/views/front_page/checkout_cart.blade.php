@@ -6,21 +6,17 @@
             <div class="account-content checkout-staps">
                 <div class="staps">
                     <div class="row">
-                        <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                             <div data-tab_name = "billing_tab" class="checkout-stap active checkout_tabs">
-                                <div class="title"> <span class="stap">Step 1: </span><a href="javascript::"> Billing &amp; Shipping Address</a></div>
+                                <div class="title"> <span class="stap">Step 1: </span><a href="javascript:"> Billing &amp; Shipping Address</a></div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                             <div data-tab_name = "payment_tab" class="checkout-stap checkout_tabs">
-                                <div class="title"><span class="stap">Step 2: </span><a href="javascript::"> Payment Method</a></div>
+                                <div class="title"><span class="stap">Step 2: </span><a href="javascript:"> Payment Method & Confirm Order</a></div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div data-tab_name = "order_tab" class="checkout-stap checkout_tabs">
-                                <div class="title"><span class="stap">Step 3: </span><a href="javascript::"> Confirm Order</a></div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -71,11 +67,7 @@
                         </div>
                         
                         <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="input-group">
-                                    <textarea placeholder="Additional information" name="biography" class="biography form-control"></textarea>
-                                </div>
-                            </div>
+                            
                             <div class="col-md-12 col-sm-12"> <a data-tab_name="payment_tab" class="btn btn-primary pull-right checkout_tabs" href="javascript:">Continue</a> </div>
                         </div>
                     </div>
@@ -93,7 +85,18 @@
                                         <div class="panel-collapse collapse in" id="collapseOne">
                                             <div class="panel-body">
                                                 <p>All transactions are secure and encrypted, and we neverstor To learn more, please view our privacy policy.</p>
-                                                <br>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" value="option1" name="optionsRadios">
+                                                        Pay with Paypal
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" value="option1" name="optionsRadios">  
+                                                        Bank/Remittance
+                                                    </label>
+                                                </div>
                                                 <div class="radio">
                                                     <label>
                                                         <input type="radio" value="option1" name="optionsRadios">
@@ -111,91 +114,17 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                                <div class="pull-right">
-                                                    <a class="btn btn-large btn-primary" href="checkout-step4.html"> Order&nbsp;<i class="fa fa-arrow-right"></i> </a>
-                                                </div>
+                                               
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-section">
-                                    <a href="#accordion-2" class="accordion-section-title">PayPal</a>
-                                    <div style="display: none;" class="accordion-section-content" id="accordion-2">
-                                        <div class="panel-body">
-                                            <p>All transactions are secure and encrypted, and we neverstor To learn more, please view our privacy policy.</p>
-                                            <br>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" value="option1" name="optionsRadios">
-                                                    Pay with Paypal
-                                                </label>
-                                            </div>
-                                            {{-- <div class="form-group">
-                                                <label for="CommentsOrder">Add Comments About Your Order</label>
-                                                <textarea rows="3" cols="26" name="CommentsOrder" class="form-control" id="CommentsOrder"></textarea>
-                                            </div> --}}
-                                            <div class="form-group clearfix">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" value="">I have read and agree to the <a href="terms-conditions.html">Terms &amp; Conditions</a>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="pull-right">
-                                                <a class="btn btn-large btn-primary" href="checkout-step4.html"> Order&nbsp;<i class="fa fa-arrow-right"></i> </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-section">
-                                    <a href="#accordion-3" class="accordion-section-title active">Bank Deposit/Remittance</a>
-                                    <div style="display: none;" class="accordion-section-content " id="accordion-3">
-                                        <div class="panel-body">
-                                            <p>All transactions are secure and encrypted, and we neverstor To learn more, please view our privacy policy.</p>
-                                            <br>
-                                            
-                                            <div class=" open">
-                                                <div class="paymentInput">
-                                                    <label>
-                                                        <input type="radio" value="option1" name="optionsRadios">  
-                                                        Bank/Remittance
-                                                    </label>
-                                                </div>
-                                                <div class="paymentInput">
-                                                    <div class="form-group">
-                                                        <label>Payment Type</label>
-                                                        <select name="expire" aria-required="true" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
-                                                            <option value="Bank">Bank Deposit</option>
-                                                            <option value="Palawan">Palawan</option>
-                                                            <option value="Cebuana">Cebuana</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group clearfix">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" value="">I have read and agree to the <a href="terms-conditions.html">Terms &amp; Conditions</a>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="pull-right">
-                                                <a class="btn btn-large btn-primary" href="checkout-step4.html"> Order&nbsp;<i class="fa fa-arrow-right"></i> </a>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row" style="display:none;" id="order_tab">
-                    <div class="row">
-                        <div class="col-lg-12">
+                    <div class="col-md-12">
                             <h2 class="delivery-method tf">Confirm Order</h2>
-                        </div>
-                        <div class="col-md-12">
                             <div class="cart-content table-responsive">
                                 <table class="cart-table ">
                                     <tbody>
@@ -272,8 +201,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
+                
             </form>
         </div>
     </div>
