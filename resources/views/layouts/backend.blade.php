@@ -149,7 +149,7 @@
                                     <li class="{{ Request::segment(1) == "officers" ? "active" : "" }}"><a href="{{ route('officers') }}"> <i class="icon-home"></i>Officers</a></li>
                                     <li class="{{ Request::segment(1) == "faculties" ? "active" : "" }}"><a href="{{ route('faculties') }}"> <i class="icon-home"></i>Faculties</a></li>
                                     <li class="{{ Request::segment(1) == "products" ? "active" : "" }}"><a href="{{ route('products.index') }}"> <i class="icon-home"></i>Products</a></li>
-                                    <li class="{{ Request::segment(1) == "events" ? "active" : "" }}"><a href="{{ route('events') }}"> <i class="icon-home"></i>Events</a></li>
+                                    <li class="{{ Request::segment(1) == "events" ? "active" : "" }}"><a href="/event"> <i class="icon-home"></i>Events</a></li>
                                     <li class="{{ Request::segment(1) == "albums" ? "active" : "" }}"><a href="{{ route('albums.index') }}"> <i class="icon-home"></i>Galleries</a></li>
                                 </ul>
                             </li>
